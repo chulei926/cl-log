@@ -1,0 +1,64 @@
+syntax = "proto3";
+option optimize_for = SPEED;
+option java_package = "com.cl.log.config.model";
+option java_outer_classname = "LogFactory";
+
+message Log{
+
+  enum LogCategory{
+    nginx_log = 0;
+    tomcat_access_log = 1;
+    biz_log = 2;
+    perf_log = 3;
+  }
+
+  LogCategory category = 1;
+
+  oneof body{
+    NginxLog nginxLog = 2;
+    TomcatAccessLog tomcatAccessLog = 3;
+    BizLog bizLog = 4;
+    PerfLog perfLog = 5;
+  }
+}
+
+message NginxLog{
+
+}
+
+// <pattern>%reqAttribute{traceId} %reqAttribute{parentTraceId} %reqAttribute{curTraceId}
+// %reqAttribute{appName} %reqAttribute{appPort} %reqAttribute{userId} %t{yyyy-MM-ddHH:mm:ss.SSS} %s %b %D [%i{X-Forwarded-For}] "%r"</pattern>
+message TomcatAccessLog{
+  string host = 1; // 主机
+  string traceId = 2; // 调用链id
+  string biz = 3; // 业务组件
+  int32 port = 4;
+  string userId = 5;
+  string dataTime = 6; // 日期时间
+  string statesCode = 7;
+  int32 time = 8;
+  string address = 9;
+  string requestMethod = 10;
+  string requestURL = 11;
+  string params = 12;
+}
+
+// %X{traceId:-0123456789} %X{parentTraceId:-123} %X{curTraceId:-321} %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%msg%n
+message BizLog{
+  string host = 1; // 主机
+  string biz = 2; // 业务组件
+  string traceId = 3; // 调用链id
+  string dataTime = 4; // 日期时间
+  string thread = 5;  // 线程
+  string level = 6; // 日志级别
+  string clazz = 7; // 类名
+  string msg = 8; // 消息
+}
+
+message PerfLog{
+  string host = 1; // 主机
+  string biz = 2; // 业务组件
+  string clazz = 3; // 接口全类名
+  string method = 4; // 方法
+  string time = 5; // 耗时
+}

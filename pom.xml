@@ -11,6 +11,7 @@
 	<packaging>pom</packaging>
 	
 	<modules>
+		<module>cl-log-config</module>
 		<module>cl-log-agent</module>
 		<module>cl-log-server</module>
 	</modules>
