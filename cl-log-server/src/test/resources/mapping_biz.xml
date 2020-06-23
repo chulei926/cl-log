@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index name="biz_log">
+    <attr name="host" type="keyword" />
+    <attr name="biz" type="keyword" />
+    <attr name="traceId" type="keyword" />
+    <attr name="dateTime" type="date" format="yyyy-MM-dd HH:mm:ss" />
+    <attr name="thread" type="keyword" />
+    <attr name="level" type="keyword" />
+    <attr name="clazz" type="keyword" />
+    <attr name="msg" type="text" analyzer="ik_smart" search_analyzer="ik_smart" />
+    
+    <attr name="year" type="keyword" />
+    <attr name="month" type="keyword" />
+    <attr name="day" type="keyword" />
+    <attr name="hour" type="keyword" />
+    <attr name="minute" type="keyword" />
+    <attr name="second" type="keyword" />
+    
+    <attr name="date4Month" type="keyword" />
+    <attr name="date4Day" type="keyword" />
+    <attr name="date4Hour" type="keyword" />
+    <attr name="date4Minute" type="keyword" />
+    <attr name="date4Second" type="keyword" />
+    
+</index>

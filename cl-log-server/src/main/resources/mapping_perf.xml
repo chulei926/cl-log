@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index name="tk_question">
+
+    <attr name="objectId" type="keyword" />
+    <attr name="uuid" type="keyword" />
+    <attr name="paper" type="keyword" />
+    <attr name="score" type="double" />
+    <attr name="phase" type="keyword" />
+    <attr name="subject" type="keyword" />
+    <attr name="grade" type="keyword" />
+    <attr name="knowledge" type="keyword" />
+    <attr name="examPoint" type="keyword" />
+    <attr name="type" type="keyword" />
+
+    <attr name="difficulty" type="integer" />
+    <attr name="eduSys" type="integer" />
+    <attr name="source" type="integer" />
+    <attr name="quality" type="integer" />
+    <attr name="isPublic" type="integer" />
+    <attr name="useAttr">
+        <child name="region" type="keyword" />
+        <child name="type" type="integer" />
+        <child name="year" type="integer" />
+    </attr>
+
+    <attr name="sharingRecord">
+        <child name="sharer" type="keyword" />
+        <child name="school" type="keyword" />
+        <child name="type" type="integer" />
+        <child name="time" type="date" format="yyyy-MM-dd HH:mm:ss" />
+    </attr>
+
+    <attr name="similarQuestion">
+        <child name="uuid" type="keyword" />
+        <child name="similarity" type="double" />
+        <child name="difficulty" type="integer" />
+    </attr>
+
+    <attr name="statistics">
+        <child name="viewCount" type="integer" />
+        <child name="usageCount" type="integer" />
+        <child name="answerCount" type="integer" />
+        <child name="avgScoreRate" type="double" />
+    </attr>
+
+    <attr name="create">
+        <child name="user" type="keyword" />
+        <child name="time" type="date" format="yyyy-MM-dd HH:mm:ss" />
+    </attr>
+
+    <attr name="update">
+        <child name="user" type="keyword" />
+        <child name="time" type="date" format="yyyy-MM-dd HH:mm:ss" />
+    </attr>
+
+    <attr name="version" type="integer" />
+    <attr name="verifyStatus" type="integer" />
+    <attr name="status" type="integer" />
+
+    <attr name="structure">
+        <child name="txt" type="text" analyzer="ik_smart" search_analyzer="ik_smart" />
+        <child name="content" type="text" analyzer="ik_smart" search_analyzer="ik_smart" />
+        <child name="option">
+            <child name="index" type="keyword" />
+            <child name="content" type="text" analyzer="ik_smart" search_analyzer="ik_smart" />
+        </child>
+        <child name="material">
+            <child name="index" type="integer" />
+            <child name="content" type="text" analyzer="ik_smart" search_analyzer="ik_smart" />
+        </child>
+        <child name="answer">
+            <child name="index" type="integer" />
+            <child name="content" type="text" analyzer="ik_smart" search_analyzer="ik_smart" />
+        </child>
+        <child name="analysis">
+            <child name="index" type="integer" />
+            <child name="content" type="text" analyzer="ik_smart" search_analyzer="ik_smart" />
+        </child>
+
+        <child name="subQuestion">
+            <child name="index" type="integer" />
+            <child name="content" type="text" analyzer="ik_smart" search_analyzer="ik_smart" />
+
+            <child name="option">
+                <child name="index" type="keyword" />
+                <child name="content" type="text" analyzer="ik_smart" search_analyzer="ik_smart" />
+            </child>
+
+            <child name="materialIndex" type="integer" />
+
+            <child name="answer">
+                <child name="index" type="integer" />
+                <child name="content" type="text" analyzer="ik_smart" search_analyzer="ik_smart" />
+            </child>
+            <child name="analysis">
+                <child name="index" type="integer" />
+                <child name="content" type="text" analyzer="ik_smart" search_analyzer="ik_smart" />
+            </child>
+
+            <child name="score" type="double" />
+            <child name="knowledge" type="keyword" />
+            <child name="type" type="keyword" />
+        </child>
+
+    </attr>
+
+
+</index>

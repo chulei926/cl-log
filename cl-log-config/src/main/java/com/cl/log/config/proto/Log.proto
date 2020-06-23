@@ -5,14 +5,14 @@ option java_outer_classname = "LogFactory";
 
 message Log{
 
-  enum LogCategory{
+  enum Category{
     nginx_log = 0;
     tomcat_access_log = 1;
     biz_log = 2;
     perf_log = 3;
   }
 
-  LogCategory category = 1;
+  Category category = 1;
 
   oneof body{
     NginxLog nginxLog = 2;
@@ -23,32 +23,38 @@ message Log{
 }
 
 message NginxLog{
-
+  string host = 1; // 主机
+  string dateTime = 2;  // 时间
+  string requestMethod = 3;
+  string requestURL = 4;
+  string params = 5;
+  string statesCode = 6;  // 状态码
+  int32 consume = 7; // 耗时
+  string userAgent = 8; //
+  string ip = 9; // ip
+  string upstream = 10;
 }
 
-// <pattern>%reqAttribute{traceId} %reqAttribute{parentTraceId} %reqAttribute{curTraceId}
-// %reqAttribute{appName} %reqAttribute{appPort} %reqAttribute{userId} %t{yyyy-MM-ddHH:mm:ss.SSS} %s %b %D [%i{X-Forwarded-For}] "%r"</pattern>
 message TomcatAccessLog{
   string host = 1; // 主机
   string traceId = 2; // 调用链id
   string biz = 3; // 业务组件
-  int32 port = 4;
-  string userId = 5;
-  string dataTime = 6; // 日期时间
-  string statesCode = 7;
-  int32 time = 8;
-  string address = 9;
+  int32 port = 4; // 端口
+  string userId = 5;  // 用户ID
+  string dateTime = 6; // 时间
+  string statesCode = 7;  // 状态码
+  int32 consume = 8; // 耗时
+  string ip = 9; // ip
   string requestMethod = 10;
   string requestURL = 11;
   string params = 12;
 }
 
-// %X{traceId:-0123456789} %X{parentTraceId:-123} %X{curTraceId:-321} %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%msg%n
 message BizLog{
   string host = 1; // 主机
   string biz = 2; // 业务组件
   string traceId = 3; // 调用链id
-  string dataTime = 4; // 日期时间
+  string dateTime = 4; // 日期时间
   string thread = 5;  // 线程
   string level = 6; // 日志级别
   string clazz = 7; // 类名
@@ -60,5 +66,6 @@ message PerfLog{
   string biz = 2; // 业务组件
   string clazz = 3; // 接口全类名
   string method = 4; // 方法
-  string time = 5; // 耗时
+  string consume = 5; // 耗时
+  string dateTime = 6; // 日期时间
 }
