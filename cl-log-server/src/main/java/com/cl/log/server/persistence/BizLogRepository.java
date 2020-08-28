@@ -21,11 +21,12 @@ public class BizLogRepository extends AbstractRepository<BizLog> {
 	@Resource
 	private RestHighLevelClient client;
 
+
 	@Override
 	public void batchInsert(EsIndex index, List<BizLog> list) {
 		BulkRequest request = new BulkRequest();
 		for (BizLog bizLog : list) {
-			request.add(new IndexRequest(index.getName()).id(UUID.randomUUID().toString()).source(bizLog.toMap()));
+			request.add(new IndexRequest(index.getName()).id(UUID.randomUUID().toString()).source(bizLog.convert()));
 		}
 		request.setRefreshPolicy(WriteRequest.RefreshPolicy.IMMEDIATE);
 		try {
@@ -35,5 +36,6 @@ public class BizLogRepository extends AbstractRepository<BizLog> {
 		}
 
 	}
+
 
 }

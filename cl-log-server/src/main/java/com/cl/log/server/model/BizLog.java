@@ -1,6 +1,7 @@
 package com.cl.log.server.model;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cl.log.config.model.LogFactory;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 
@@ -14,7 +15,7 @@ import java.util.Map;
  *
  * @author leichu 2020-06-23.
  */
-public class BizLog extends BasicAttr implements Serializable {
+public class BizLog extends BasicAttr implements ILog, Serializable {
 
 	public static final String INDEX_PREFIX = "biz_log-";
 
@@ -27,7 +28,20 @@ public class BizLog extends BasicAttr implements Serializable {
 	private String clazz;
 	private String msg;
 
-	public Map<String, ?> toMap() {
+	public static void main(String[] args) {
+		LocalDateTime time = LocalDateTime.now();
+		System.out.println(time);
+		System.out.println(time.toString());
+		System.out.println(time.getMonth());
+		System.out.println(time.getMonthValue());
+		System.out.println(time.getDayOfMonth());
+	}
+
+	public static BizLog convert(LogFactory.BizLog bzLog) {
+		return null;
+	}
+
+	public Map<String, ?> convert() {
 		Map<String, Object> result = Maps.newHashMap();
 		if (null == this) {
 			return result;
@@ -58,7 +72,6 @@ public class BizLog extends BasicAttr implements Serializable {
 
 		return result;
 	}
-
 
 	public String getHost() {
 		return host;
@@ -106,15 +119,6 @@ public class BizLog extends BasicAttr implements Serializable {
 		this.setDate4Hour(dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH")));
 		this.setDate4Minute(dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
 		this.setDate4Second(dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-	}
-
-	public static void main(String[] args) {
-		LocalDateTime time = LocalDateTime.now();
-		System.out.println(time);
-		System.out.println(time.toString());
-		System.out.println(time.getMonth());
-		System.out.println(time.getMonthValue());
-		System.out.println(time.getDayOfMonth());
 	}
 
 	public String getThread() {

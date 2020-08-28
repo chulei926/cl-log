@@ -1,5 +1,7 @@
 package com.cl.log.config.register;
 
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -13,6 +15,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * zookeeper 注册中心.
@@ -100,5 +105,31 @@ public class ZkRegister extends AbstractRegister {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public String getAvailableUrl() {
+		// TODO 获取一个可用的 服务端 URL 地址
+		if (balanceMap.size() < 1){
+			// 所有的地址还没有被使用
+			List<String> hosts = alreadyRegisterUrl();
+			// 从 地址列表中获取 随机取一个返回
+
+		}
+		// 从 balanceMap 中获取一个 value 最小的 url 返回
+		return null;
+	}
+
+	private List<String> alreadyRegisterUrl(){
+		// 从注册中心中获取已经注册上来的所有 url
+
+		return null;
+	}
+
+	public void set(String key, Object value){
+
+	}
+
+	public Object get(String key){
+		return null;
 	}
 }

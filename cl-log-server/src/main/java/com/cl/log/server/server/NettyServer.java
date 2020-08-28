@@ -3,16 +3,16 @@ package com.cl.log.server.server;
 import com.cl.log.config.model.LogFactory;
 import com.cl.log.config.register.ZkRegister;
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.*;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.ChannelPipeline;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.nio.charset.StandardCharsets;
 
 public class NettyServer {
 
@@ -39,7 +39,7 @@ public class NettyServer {
 				.childOption(ChannelOption.SO_KEEPALIVE, true) // 保持活动连接状态
 				.childHandler(new ChannelInitializer<SocketChannel>() {
 					@Override
-					protected void initChannel(SocketChannel ch) throws Exception {
+					protected void initChannel(SocketChannel ch) {
 						final ChannelPipeline pipeline = ch.pipeline();
 						pipeline.addLast("decoder", new ProtobufDecoder(LogFactory.Log.getDefaultInstance()));
 						pipeline.addLast(new NettyServerHandler());
@@ -63,7 +63,6 @@ public class NettyServer {
 			worker.shutdownGracefully();
 		}
 	}
-
 
 
 	public String getHost() {

@@ -30,7 +30,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<LogFactory.L
 
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-		cause.printStackTrace();
+		logger.error("NettyServerHandler异常！", cause);
 		ctx.close();
 	}
 }
