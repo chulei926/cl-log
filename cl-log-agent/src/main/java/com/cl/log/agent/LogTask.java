@@ -7,9 +7,6 @@ import com.cl.log.agent.util.Extractor;
 import com.cl.log.agent.util.LogFactoryUtils;
 import com.cl.log.config.model.LogFactory;
 import com.cl.log.config.register.ZkRegister;
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.monitor.FileAlterationMonitor;
 import org.apache.commons.io.monitor.FileAlterationObserver;
@@ -35,20 +32,26 @@ public class LogTask implements Runnable {
 	private final LogFileConfig.LogFileCfg config;
 	private final Extractor extractor;
 
+	private final String cacheKey;
+	private long lineNo;
+
 	public LogTask(LogFileConfig.LogFileCfg config) {
 		this.config = config;
 		extractor = LogFactoryUtils.parseExtractor(this.config.getType());
+		cacheKey = this.config.getPath();
+		initLineNo();
+	}
+
+	private void initLineNo() {
+		Object o = ZkRegister.getInstance().get(cacheKey);
+		if (o == null) {
+			lineNo = 0L;
+			return;
+		}
+		lineNo = (long) o;
 	}
 
 	private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-	private final LoadingCache<String, Long> lineCache = CacheBuilder.newBuilder().maximumSize(10000).build(
-			new CacheLoader<String, Long>() {
-				public Long load(String key) {
-					ZkRegister.getInstance().get(key);
-					return 0L;
-				}
-			}
-	);
 
 	@Override
 	public void run() {
@@ -72,12 +75,7 @@ public class LogTask implements Runnable {
 	}
 
 	private void refreshLineCache() {
-		scheduledExecutorService.scheduleAtFixedRate(() -> {
-			logger.debug("begin refresh------------");
-
-			logger.debug("end refresh------------");
-		}, 0, 1, TimeUnit.SECONDS);
-
+		scheduledExecutorService.scheduleAtFixedRate(() -> ZkRegister.getInstance().set(cacheKey, lineNo), 0, 1, TimeUnit.SECONDS);
 	}
 
 
@@ -93,6 +91,9 @@ public class LogTask implements Runnable {
 	 * @param file file.
 	 */
 	private void parseFile(File file) {
+
+
+
 		LogFactory.Log log = extractor.extract(null);
 		String availableUrl = ZkRegister.getInstance().getAvailableUrl();
 		NettyClient client = new NettyClient(availableUrl.split(":")[0], Integer.parseInt(availableUrl.split(":")[1]));
