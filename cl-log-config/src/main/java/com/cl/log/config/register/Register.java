@@ -27,7 +27,7 @@ public interface Register {
 	 *
 	 * @return cnt.
 	 */
-	int count();
+	int serverCount();
 
 	/**
 	 * 从注册中心中获取一个 可用的 url 地址.

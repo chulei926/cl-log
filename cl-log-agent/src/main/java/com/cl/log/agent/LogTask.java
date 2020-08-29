@@ -13,10 +13,14 @@ import com.google.common.cache.LoadingCache;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.monitor.FileAlterationMonitor;
 import org.apache.commons.io.monitor.FileAlterationObserver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -26,6 +30,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class LogTask implements Runnable {
 
+	private static final Logger logger = LoggerFactory.getLogger(LogTask.class);
+
 	private final LogFileConfig.LogFileCfg config;
 	private final Extractor extractor;
 
@@ -34,20 +40,20 @@ public class LogTask implements Runnable {
 		extractor = LogFactoryUtils.parseExtractor(this.config.getType());
 	}
 
-	LoadingCache<String, Long> lineCache = CacheBuilder.newBuilder()
-			.maximumSize(10000)
-			.expireAfterWrite(10, TimeUnit.MINUTES)
-			.build(
-					new CacheLoader<String, Long>() {
-						public Long load(String key) {
-							return 0L;
-						}
-					});
+	private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+	private final LoadingCache<String, Long> lineCache = CacheBuilder.newBuilder().maximumSize(10000).build(
+			new CacheLoader<String, Long>() {
+				public Long load(String key) {
+					ZkRegister.getInstance().get(key);
+					return 0L;
+				}
+			}
+	);
 
 	@Override
 	public void run() {
+		refreshLineCache();
 		Path curPath = Paths.get(config.getPath());
-		long interval = TimeUnit.SECONDS.toMillis(1);
 		FileAlterationObserver observer = new FileAlterationObserver(
 				curPath.getParent().toString(),
 				FileFilterUtils.and(FileFilterUtils.fileFileFilter(), FileFilterUtils.suffixFileFilter(".log")),
@@ -59,10 +65,19 @@ public class LogTask implements Runnable {
 			}
 		}));
 		try {
-			new FileAlterationMonitor(interval, observer).start();
+			new FileAlterationMonitor(TimeUnit.MILLISECONDS.toMillis(500), observer).start();
 		} catch (Exception e) {
 			throw new RuntimeException("文件监控程序启动异常！", e);
 		}
+	}
+
+	private void refreshLineCache() {
+		scheduledExecutorService.scheduleAtFixedRate(() -> {
+			logger.debug("begin refresh------------");
+
+			logger.debug("end refresh------------");
+		}, 0, 1, TimeUnit.SECONDS);
+
 	}
 
 
@@ -84,4 +99,5 @@ public class LogTask implements Runnable {
 		client.start(log);
 
 	}
+
 }

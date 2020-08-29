@@ -22,7 +22,7 @@ import static org.quartz.TriggerBuilder.newTrigger;
  *
  * @author leichu 2020-06-23.
  */
-@Component
+//@Component
 public class TaskCenter {
 
 	protected static final BlockingQueue<ILog> LOG_QUEUE = new LinkedBlockingQueue();

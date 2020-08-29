@@ -16,7 +16,7 @@ import java.util.concurrent.BlockingQueue;
  */
 public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
-	private LogFactory.Log log;
+	private final LogFactory.Log log;
 
 	public NettyClientHandler(LogFactory.Log log) {
 		this.log = log;

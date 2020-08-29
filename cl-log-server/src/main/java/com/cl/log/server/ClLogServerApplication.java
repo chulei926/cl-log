@@ -11,7 +11,7 @@ public class ClLogServerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ClLogServerApplication.class, args);
-		NettyServer server = new NettyServer(NetUtils.getIp(), 8888);
+		NettyServer server = new NettyServer(NetUtils.getIp(), 8889);
 		server.start();
 	}
 

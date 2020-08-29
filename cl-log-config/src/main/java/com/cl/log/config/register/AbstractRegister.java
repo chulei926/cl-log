@@ -1,9 +1,9 @@
 package com.cl.log.config.register;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,11 +13,12 @@ import java.util.Map;
  */
 public abstract class AbstractRegister implements Register {
 
+	private int reqCount = 0;
+
 	/**
 	 * 注册表.
 	 */
-	public Map<String, Object> registerTable = Maps.newConcurrentMap();
-	public Map<String, Long> balanceMap = Maps.newConcurrentMap();
+	private static final Map<String, Object> registerTable = Maps.newConcurrentMap();
 
 	public void register(String key, Object value) {
 		registerTable.put(key, value);
@@ -27,7 +28,23 @@ public abstract class AbstractRegister implements Register {
 		registerTable.remove(key);
 	}
 
-	public int count() {
-		return registerTable.size();
+	public List<String> getUrls() {
+		return Lists.newArrayList(registerTable.keySet());
+	}
+
+	public int serverCount() {
+		throw new AbstractMethodError("方法未实现");
+	}
+
+	public int reqCount() {
+		return reqCount;
+	}
+
+	public void addReqCount() {
+		this.reqCount++;
+	}
+
+	public void resetReqCount() {
+		this.reqCount = 0;
 	}
 }
