@@ -1,8 +1,11 @@
 package com.cl.log.server.model;
 
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * 基础指标.
@@ -11,6 +14,9 @@ import java.io.Serializable;
  */
 public class BasicAttr implements Serializable {
 
+	private static final long serialVersionUID = -3229883569537250806L;
+
+	private String dateTime;
 	protected String year;
 	protected String month;
 	protected String day;
@@ -25,6 +31,30 @@ public class BasicAttr implements Serializable {
 	protected String date4Second; // yyyy-mm-dd HH:mm:ss
 
 	public BasicAttr() {
+	}
+
+	public String getDateTime() {
+		return dateTime;
+	}
+
+	public void setDateTime(String dateTime) {
+		this.dateTime = dateTime;
+		if (StringUtils.isBlank(this.dateTime)) {
+			return;
+		}
+		final LocalDateTime dt = LocalDateTime.parse(this.dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+		this.setYear(String.valueOf(dt.getYear()));
+		this.setMonth(String.valueOf(dt.getMonth()));
+		this.setDay(String.valueOf(dt.getDayOfMonth()));
+		this.setHour(String.valueOf(dt.getHour()));
+		this.setMinute(String.valueOf(dt.getMinute()));
+		this.setSecond(String.valueOf(dt.getSecond()));
+
+		this.setDate4Month(dt.format(DateTimeFormatter.ofPattern("yyyy-MM")));
+		this.setDate4Day(dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+		this.setDate4Hour(dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH")));
+		this.setDate4Minute(dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+		this.setDate4Second(dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 	}
 
 	public String getYear() {

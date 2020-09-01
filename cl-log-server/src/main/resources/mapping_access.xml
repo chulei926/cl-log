@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<index name="biz_log">
+<index name="access_log">
+
 	<attr name="host" type="keyword"/>
 	<attr name="biz" type="keyword"/>
 	<attr name="traceId" type="keyword"/>
+
+	<attr name="port" type="integer"/>
+	<attr name="userId" type="keyword"/>
+	<attr name="statesCode" type="integer"/>
+	<attr name="consume" type="integer"/>
+	<attr name="ip" type="text" analyzer="ik_smart" search_analyzer="ik_smart"/>
+	<attr name="requestMethod" type="keyword"/>
+	<attr name="requestURL" type="text" analyzer="ik_smart" search_analyzer="ik_smart"/>
+
 	<attr name="dateTime" type="date" format="yyyy-MM-dd HH:mm:ss"/>
-	<attr name="thread" type="keyword"/>
-	<attr name="level" type="keyword"/>
-	<attr name="clazz" type="keyword"/>
-	<attr name="msg" type="text" analyzer="ik_smart" search_analyzer="ik_smart"/>
 
 	<attr name="year" type="keyword"/>
 	<attr name="month" type="keyword"/>

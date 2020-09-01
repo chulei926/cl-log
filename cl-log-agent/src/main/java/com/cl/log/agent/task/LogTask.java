@@ -1,4 +1,4 @@
-package com.cl.log.agent;
+package com.cl.log.agent.task;
 
 import com.cl.log.agent.client.ChannelHandlerContextHolder;
 import com.cl.log.agent.client.NettyClient;
@@ -63,7 +63,6 @@ public class LogTask implements Runnable {
 		executorService.execute(() -> client.start());
 	}
 
-
 	@Override
 	public void run() {
 		Path curPath = Paths.get(config.getPath());
@@ -90,7 +89,7 @@ public class LogTask implements Runnable {
 	 * <pre>
 	 *     1. 缓存每次读取到的行号，下一次读取的时候，从指定行号开始向下读取。
 	 *     2. 将读取到的内容封装成 Log 对象。
-	 *     3. 启动 netty 客户端，传输数据。
+	 *     3. 获取传输通道 Channel ，传输数据。
 	 * </pre>
 	 *
 	 * @param file file.
@@ -99,21 +98,23 @@ public class LogTask implements Runnable {
 		Long lineNo = LineNoCacheRefreshJob.getLineNo(cacheKey);
 		List<LogFactory.Log> logs = null;
 		Path path = file.toPath();
-		try (Stream<String> lines = Files.lines(path)) {
-			List<String> line = lines.skip(lineNo).collect(Collectors.toList());
-			System.out.println(line);
-			logs = extractor.extract(line);
-			if (!CollectionUtils.isEmpty(line)) {
-				lineNo += line.size();
-				LineNoCacheRefreshJob.refresh(cacheKey, lineNo);
+		try (Stream<String> linesStream = Files.lines(path)) {
+			List<String> lines = linesStream.skip(lineNo).collect(Collectors.toList());
+			if (CollectionUtils.isEmpty(lines)){
+				return;
 			}
+			logs = extractor.extract(lines);
+			lineNo += lines.size();
+			LineNoCacheRefreshJob.refresh(cacheKey, lineNo);
 		} catch (Exception e) {
-			logger.error("文件解析异常！", e);
+			throw new RuntimeException("文件解析异常！", e);
+		}
+		if (CollectionUtils.isEmpty(logs)) {
+			return;
 		}
 		ChannelHandlerContext channelHandlerContext = ChannelHandlerContextHolder.getChannelHandlerContext(nettyClientId);
 		Channel channel = channelHandlerContext.channel();
-		LogFactory.Log log = extractor.testLog();
-		channel.writeAndFlush(log);
-		System.out.println("日志已发送");
+		logs.forEach(channel::writeAndFlush);
+		logger.info("日志已发送，总量：{}", logs.size());
 	}
 }

@@ -23,4 +23,5 @@
 ### 3.2 zookeeper
 
 ### 3.3 ProtoBuf
+    protoc --java_out=./ ./Log.proto
 

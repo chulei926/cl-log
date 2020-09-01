@@ -4,9411 +4,9029 @@
 package com.cl.log.config.model;
 
 public final class LogFactory {
-	private LogFactory() {}
-	public static void registerAllExtensions(
-			com.google.protobuf.ExtensionRegistryLite registry) {
-	}
-
-	public static void registerAllExtensions(
-			com.google.protobuf.ExtensionRegistry registry) {
-		registerAllExtensions(
-				(com.google.protobuf.ExtensionRegistryLite) registry);
-	}
-	public interface LogOrBuilder extends
-			// @@protoc_insertion_point(interface_extends:Log)
-			com.google.protobuf.MessageOrBuilder {
-
-		/**
-		 * <code>.Log.Category category = 1;</code>
-		 * @return The enum numeric value on the wire for category.
-		 */
-		int getCategoryValue();
-		/**
-		 * <code>.Log.Category category = 1;</code>
-		 * @return The category.
-		 */
-		Log.Category getCategory();
-
-		/**
-		 * <code>.NginxLog nginxLog = 2;</code>
-		 * @return Whether the nginxLog field is set.
-		 */
-		boolean hasNginxLog();
-		/**
-		 * <code>.NginxLog nginxLog = 2;</code>
-		 * @return The nginxLog.
-		 */
-		NginxLog getNginxLog();
-		/**
-		 * <code>.NginxLog nginxLog = 2;</code>
-		 */
-		NginxLogOrBuilder getNginxLogOrBuilder();
-
-		/**
-		 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-		 * @return Whether the tomcatAccessLog field is set.
-		 */
-		boolean hasTomcatAccessLog();
-		/**
-		 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-		 * @return The tomcatAccessLog.
-		 */
-		TomcatAccessLog getTomcatAccessLog();
-		/**
-		 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-		 */
-		TomcatAccessLogOrBuilder getTomcatAccessLogOrBuilder();
-
-		/**
-		 * <code>.BizLog bizLog = 4;</code>
-		 * @return Whether the bizLog field is set.
-		 */
-		boolean hasBizLog();
-		/**
-		 * <code>.BizLog bizLog = 4;</code>
-		 * @return The bizLog.
-		 */
-		BizLog getBizLog();
-		/**
-		 * <code>.BizLog bizLog = 4;</code>
-		 */
-		BizLogOrBuilder getBizLogOrBuilder();
-
-		/**
-		 * <code>.PerfLog perfLog = 5;</code>
-		 * @return Whether the perfLog field is set.
-		 */
-		boolean hasPerfLog();
-		/**
-		 * <code>.PerfLog perfLog = 5;</code>
-		 * @return The perfLog.
-		 */
-		PerfLog getPerfLog();
-		/**
-		 * <code>.PerfLog perfLog = 5;</code>
-		 */
-		PerfLogOrBuilder getPerfLogOrBuilder();
-
-		public Log.BodyCase getBodyCase();
-	}
-	/**
-	 * Protobuf type {@code Log}
-	 */
-	public static final class Log extends
-			com.google.protobuf.GeneratedMessageV3 implements
-			// @@protoc_insertion_point(message_implements:Log)
-			LogOrBuilder {
-		private static final long serialVersionUID = 0L;
-		// Use Log.newBuilder() to construct.
-		private Log(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-			super(builder);
-		}
-		private Log() {
-			category_ = 0;
-		}
-
-		@Override
-		@SuppressWarnings({"unused"})
-		protected Object newInstance(
-				UnusedPrivateParameter unused) {
-			return new Log();
-		}
-
-		@Override
-		public final com.google.protobuf.UnknownFieldSet
-		getUnknownFields() {
-			return this.unknownFields;
-		}
-		private Log(
-				com.google.protobuf.CodedInputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			this();
-			if (extensionRegistry == null) {
-				throw new NullPointerException();
-			}
-			com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-					com.google.protobuf.UnknownFieldSet.newBuilder();
-			try {
-				boolean done = false;
-				while (!done) {
-					int tag = input.readTag();
-					switch (tag) {
-						case 0:
-							done = true;
-							break;
-						case 8: {
-							int rawValue = input.readEnum();
-
-							category_ = rawValue;
-							break;
-						}
-						case 18: {
-							NginxLog.Builder subBuilder = null;
-							if (bodyCase_ == 2) {
-								subBuilder = ((NginxLog) body_).toBuilder();
-							}
-							body_ =
-									input.readMessage(NginxLog.parser(), extensionRegistry);
-							if (subBuilder != null) {
-								subBuilder.mergeFrom((NginxLog) body_);
-								body_ = subBuilder.buildPartial();
-							}
-							bodyCase_ = 2;
-							break;
-						}
-						case 26: {
-							TomcatAccessLog.Builder subBuilder = null;
-							if (bodyCase_ == 3) {
-								subBuilder = ((TomcatAccessLog) body_).toBuilder();
-							}
-							body_ =
-									input.readMessage(TomcatAccessLog.parser(), extensionRegistry);
-							if (subBuilder != null) {
-								subBuilder.mergeFrom((TomcatAccessLog) body_);
-								body_ = subBuilder.buildPartial();
-							}
-							bodyCase_ = 3;
-							break;
-						}
-						case 34: {
-							BizLog.Builder subBuilder = null;
-							if (bodyCase_ == 4) {
-								subBuilder = ((BizLog) body_).toBuilder();
-							}
-							body_ =
-									input.readMessage(BizLog.parser(), extensionRegistry);
-							if (subBuilder != null) {
-								subBuilder.mergeFrom((BizLog) body_);
-								body_ = subBuilder.buildPartial();
-							}
-							bodyCase_ = 4;
-							break;
-						}
-						case 42: {
-							PerfLog.Builder subBuilder = null;
-							if (bodyCase_ == 5) {
-								subBuilder = ((PerfLog) body_).toBuilder();
-							}
-							body_ =
-									input.readMessage(PerfLog.parser(), extensionRegistry);
-							if (subBuilder != null) {
-								subBuilder.mergeFrom((PerfLog) body_);
-								body_ = subBuilder.buildPartial();
-							}
-							bodyCase_ = 5;
-							break;
-						}
-						default: {
-							if (!parseUnknownField(
-									input, unknownFields, extensionRegistry, tag)) {
-								done = true;
-							}
-							break;
-						}
-					}
-				}
-			} catch (com.google.protobuf.InvalidProtocolBufferException e) {
-				throw e.setUnfinishedMessage(this);
-			} catch (java.io.IOException e) {
-				throw new com.google.protobuf.InvalidProtocolBufferException(
-						e).setUnfinishedMessage(this);
-			} finally {
-				this.unknownFields = unknownFields.build();
-				makeExtensionsImmutable();
-			}
-		}
-		public static final com.google.protobuf.Descriptors.Descriptor
-		getDescriptor() {
-			return LogFactory.internal_static_Log_descriptor;
-		}
-
-		@Override
-		protected FieldAccessorTable
-		internalGetFieldAccessorTable() {
-			return LogFactory.internal_static_Log_fieldAccessorTable
-					.ensureFieldAccessorsInitialized(
-							Log.class, Builder.class);
-		}
-
-		/**
-		 * Protobuf enum {@code Log.Category}
-		 */
-		public enum Category
-				implements com.google.protobuf.ProtocolMessageEnum {
-			/**
-			 * <code>nginx_log = 0;</code>
-			 */
-			nginx_log(0),
-			/**
-			 * <code>tomcat_access_log = 1;</code>
-			 */
-			tomcat_access_log(1),
-			/**
-			 * <code>biz_log = 2;</code>
-			 */
-			biz_log(2),
-			/**
-			 * <code>perf_log = 3;</code>
-			 */
-			perf_log(3),
-			UNRECOGNIZED(-1),
-			;
-
-			/**
-			 * <code>nginx_log = 0;</code>
-			 */
-			public static final int nginx_log_VALUE = 0;
-			/**
-			 * <code>tomcat_access_log = 1;</code>
-			 */
-			public static final int tomcat_access_log_VALUE = 1;
-			/**
-			 * <code>biz_log = 2;</code>
-			 */
-			public static final int biz_log_VALUE = 2;
-			/**
-			 * <code>perf_log = 3;</code>
-			 */
-			public static final int perf_log_VALUE = 3;
-
-
-			public final int getNumber() {
-				if (this == UNRECOGNIZED) {
-					throw new IllegalArgumentException(
-							"Can't get the number of an unknown enum value.");
-				}
-				return value;
-			}
-
-			/**
-			 * @param value The numeric wire value of the corresponding enum entry.
-			 * @return The enum associated with the given numeric wire value.
-			 * @deprecated Use {@link #forNumber(int)} instead.
-			 */
-			@Deprecated
-			public static Category valueOf(int value) {
-				return forNumber(value);
-			}
-
-			/**
-			 * @param value The numeric wire value of the corresponding enum entry.
-			 * @return The enum associated with the given numeric wire value.
-			 */
-			public static Category forNumber(int value) {
-				switch (value) {
-					case 0: return nginx_log;
-					case 1: return tomcat_access_log;
-					case 2: return biz_log;
-					case 3: return perf_log;
-					default: return null;
-				}
-			}
-
-			public static com.google.protobuf.Internal.EnumLiteMap<Category>
-			internalGetValueMap() {
-				return internalValueMap;
-			}
-			private static final com.google.protobuf.Internal.EnumLiteMap<
-					Category> internalValueMap =
-					new com.google.protobuf.Internal.EnumLiteMap<Category>() {
-						public Category findValueByNumber(int number) {
-							return Category.forNumber(number);
-						}
-					};
-
-			public final com.google.protobuf.Descriptors.EnumValueDescriptor
-			getValueDescriptor() {
-				if (this == UNRECOGNIZED) {
-					throw new IllegalStateException(
-							"Can't get the descriptor of an unrecognized enum value.");
-				}
-				return getDescriptor().getValues().get(ordinal());
-			}
-			public final com.google.protobuf.Descriptors.EnumDescriptor
-			getDescriptorForType() {
-				return getDescriptor();
-			}
-			public static final com.google.protobuf.Descriptors.EnumDescriptor
-			getDescriptor() {
-				return Log.getDescriptor().getEnumTypes().get(0);
-			}
-
-			private static final Category[] VALUES = values();
-
-			public static Category valueOf(
-					com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-				if (desc.getType() != getDescriptor()) {
-					throw new IllegalArgumentException(
-							"EnumValueDescriptor is not for this type.");
-				}
-				if (desc.getIndex() == -1) {
-					return UNRECOGNIZED;
-				}
-				return VALUES[desc.getIndex()];
-			}
-
-			private final int value;
-
-			private Category(int value) {
-				this.value = value;
-			}
-
-			// @@protoc_insertion_point(enum_scope:Log.Category)
-		}
-
-		private int bodyCase_ = 0;
-		private Object body_;
-		public enum BodyCase
-				implements com.google.protobuf.Internal.EnumLite,
-				InternalOneOfEnum {
-			NGINXLOG(2),
-			TOMCATACCESSLOG(3),
-			BIZLOG(4),
-			PERFLOG(5),
-			BODY_NOT_SET(0);
-			private final int value;
-			private BodyCase(int value) {
-				this.value = value;
-			}
-			/**
-			 * @param value The number of the enum to look for.
-			 * @return The enum associated with the given number.
-			 * @deprecated Use {@link #forNumber(int)} instead.
-			 */
-			@Deprecated
-			public static BodyCase valueOf(int value) {
-				return forNumber(value);
-			}
-
-			public static BodyCase forNumber(int value) {
-				switch (value) {
-					case 2: return NGINXLOG;
-					case 3: return TOMCATACCESSLOG;
-					case 4: return BIZLOG;
-					case 5: return PERFLOG;
-					case 0: return BODY_NOT_SET;
-					default: return null;
-				}
-			}
-			public int getNumber() {
-				return this.value;
-			}
-		};
-
-		public BodyCase
-		getBodyCase() {
-			return BodyCase.forNumber(
-					bodyCase_);
-		}
-
-		public static final int CATEGORY_FIELD_NUMBER = 1;
-		private int category_;
-		/**
-		 * <code>.Log.Category category = 1;</code>
-		 * @return The enum numeric value on the wire for category.
-		 */
-		@Override public int getCategoryValue() {
-			return category_;
-		}
-		/**
-		 * <code>.Log.Category category = 1;</code>
-		 * @return The category.
-		 */
-		@Override public Category getCategory() {
-			@SuppressWarnings("deprecation")
-			Category result = Category.valueOf(category_);
-			return result == null ? Category.UNRECOGNIZED : result;
-		}
-
-		public static final int NGINXLOG_FIELD_NUMBER = 2;
-		/**
-		 * <code>.NginxLog nginxLog = 2;</code>
-		 * @return Whether the nginxLog field is set.
-		 */
-		@Override
-		public boolean hasNginxLog() {
-			return bodyCase_ == 2;
-		}
-		/**
-		 * <code>.NginxLog nginxLog = 2;</code>
-		 * @return The nginxLog.
-		 */
-		@Override
-		public NginxLog getNginxLog() {
-			if (bodyCase_ == 2) {
-				return (NginxLog) body_;
-			}
-			return NginxLog.getDefaultInstance();
-		}
-		/**
-		 * <code>.NginxLog nginxLog = 2;</code>
-		 */
-		@Override
-		public NginxLogOrBuilder getNginxLogOrBuilder() {
-			if (bodyCase_ == 2) {
-				return (NginxLog) body_;
-			}
-			return NginxLog.getDefaultInstance();
-		}
-
-		public static final int TOMCATACCESSLOG_FIELD_NUMBER = 3;
-		/**
-		 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-		 * @return Whether the tomcatAccessLog field is set.
-		 */
-		@Override
-		public boolean hasTomcatAccessLog() {
-			return bodyCase_ == 3;
-		}
-		/**
-		 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-		 * @return The tomcatAccessLog.
-		 */
-		@Override
-		public TomcatAccessLog getTomcatAccessLog() {
-			if (bodyCase_ == 3) {
-				return (TomcatAccessLog) body_;
-			}
-			return TomcatAccessLog.getDefaultInstance();
-		}
-		/**
-		 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-		 */
-		@Override
-		public TomcatAccessLogOrBuilder getTomcatAccessLogOrBuilder() {
-			if (bodyCase_ == 3) {
-				return (TomcatAccessLog) body_;
-			}
-			return TomcatAccessLog.getDefaultInstance();
-		}
-
-		public static final int BIZLOG_FIELD_NUMBER = 4;
-		/**
-		 * <code>.BizLog bizLog = 4;</code>
-		 * @return Whether the bizLog field is set.
-		 */
-		@Override
-		public boolean hasBizLog() {
-			return bodyCase_ == 4;
-		}
-		/**
-		 * <code>.BizLog bizLog = 4;</code>
-		 * @return The bizLog.
-		 */
-		@Override
-		public BizLog getBizLog() {
-			if (bodyCase_ == 4) {
-				return (BizLog) body_;
-			}
-			return BizLog.getDefaultInstance();
-		}
-		/**
-		 * <code>.BizLog bizLog = 4;</code>
-		 */
-		@Override
-		public BizLogOrBuilder getBizLogOrBuilder() {
-			if (bodyCase_ == 4) {
-				return (BizLog) body_;
-			}
-			return BizLog.getDefaultInstance();
-		}
-
-		public static final int PERFLOG_FIELD_NUMBER = 5;
-		/**
-		 * <code>.PerfLog perfLog = 5;</code>
-		 * @return Whether the perfLog field is set.
-		 */
-		@Override
-		public boolean hasPerfLog() {
-			return bodyCase_ == 5;
-		}
-		/**
-		 * <code>.PerfLog perfLog = 5;</code>
-		 * @return The perfLog.
-		 */
-		@Override
-		public PerfLog getPerfLog() {
-			if (bodyCase_ == 5) {
-				return (PerfLog) body_;
-			}
-			return PerfLog.getDefaultInstance();
-		}
-		/**
-		 * <code>.PerfLog perfLog = 5;</code>
-		 */
-		@Override
-		public PerfLogOrBuilder getPerfLogOrBuilder() {
-			if (bodyCase_ == 5) {
-				return (PerfLog) body_;
-			}
-			return PerfLog.getDefaultInstance();
-		}
-
-		private byte memoizedIsInitialized = -1;
-		@Override
-		public final boolean isInitialized() {
-			byte isInitialized = memoizedIsInitialized;
-			if (isInitialized == 1) return true;
-			if (isInitialized == 0) return false;
-
-			memoizedIsInitialized = 1;
-			return true;
-		}
-
-		@Override
-		public void writeTo(com.google.protobuf.CodedOutputStream output)
-				throws java.io.IOException {
-			if (category_ != Category.nginx_log.getNumber()) {
-				output.writeEnum(1, category_);
-			}
-			if (bodyCase_ == 2) {
-				output.writeMessage(2, (NginxLog) body_);
-			}
-			if (bodyCase_ == 3) {
-				output.writeMessage(3, (TomcatAccessLog) body_);
-			}
-			if (bodyCase_ == 4) {
-				output.writeMessage(4, (BizLog) body_);
-			}
-			if (bodyCase_ == 5) {
-				output.writeMessage(5, (PerfLog) body_);
-			}
-			unknownFields.writeTo(output);
-		}
-
-		@Override
-		public int getSerializedSize() {
-			int size = memoizedSize;
-			if (size != -1) return size;
-
-			size = 0;
-			if (category_ != Category.nginx_log.getNumber()) {
-				size += com.google.protobuf.CodedOutputStream
-						.computeEnumSize(1, category_);
-			}
-			if (bodyCase_ == 2) {
-				size += com.google.protobuf.CodedOutputStream
-						.computeMessageSize(2, (NginxLog) body_);
-			}
-			if (bodyCase_ == 3) {
-				size += com.google.protobuf.CodedOutputStream
-						.computeMessageSize(3, (TomcatAccessLog) body_);
-			}
-			if (bodyCase_ == 4) {
-				size += com.google.protobuf.CodedOutputStream
-						.computeMessageSize(4, (BizLog) body_);
-			}
-			if (bodyCase_ == 5) {
-				size += com.google.protobuf.CodedOutputStream
-						.computeMessageSize(5, (PerfLog) body_);
-			}
-			size += unknownFields.getSerializedSize();
-			memoizedSize = size;
-			return size;
-		}
-
-		@Override
-		public boolean equals(final Object obj) {
-			if (obj == this) {
-				return true;
-			}
-			if (!(obj instanceof Log)) {
-				return super.equals(obj);
-			}
-			Log other = (Log) obj;
-
-			if (category_ != other.category_) return false;
-			if (!getBodyCase().equals(other.getBodyCase())) return false;
-			switch (bodyCase_) {
-				case 2:
-					if (!getNginxLog()
-							.equals(other.getNginxLog())) return false;
-					break;
-				case 3:
-					if (!getTomcatAccessLog()
-							.equals(other.getTomcatAccessLog())) return false;
-					break;
-				case 4:
-					if (!getBizLog()
-							.equals(other.getBizLog())) return false;
-					break;
-				case 5:
-					if (!getPerfLog()
-							.equals(other.getPerfLog())) return false;
-					break;
-				case 0:
-				default:
-			}
-			if (!unknownFields.equals(other.unknownFields)) return false;
-			return true;
-		}
-
-		@Override
-		public int hashCode() {
-			if (memoizedHashCode != 0) {
-				return memoizedHashCode;
-			}
-			int hash = 41;
-			hash = (19 * hash) + getDescriptor().hashCode();
-			hash = (37 * hash) + CATEGORY_FIELD_NUMBER;
-			hash = (53 * hash) + category_;
-			switch (bodyCase_) {
-				case 2:
-					hash = (37 * hash) + NGINXLOG_FIELD_NUMBER;
-					hash = (53 * hash) + getNginxLog().hashCode();
-					break;
-				case 3:
-					hash = (37 * hash) + TOMCATACCESSLOG_FIELD_NUMBER;
-					hash = (53 * hash) + getTomcatAccessLog().hashCode();
-					break;
-				case 4:
-					hash = (37 * hash) + BIZLOG_FIELD_NUMBER;
-					hash = (53 * hash) + getBizLog().hashCode();
-					break;
-				case 5:
-					hash = (37 * hash) + PERFLOG_FIELD_NUMBER;
-					hash = (53 * hash) + getPerfLog().hashCode();
-					break;
-				case 0:
-				default:
-			}
-			hash = (29 * hash) + unknownFields.hashCode();
-			memoizedHashCode = hash;
-			return hash;
-		}
-
-		public static Log parseFrom(
-				java.nio.ByteBuffer data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static Log parseFrom(
-				java.nio.ByteBuffer data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static Log parseFrom(
-				com.google.protobuf.ByteString data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static Log parseFrom(
-				com.google.protobuf.ByteString data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static Log parseFrom(byte[] data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static Log parseFrom(
-				byte[] data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static Log parseFrom(java.io.InputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input);
-		}
-		public static Log parseFrom(
-				java.io.InputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input, extensionRegistry);
-		}
-		public static Log parseDelimitedFrom(java.io.InputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseDelimitedWithIOException(PARSER, input);
-		}
-		public static Log parseDelimitedFrom(
-				java.io.InputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-		}
-		public static Log parseFrom(
-				com.google.protobuf.CodedInputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input);
-		}
-		public static Log parseFrom(
-				com.google.protobuf.CodedInputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input, extensionRegistry);
-		}
-
-		@Override
-		public Builder newBuilderForType() { return newBuilder(); }
-		public static Builder newBuilder() {
-			return DEFAULT_INSTANCE.toBuilder();
-		}
-		public static Builder newBuilder(Log prototype) {
-			return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-		}
-		@Override
-		public Builder toBuilder() {
-			return this == DEFAULT_INSTANCE
-					? new Builder() : new Builder().mergeFrom(this);
-		}
-
-		@Override
-		protected Builder newBuilderForType(
-				BuilderParent parent) {
-			Builder builder = new Builder(parent);
-			return builder;
-		}
-		/**
-		 * Protobuf type {@code Log}
-		 */
-		public static final class Builder extends
-				com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-				// @@protoc_insertion_point(builder_implements:Log)
-				LogOrBuilder {
-			public static final com.google.protobuf.Descriptors.Descriptor
-			getDescriptor() {
-				return LogFactory.internal_static_Log_descriptor;
-			}
-
-			@Override
-			protected FieldAccessorTable
-			internalGetFieldAccessorTable() {
-				return LogFactory.internal_static_Log_fieldAccessorTable
-						.ensureFieldAccessorsInitialized(
-								Log.class, Builder.class);
-			}
-
-			// Construct using com.cl.log.config.model.LogFactory.Log.newBuilder()
-			private Builder() {
-				maybeForceBuilderInitialization();
-			}
-
-			private Builder(
-					BuilderParent parent) {
-				super(parent);
-				maybeForceBuilderInitialization();
-			}
-			private void maybeForceBuilderInitialization() {
-				if (com.google.protobuf.GeneratedMessageV3
-						.alwaysUseFieldBuilders) {
-				}
-			}
-			@Override
-			public Builder clear() {
-				super.clear();
-				category_ = 0;
-
-				bodyCase_ = 0;
-				body_ = null;
-				return this;
-			}
-
-			@Override
-			public com.google.protobuf.Descriptors.Descriptor
-			getDescriptorForType() {
-				return LogFactory.internal_static_Log_descriptor;
-			}
-
-			@Override
-			public Log getDefaultInstanceForType() {
-				return Log.getDefaultInstance();
-			}
-
-			@Override
-			public Log build() {
-				Log result = buildPartial();
-				if (!result.isInitialized()) {
-					throw newUninitializedMessageException(result);
-				}
-				return result;
-			}
-
-			@Override
-			public Log buildPartial() {
-				Log result = new Log(this);
-				result.category_ = category_;
-				if (bodyCase_ == 2) {
-					if (nginxLogBuilder_ == null) {
-						result.body_ = body_;
-					} else {
-						result.body_ = nginxLogBuilder_.build();
-					}
-				}
-				if (bodyCase_ == 3) {
-					if (tomcatAccessLogBuilder_ == null) {
-						result.body_ = body_;
-					} else {
-						result.body_ = tomcatAccessLogBuilder_.build();
-					}
-				}
-				if (bodyCase_ == 4) {
-					if (bizLogBuilder_ == null) {
-						result.body_ = body_;
-					} else {
-						result.body_ = bizLogBuilder_.build();
-					}
-				}
-				if (bodyCase_ == 5) {
-					if (perfLogBuilder_ == null) {
-						result.body_ = body_;
-					} else {
-						result.body_ = perfLogBuilder_.build();
-					}
-				}
-				result.bodyCase_ = bodyCase_;
-				onBuilt();
-				return result;
-			}
-
-			@Override
-			public Builder clone() {
-				return super.clone();
-			}
-			@Override
-			public Builder setField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					Object value) {
-				return super.setField(field, value);
-			}
-			@Override
-			public Builder clearField(
-					com.google.protobuf.Descriptors.FieldDescriptor field) {
-				return super.clearField(field);
-			}
-			@Override
-			public Builder clearOneof(
-					com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-				return super.clearOneof(oneof);
-			}
-			@Override
-			public Builder setRepeatedField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					int index, Object value) {
-				return super.setRepeatedField(field, index, value);
-			}
-			@Override
-			public Builder addRepeatedField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					Object value) {
-				return super.addRepeatedField(field, value);
-			}
-			@Override
-			public Builder mergeFrom(com.google.protobuf.Message other) {
-				if (other instanceof Log) {
-					return mergeFrom((Log)other);
-				} else {
-					super.mergeFrom(other);
-					return this;
-				}
-			}
-
-			public Builder mergeFrom(Log other) {
-				if (other == Log.getDefaultInstance()) return this;
-				if (other.category_ != 0) {
-					setCategoryValue(other.getCategoryValue());
-				}
-				switch (other.getBodyCase()) {
-					case NGINXLOG: {
-						mergeNginxLog(other.getNginxLog());
-						break;
-					}
-					case TOMCATACCESSLOG: {
-						mergeTomcatAccessLog(other.getTomcatAccessLog());
-						break;
-					}
-					case BIZLOG: {
-						mergeBizLog(other.getBizLog());
-						break;
-					}
-					case PERFLOG: {
-						mergePerfLog(other.getPerfLog());
-						break;
-					}
-					case BODY_NOT_SET: {
-						break;
-					}
-				}
-				this.mergeUnknownFields(other.unknownFields);
-				onChanged();
-				return this;
-			}
-
-			@Override
-			public final boolean isInitialized() {
-				return true;
-			}
-
-			@Override
-			public Builder mergeFrom(
-					com.google.protobuf.CodedInputStream input,
-					com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-					throws java.io.IOException {
-				Log parsedMessage = null;
-				try {
-					parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-				} catch (com.google.protobuf.InvalidProtocolBufferException e) {
-					parsedMessage = (Log) e.getUnfinishedMessage();
-					throw e.unwrapIOException();
-				} finally {
-					if (parsedMessage != null) {
-						mergeFrom(parsedMessage);
-					}
-				}
-				return this;
-			}
-			private int bodyCase_ = 0;
-			private Object body_;
-			public BodyCase
-			getBodyCase() {
-				return BodyCase.forNumber(
-						bodyCase_);
-			}
-
-			public Builder clearBody() {
-				bodyCase_ = 0;
-				body_ = null;
-				onChanged();
-				return this;
-			}
-
-
-			private int category_ = 0;
-			/**
-			 * <code>.Log.Category category = 1;</code>
-			 * @return The enum numeric value on the wire for category.
-			 */
-			@Override public int getCategoryValue() {
-				return category_;
-			}
-			/**
-			 * <code>.Log.Category category = 1;</code>
-			 * @param value The enum numeric value on the wire for category to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setCategoryValue(int value) {
-
-				category_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>.Log.Category category = 1;</code>
-			 * @return The category.
-			 */
-			@Override
-			public Category getCategory() {
-				@SuppressWarnings("deprecation")
-				Category result = Category.valueOf(category_);
-				return result == null ? Category.UNRECOGNIZED : result;
-			}
-			/**
-			 * <code>.Log.Category category = 1;</code>
-			 * @param value The category to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setCategory(Category value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				category_ = value.getNumber();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>.Log.Category category = 1;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearCategory() {
-
-				category_ = 0;
-				onChanged();
-				return this;
-			}
-
-			private com.google.protobuf.SingleFieldBuilderV3<
-					NginxLog, NginxLog.Builder, NginxLogOrBuilder> nginxLogBuilder_;
-			/**
-			 * <code>.NginxLog nginxLog = 2;</code>
-			 * @return Whether the nginxLog field is set.
-			 */
-			@Override
-			public boolean hasNginxLog() {
-				return bodyCase_ == 2;
-			}
-			/**
-			 * <code>.NginxLog nginxLog = 2;</code>
-			 * @return The nginxLog.
-			 */
-			@Override
-			public NginxLog getNginxLog() {
-				if (nginxLogBuilder_ == null) {
-					if (bodyCase_ == 2) {
-						return (NginxLog) body_;
-					}
-					return NginxLog.getDefaultInstance();
-				} else {
-					if (bodyCase_ == 2) {
-						return nginxLogBuilder_.getMessage();
-					}
-					return NginxLog.getDefaultInstance();
-				}
-			}
-			/**
-			 * <code>.NginxLog nginxLog = 2;</code>
-			 */
-			public Builder setNginxLog(NginxLog value) {
-				if (nginxLogBuilder_ == null) {
-					if (value == null) {
-						throw new NullPointerException();
-					}
-					body_ = value;
-					onChanged();
-				} else {
-					nginxLogBuilder_.setMessage(value);
-				}
-				bodyCase_ = 2;
-				return this;
-			}
-			/**
-			 * <code>.NginxLog nginxLog = 2;</code>
-			 */
-			public Builder setNginxLog(
-					NginxLog.Builder builderForValue) {
-				if (nginxLogBuilder_ == null) {
-					body_ = builderForValue.build();
-					onChanged();
-				} else {
-					nginxLogBuilder_.setMessage(builderForValue.build());
-				}
-				bodyCase_ = 2;
-				return this;
-			}
-			/**
-			 * <code>.NginxLog nginxLog = 2;</code>
-			 */
-			public Builder mergeNginxLog(NginxLog value) {
-				if (nginxLogBuilder_ == null) {
-					if (bodyCase_ == 2 &&
-							body_ != NginxLog.getDefaultInstance()) {
-						body_ = NginxLog.newBuilder((NginxLog) body_)
-								.mergeFrom(value).buildPartial();
-					} else {
-						body_ = value;
-					}
-					onChanged();
-				} else {
-					if (bodyCase_ == 2) {
-						nginxLogBuilder_.mergeFrom(value);
-					}
-					nginxLogBuilder_.setMessage(value);
-				}
-				bodyCase_ = 2;
-				return this;
-			}
-			/**
-			 * <code>.NginxLog nginxLog = 2;</code>
-			 */
-			public Builder clearNginxLog() {
-				if (nginxLogBuilder_ == null) {
-					if (bodyCase_ == 2) {
-						bodyCase_ = 0;
-						body_ = null;
-						onChanged();
-					}
-				} else {
-					if (bodyCase_ == 2) {
-						bodyCase_ = 0;
-						body_ = null;
-					}
-					nginxLogBuilder_.clear();
-				}
-				return this;
-			}
-			/**
-			 * <code>.NginxLog nginxLog = 2;</code>
-			 */
-			public NginxLog.Builder getNginxLogBuilder() {
-				return getNginxLogFieldBuilder().getBuilder();
-			}
-			/**
-			 * <code>.NginxLog nginxLog = 2;</code>
-			 */
-			@Override
-			public NginxLogOrBuilder getNginxLogOrBuilder() {
-				if ((bodyCase_ == 2) && (nginxLogBuilder_ != null)) {
-					return nginxLogBuilder_.getMessageOrBuilder();
-				} else {
-					if (bodyCase_ == 2) {
-						return (NginxLog) body_;
-					}
-					return NginxLog.getDefaultInstance();
-				}
-			}
-			/**
-			 * <code>.NginxLog nginxLog = 2;</code>
-			 */
-			private com.google.protobuf.SingleFieldBuilderV3<
-					NginxLog, NginxLog.Builder, NginxLogOrBuilder>
-			getNginxLogFieldBuilder() {
-				if (nginxLogBuilder_ == null) {
-					if (!(bodyCase_ == 2)) {
-						body_ = NginxLog.getDefaultInstance();
-					}
-					nginxLogBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-							NginxLog, NginxLog.Builder, NginxLogOrBuilder>(
-							(NginxLog) body_,
-							getParentForChildren(),
-							isClean());
-					body_ = null;
-				}
-				bodyCase_ = 2;
-				onChanged();;
-				return nginxLogBuilder_;
-			}
-
-			private com.google.protobuf.SingleFieldBuilderV3<
-					TomcatAccessLog, TomcatAccessLog.Builder, TomcatAccessLogOrBuilder> tomcatAccessLogBuilder_;
-			/**
-			 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-			 * @return Whether the tomcatAccessLog field is set.
-			 */
-			@Override
-			public boolean hasTomcatAccessLog() {
-				return bodyCase_ == 3;
-			}
-			/**
-			 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-			 * @return The tomcatAccessLog.
-			 */
-			@Override
-			public TomcatAccessLog getTomcatAccessLog() {
-				if (tomcatAccessLogBuilder_ == null) {
-					if (bodyCase_ == 3) {
-						return (TomcatAccessLog) body_;
-					}
-					return TomcatAccessLog.getDefaultInstance();
-				} else {
-					if (bodyCase_ == 3) {
-						return tomcatAccessLogBuilder_.getMessage();
-					}
-					return TomcatAccessLog.getDefaultInstance();
-				}
-			}
-			/**
-			 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-			 */
-			public Builder setTomcatAccessLog(TomcatAccessLog value) {
-				if (tomcatAccessLogBuilder_ == null) {
-					if (value == null) {
-						throw new NullPointerException();
-					}
-					body_ = value;
-					onChanged();
-				} else {
-					tomcatAccessLogBuilder_.setMessage(value);
-				}
-				bodyCase_ = 3;
-				return this;
-			}
-			/**
-			 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-			 */
-			public Builder setTomcatAccessLog(
-					TomcatAccessLog.Builder builderForValue) {
-				if (tomcatAccessLogBuilder_ == null) {
-					body_ = builderForValue.build();
-					onChanged();
-				} else {
-					tomcatAccessLogBuilder_.setMessage(builderForValue.build());
-				}
-				bodyCase_ = 3;
-				return this;
-			}
-			/**
-			 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-			 */
-			public Builder mergeTomcatAccessLog(TomcatAccessLog value) {
-				if (tomcatAccessLogBuilder_ == null) {
-					if (bodyCase_ == 3 &&
-							body_ != TomcatAccessLog.getDefaultInstance()) {
-						body_ = TomcatAccessLog.newBuilder((TomcatAccessLog) body_)
-								.mergeFrom(value).buildPartial();
-					} else {
-						body_ = value;
-					}
-					onChanged();
-				} else {
-					if (bodyCase_ == 3) {
-						tomcatAccessLogBuilder_.mergeFrom(value);
-					}
-					tomcatAccessLogBuilder_.setMessage(value);
-				}
-				bodyCase_ = 3;
-				return this;
-			}
-			/**
-			 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-			 */
-			public Builder clearTomcatAccessLog() {
-				if (tomcatAccessLogBuilder_ == null) {
-					if (bodyCase_ == 3) {
-						bodyCase_ = 0;
-						body_ = null;
-						onChanged();
-					}
-				} else {
-					if (bodyCase_ == 3) {
-						bodyCase_ = 0;
-						body_ = null;
-					}
-					tomcatAccessLogBuilder_.clear();
-				}
-				return this;
-			}
-			/**
-			 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-			 */
-			public TomcatAccessLog.Builder getTomcatAccessLogBuilder() {
-				return getTomcatAccessLogFieldBuilder().getBuilder();
-			}
-			/**
-			 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-			 */
-			@Override
-			public TomcatAccessLogOrBuilder getTomcatAccessLogOrBuilder() {
-				if ((bodyCase_ == 3) && (tomcatAccessLogBuilder_ != null)) {
-					return tomcatAccessLogBuilder_.getMessageOrBuilder();
-				} else {
-					if (bodyCase_ == 3) {
-						return (TomcatAccessLog) body_;
-					}
-					return TomcatAccessLog.getDefaultInstance();
-				}
-			}
-			/**
-			 * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
-			 */
-			private com.google.protobuf.SingleFieldBuilderV3<
-					TomcatAccessLog, TomcatAccessLog.Builder, TomcatAccessLogOrBuilder>
-			getTomcatAccessLogFieldBuilder() {
-				if (tomcatAccessLogBuilder_ == null) {
-					if (!(bodyCase_ == 3)) {
-						body_ = TomcatAccessLog.getDefaultInstance();
-					}
-					tomcatAccessLogBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-							TomcatAccessLog, TomcatAccessLog.Builder, TomcatAccessLogOrBuilder>(
-							(TomcatAccessLog) body_,
-							getParentForChildren(),
-							isClean());
-					body_ = null;
-				}
-				bodyCase_ = 3;
-				onChanged();;
-				return tomcatAccessLogBuilder_;
-			}
-
-			private com.google.protobuf.SingleFieldBuilderV3<
-					BizLog, BizLog.Builder, BizLogOrBuilder> bizLogBuilder_;
-			/**
-			 * <code>.BizLog bizLog = 4;</code>
-			 * @return Whether the bizLog field is set.
-			 */
-			@Override
-			public boolean hasBizLog() {
-				return bodyCase_ == 4;
-			}
-			/**
-			 * <code>.BizLog bizLog = 4;</code>
-			 * @return The bizLog.
-			 */
-			@Override
-			public BizLog getBizLog() {
-				if (bizLogBuilder_ == null) {
-					if (bodyCase_ == 4) {
-						return (BizLog) body_;
-					}
-					return BizLog.getDefaultInstance();
-				} else {
-					if (bodyCase_ == 4) {
-						return bizLogBuilder_.getMessage();
-					}
-					return BizLog.getDefaultInstance();
-				}
-			}
-			/**
-			 * <code>.BizLog bizLog = 4;</code>
-			 */
-			public Builder setBizLog(BizLog value) {
-				if (bizLogBuilder_ == null) {
-					if (value == null) {
-						throw new NullPointerException();
-					}
-					body_ = value;
-					onChanged();
-				} else {
-					bizLogBuilder_.setMessage(value);
-				}
-				bodyCase_ = 4;
-				return this;
-			}
-			/**
-			 * <code>.BizLog bizLog = 4;</code>
-			 */
-			public Builder setBizLog(
-					BizLog.Builder builderForValue) {
-				if (bizLogBuilder_ == null) {
-					body_ = builderForValue.build();
-					onChanged();
-				} else {
-					bizLogBuilder_.setMessage(builderForValue.build());
-				}
-				bodyCase_ = 4;
-				return this;
-			}
-			/**
-			 * <code>.BizLog bizLog = 4;</code>
-			 */
-			public Builder mergeBizLog(BizLog value) {
-				if (bizLogBuilder_ == null) {
-					if (bodyCase_ == 4 &&
-							body_ != BizLog.getDefaultInstance()) {
-						body_ = BizLog.newBuilder((BizLog) body_)
-								.mergeFrom(value).buildPartial();
-					} else {
-						body_ = value;
-					}
-					onChanged();
-				} else {
-					if (bodyCase_ == 4) {
-						bizLogBuilder_.mergeFrom(value);
-					}
-					bizLogBuilder_.setMessage(value);
-				}
-				bodyCase_ = 4;
-				return this;
-			}
-			/**
-			 * <code>.BizLog bizLog = 4;</code>
-			 */
-			public Builder clearBizLog() {
-				if (bizLogBuilder_ == null) {
-					if (bodyCase_ == 4) {
-						bodyCase_ = 0;
-						body_ = null;
-						onChanged();
-					}
-				} else {
-					if (bodyCase_ == 4) {
-						bodyCase_ = 0;
-						body_ = null;
-					}
-					bizLogBuilder_.clear();
-				}
-				return this;
-			}
-			/**
-			 * <code>.BizLog bizLog = 4;</code>
-			 */
-			public BizLog.Builder getBizLogBuilder() {
-				return getBizLogFieldBuilder().getBuilder();
-			}
-			/**
-			 * <code>.BizLog bizLog = 4;</code>
-			 */
-			@Override
-			public BizLogOrBuilder getBizLogOrBuilder() {
-				if ((bodyCase_ == 4) && (bizLogBuilder_ != null)) {
-					return bizLogBuilder_.getMessageOrBuilder();
-				} else {
-					if (bodyCase_ == 4) {
-						return (BizLog) body_;
-					}
-					return BizLog.getDefaultInstance();
-				}
-			}
-			/**
-			 * <code>.BizLog bizLog = 4;</code>
-			 */
-			private com.google.protobuf.SingleFieldBuilderV3<
-					BizLog, BizLog.Builder, BizLogOrBuilder>
-			getBizLogFieldBuilder() {
-				if (bizLogBuilder_ == null) {
-					if (!(bodyCase_ == 4)) {
-						body_ = BizLog.getDefaultInstance();
-					}
-					bizLogBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-							BizLog, BizLog.Builder, BizLogOrBuilder>(
-							(BizLog) body_,
-							getParentForChildren(),
-							isClean());
-					body_ = null;
-				}
-				bodyCase_ = 4;
-				onChanged();;
-				return bizLogBuilder_;
-			}
-
-			private com.google.protobuf.SingleFieldBuilderV3<
-					PerfLog, PerfLog.Builder, PerfLogOrBuilder> perfLogBuilder_;
-			/**
-			 * <code>.PerfLog perfLog = 5;</code>
-			 * @return Whether the perfLog field is set.
-			 */
-			@Override
-			public boolean hasPerfLog() {
-				return bodyCase_ == 5;
-			}
-			/**
-			 * <code>.PerfLog perfLog = 5;</code>
-			 * @return The perfLog.
-			 */
-			@Override
-			public PerfLog getPerfLog() {
-				if (perfLogBuilder_ == null) {
-					if (bodyCase_ == 5) {
-						return (PerfLog) body_;
-					}
-					return PerfLog.getDefaultInstance();
-				} else {
-					if (bodyCase_ == 5) {
-						return perfLogBuilder_.getMessage();
-					}
-					return PerfLog.getDefaultInstance();
-				}
-			}
-			/**
-			 * <code>.PerfLog perfLog = 5;</code>
-			 */
-			public Builder setPerfLog(PerfLog value) {
-				if (perfLogBuilder_ == null) {
-					if (value == null) {
-						throw new NullPointerException();
-					}
-					body_ = value;
-					onChanged();
-				} else {
-					perfLogBuilder_.setMessage(value);
-				}
-				bodyCase_ = 5;
-				return this;
-			}
-			/**
-			 * <code>.PerfLog perfLog = 5;</code>
-			 */
-			public Builder setPerfLog(
-					PerfLog.Builder builderForValue) {
-				if (perfLogBuilder_ == null) {
-					body_ = builderForValue.build();
-					onChanged();
-				} else {
-					perfLogBuilder_.setMessage(builderForValue.build());
-				}
-				bodyCase_ = 5;
-				return this;
-			}
-			/**
-			 * <code>.PerfLog perfLog = 5;</code>
-			 */
-			public Builder mergePerfLog(PerfLog value) {
-				if (perfLogBuilder_ == null) {
-					if (bodyCase_ == 5 &&
-							body_ != PerfLog.getDefaultInstance()) {
-						body_ = PerfLog.newBuilder((PerfLog) body_)
-								.mergeFrom(value).buildPartial();
-					} else {
-						body_ = value;
-					}
-					onChanged();
-				} else {
-					if (bodyCase_ == 5) {
-						perfLogBuilder_.mergeFrom(value);
-					}
-					perfLogBuilder_.setMessage(value);
-				}
-				bodyCase_ = 5;
-				return this;
-			}
-			/**
-			 * <code>.PerfLog perfLog = 5;</code>
-			 */
-			public Builder clearPerfLog() {
-				if (perfLogBuilder_ == null) {
-					if (bodyCase_ == 5) {
-						bodyCase_ = 0;
-						body_ = null;
-						onChanged();
-					}
-				} else {
-					if (bodyCase_ == 5) {
-						bodyCase_ = 0;
-						body_ = null;
-					}
-					perfLogBuilder_.clear();
-				}
-				return this;
-			}
-			/**
-			 * <code>.PerfLog perfLog = 5;</code>
-			 */
-			public PerfLog.Builder getPerfLogBuilder() {
-				return getPerfLogFieldBuilder().getBuilder();
-			}
-			/**
-			 * <code>.PerfLog perfLog = 5;</code>
-			 */
-			@Override
-			public PerfLogOrBuilder getPerfLogOrBuilder() {
-				if ((bodyCase_ == 5) && (perfLogBuilder_ != null)) {
-					return perfLogBuilder_.getMessageOrBuilder();
-				} else {
-					if (bodyCase_ == 5) {
-						return (PerfLog) body_;
-					}
-					return PerfLog.getDefaultInstance();
-				}
-			}
-			/**
-			 * <code>.PerfLog perfLog = 5;</code>
-			 */
-			private com.google.protobuf.SingleFieldBuilderV3<
-					PerfLog, PerfLog.Builder, PerfLogOrBuilder>
-			getPerfLogFieldBuilder() {
-				if (perfLogBuilder_ == null) {
-					if (!(bodyCase_ == 5)) {
-						body_ = PerfLog.getDefaultInstance();
-					}
-					perfLogBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-							PerfLog, PerfLog.Builder, PerfLogOrBuilder>(
-							(PerfLog) body_,
-							getParentForChildren(),
-							isClean());
-					body_ = null;
-				}
-				bodyCase_ = 5;
-				onChanged();;
-				return perfLogBuilder_;
-			}
-			@Override
-			public final Builder setUnknownFields(
-					final com.google.protobuf.UnknownFieldSet unknownFields) {
-				return super.setUnknownFields(unknownFields);
-			}
-
-			@Override
-			public final Builder mergeUnknownFields(
-					final com.google.protobuf.UnknownFieldSet unknownFields) {
-				return super.mergeUnknownFields(unknownFields);
-			}
-
-
-			// @@protoc_insertion_point(builder_scope:Log)
-		}
-
-		// @@protoc_insertion_point(class_scope:Log)
-		private static final Log DEFAULT_INSTANCE;
-		static {
-			DEFAULT_INSTANCE = new Log();
-		}
-
-		public static Log getDefaultInstance() {
-			return DEFAULT_INSTANCE;
-		}
-
-		private static final com.google.protobuf.Parser<Log>
-				PARSER = new com.google.protobuf.AbstractParser<Log>() {
-			@Override
-			public Log parsePartialFrom(
-					com.google.protobuf.CodedInputStream input,
-					com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-					throws com.google.protobuf.InvalidProtocolBufferException {
-				return new Log(input, extensionRegistry);
-			}
-		};
-
-		public static com.google.protobuf.Parser<Log> parser() {
-			return PARSER;
-		}
-
-		@Override
-		public com.google.protobuf.Parser<Log> getParserForType() {
-			return PARSER;
-		}
-
-		@Override
-		public Log getDefaultInstanceForType() {
-			return DEFAULT_INSTANCE;
-		}
-
-	}
-
-	public interface NginxLogOrBuilder extends
-			// @@protoc_insertion_point(interface_extends:NginxLog)
-			com.google.protobuf.MessageOrBuilder {
-
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The host.
-		 */
-		String getHost();
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The bytes for host.
-		 */
-		com.google.protobuf.ByteString
-		getHostBytes();
-
-		/**
-		 * <pre>
-		 * 时间
-		 * </pre>
-		 *
-		 * <code>string dateTime = 2;</code>
-		 * @return The dateTime.
-		 */
-		String getDateTime();
-		/**
-		 * <pre>
-		 * 时间
-		 * </pre>
-		 *
-		 * <code>string dateTime = 2;</code>
-		 * @return The bytes for dateTime.
-		 */
-		com.google.protobuf.ByteString
-		getDateTimeBytes();
-
-		/**
-		 * <code>string requestMethod = 3;</code>
-		 * @return The requestMethod.
-		 */
-		String getRequestMethod();
-		/**
-		 * <code>string requestMethod = 3;</code>
-		 * @return The bytes for requestMethod.
-		 */
-		com.google.protobuf.ByteString
-		getRequestMethodBytes();
-
-		/**
-		 * <code>string requestURL = 4;</code>
-		 * @return The requestURL.
-		 */
-		String getRequestURL();
-		/**
-		 * <code>string requestURL = 4;</code>
-		 * @return The bytes for requestURL.
-		 */
-		com.google.protobuf.ByteString
-		getRequestURLBytes();
-
-		/**
-		 * <code>string params = 5;</code>
-		 * @return The params.
-		 */
-		String getParams();
-		/**
-		 * <code>string params = 5;</code>
-		 * @return The bytes for params.
-		 */
-		com.google.protobuf.ByteString
-		getParamsBytes();
-
-		/**
-		 * <pre>
-		 * 状态码
-		 * </pre>
-		 *
-		 * <code>string statesCode = 6;</code>
-		 * @return The statesCode.
-		 */
-		String getStatesCode();
-		/**
-		 * <pre>
-		 * 状态码
-		 * </pre>
-		 *
-		 * <code>string statesCode = 6;</code>
-		 * @return The bytes for statesCode.
-		 */
-		com.google.protobuf.ByteString
-		getStatesCodeBytes();
-
-		/**
-		 * <pre>
-		 * 耗时
-		 * </pre>
-		 *
-		 * <code>int32 time = 7;</code>
-		 * @return The time.
-		 */
-		int getTime();
-
-		/**
-		 * <pre>
-		 * </pre>
-		 *
-		 * <code>string userAgent = 8;</code>
-		 * @return The userAgent.
-		 */
-		String getUserAgent();
-		/**
-		 * <pre>
-		 * </pre>
-		 *
-		 * <code>string userAgent = 8;</code>
-		 * @return The bytes for userAgent.
-		 */
-		com.google.protobuf.ByteString
-		getUserAgentBytes();
-
-		/**
-		 * <pre>
-		 * ip
-		 * </pre>
-		 *
-		 * <code>string ip = 9;</code>
-		 * @return The ip.
-		 */
-		String getIp();
-		/**
-		 * <pre>
-		 * ip
-		 * </pre>
-		 *
-		 * <code>string ip = 9;</code>
-		 * @return The bytes for ip.
-		 */
-		com.google.protobuf.ByteString
-		getIpBytes();
-
-		/**
-		 * <code>string upstream = 10;</code>
-		 * @return The upstream.
-		 */
-		String getUpstream();
-		/**
-		 * <code>string upstream = 10;</code>
-		 * @return The bytes for upstream.
-		 */
-		com.google.protobuf.ByteString
-		getUpstreamBytes();
-	}
-	/**
-	 * <pre>
-	 *log_format main  '$remote_addr - $remote_user [$time_local] "$request" '
-	 *                      '$status $body_bytes_sent "$http_referer"  "$request_body"'
-	 *                      '"$http_user_agent" "$http_x_forwarded_for" "$upstream_addr"';
-	 * </pre>
-	 *
-	 * Protobuf type {@code NginxLog}
-	 */
-	public static final class NginxLog extends
-			com.google.protobuf.GeneratedMessageV3 implements
-			// @@protoc_insertion_point(message_implements:NginxLog)
-			NginxLogOrBuilder {
-		private static final long serialVersionUID = 0L;
-		// Use NginxLog.newBuilder() to construct.
-		private NginxLog(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-			super(builder);
-		}
-		private NginxLog() {
-			host_ = "";
-			dateTime_ = "";
-			requestMethod_ = "";
-			requestURL_ = "";
-			params_ = "";
-			statesCode_ = "";
-			userAgent_ = "";
-			ip_ = "";
-			upstream_ = "";
-		}
-
-		@Override
-		@SuppressWarnings({"unused"})
-		protected Object newInstance(
-				UnusedPrivateParameter unused) {
-			return new NginxLog();
-		}
-
-		@Override
-		public final com.google.protobuf.UnknownFieldSet
-		getUnknownFields() {
-			return this.unknownFields;
-		}
-		private NginxLog(
-				com.google.protobuf.CodedInputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			this();
-			if (extensionRegistry == null) {
-				throw new NullPointerException();
-			}
-			com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-					com.google.protobuf.UnknownFieldSet.newBuilder();
-			try {
-				boolean done = false;
-				while (!done) {
-					int tag = input.readTag();
-					switch (tag) {
-						case 0:
-							done = true;
-							break;
-						case 10: {
-							String s = input.readStringRequireUtf8();
-
-							host_ = s;
-							break;
-						}
-						case 18: {
-							String s = input.readStringRequireUtf8();
-
-							dateTime_ = s;
-							break;
-						}
-						case 26: {
-							String s = input.readStringRequireUtf8();
-
-							requestMethod_ = s;
-							break;
-						}
-						case 34: {
-							String s = input.readStringRequireUtf8();
-
-							requestURL_ = s;
-							break;
-						}
-						case 42: {
-							String s = input.readStringRequireUtf8();
-
-							params_ = s;
-							break;
-						}
-						case 50: {
-							String s = input.readStringRequireUtf8();
-
-							statesCode_ = s;
-							break;
-						}
-						case 56: {
-
-							time_ = input.readInt32();
-							break;
-						}
-						case 66: {
-							String s = input.readStringRequireUtf8();
-
-							userAgent_ = s;
-							break;
-						}
-						case 74: {
-							String s = input.readStringRequireUtf8();
-
-							ip_ = s;
-							break;
-						}
-						case 82: {
-							String s = input.readStringRequireUtf8();
-
-							upstream_ = s;
-							break;
-						}
-						default: {
-							if (!parseUnknownField(
-									input, unknownFields, extensionRegistry, tag)) {
-								done = true;
-							}
-							break;
-						}
-					}
-				}
-			} catch (com.google.protobuf.InvalidProtocolBufferException e) {
-				throw e.setUnfinishedMessage(this);
-			} catch (java.io.IOException e) {
-				throw new com.google.protobuf.InvalidProtocolBufferException(
-						e).setUnfinishedMessage(this);
-			} finally {
-				this.unknownFields = unknownFields.build();
-				makeExtensionsImmutable();
-			}
-		}
-		public static final com.google.protobuf.Descriptors.Descriptor
-		getDescriptor() {
-			return LogFactory.internal_static_NginxLog_descriptor;
-		}
-
-		@Override
-		protected FieldAccessorTable
-		internalGetFieldAccessorTable() {
-			return LogFactory.internal_static_NginxLog_fieldAccessorTable
-					.ensureFieldAccessorsInitialized(
-							NginxLog.class, Builder.class);
-		}
-
-		public static final int HOST_FIELD_NUMBER = 1;
-		private volatile Object host_;
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The host.
-		 */
-		@Override
-		public String getHost() {
-			Object ref = host_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				host_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The bytes for host.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getHostBytes() {
-			Object ref = host_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				host_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int DATETIME_FIELD_NUMBER = 2;
-		private volatile Object dateTime_;
-		/**
-		 * <pre>
-		 * 时间
-		 * </pre>
-		 *
-		 * <code>string dateTime = 2;</code>
-		 * @return The dateTime.
-		 */
-		@Override
-		public String getDateTime() {
-			Object ref = dateTime_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				dateTime_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 时间
-		 * </pre>
-		 *
-		 * <code>string dateTime = 2;</code>
-		 * @return The bytes for dateTime.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getDateTimeBytes() {
-			Object ref = dateTime_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				dateTime_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int REQUESTMETHOD_FIELD_NUMBER = 3;
-		private volatile Object requestMethod_;
-		/**
-		 * <code>string requestMethod = 3;</code>
-		 * @return The requestMethod.
-		 */
-		@Override
-		public String getRequestMethod() {
-			Object ref = requestMethod_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				requestMethod_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <code>string requestMethod = 3;</code>
-		 * @return The bytes for requestMethod.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getRequestMethodBytes() {
-			Object ref = requestMethod_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				requestMethod_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int REQUESTURL_FIELD_NUMBER = 4;
-		private volatile Object requestURL_;
-		/**
-		 * <code>string requestURL = 4;</code>
-		 * @return The requestURL.
-		 */
-		@Override
-		public String getRequestURL() {
-			Object ref = requestURL_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				requestURL_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <code>string requestURL = 4;</code>
-		 * @return The bytes for requestURL.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getRequestURLBytes() {
-			Object ref = requestURL_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				requestURL_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int PARAMS_FIELD_NUMBER = 5;
-		private volatile Object params_;
-		/**
-		 * <code>string params = 5;</code>
-		 * @return The params.
-		 */
-		@Override
-		public String getParams() {
-			Object ref = params_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				params_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <code>string params = 5;</code>
-		 * @return The bytes for params.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getParamsBytes() {
-			Object ref = params_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				params_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int STATESCODE_FIELD_NUMBER = 6;
-		private volatile Object statesCode_;
-		/**
-		 * <pre>
-		 * 状态码
-		 * </pre>
-		 *
-		 * <code>string statesCode = 6;</code>
-		 * @return The statesCode.
-		 */
-		@Override
-		public String getStatesCode() {
-			Object ref = statesCode_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				statesCode_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 状态码
-		 * </pre>
-		 *
-		 * <code>string statesCode = 6;</code>
-		 * @return The bytes for statesCode.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getStatesCodeBytes() {
-			Object ref = statesCode_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				statesCode_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int TIME_FIELD_NUMBER = 7;
-		private int time_;
-		/**
-		 * <pre>
-		 * 耗时
-		 * </pre>
-		 *
-		 * <code>int32 time = 7;</code>
-		 * @return The time.
-		 */
-		@Override
-		public int getTime() {
-			return time_;
-		}
-
-		public static final int USERAGENT_FIELD_NUMBER = 8;
-		private volatile Object userAgent_;
-		/**
-		 * <pre>
-		 * </pre>
-		 *
-		 * <code>string userAgent = 8;</code>
-		 * @return The userAgent.
-		 */
-		@Override
-		public String getUserAgent() {
-			Object ref = userAgent_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				userAgent_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * </pre>
-		 *
-		 * <code>string userAgent = 8;</code>
-		 * @return The bytes for userAgent.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getUserAgentBytes() {
-			Object ref = userAgent_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				userAgent_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int IP_FIELD_NUMBER = 9;
-		private volatile Object ip_;
-		/**
-		 * <pre>
-		 * ip
-		 * </pre>
-		 *
-		 * <code>string ip = 9;</code>
-		 * @return The ip.
-		 */
-		@Override
-		public String getIp() {
-			Object ref = ip_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				ip_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * ip
-		 * </pre>
-		 *
-		 * <code>string ip = 9;</code>
-		 * @return The bytes for ip.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getIpBytes() {
-			Object ref = ip_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				ip_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int UPSTREAM_FIELD_NUMBER = 10;
-		private volatile Object upstream_;
-		/**
-		 * <code>string upstream = 10;</code>
-		 * @return The upstream.
-		 */
-		@Override
-		public String getUpstream() {
-			Object ref = upstream_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				upstream_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <code>string upstream = 10;</code>
-		 * @return The bytes for upstream.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getUpstreamBytes() {
-			Object ref = upstream_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				upstream_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		private byte memoizedIsInitialized = -1;
-		@Override
-		public final boolean isInitialized() {
-			byte isInitialized = memoizedIsInitialized;
-			if (isInitialized == 1) return true;
-			if (isInitialized == 0) return false;
-
-			memoizedIsInitialized = 1;
-			return true;
-		}
-
-		@Override
-		public void writeTo(com.google.protobuf.CodedOutputStream output)
-				throws java.io.IOException {
-			if (!getHostBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 1, host_);
-			}
-			if (!getDateTimeBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 2, dateTime_);
-			}
-			if (!getRequestMethodBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 3, requestMethod_);
-			}
-			if (!getRequestURLBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 4, requestURL_);
-			}
-			if (!getParamsBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 5, params_);
-			}
-			if (!getStatesCodeBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 6, statesCode_);
-			}
-			if (time_ != 0) {
-				output.writeInt32(7, time_);
-			}
-			if (!getUserAgentBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 8, userAgent_);
-			}
-			if (!getIpBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 9, ip_);
-			}
-			if (!getUpstreamBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 10, upstream_);
-			}
-			unknownFields.writeTo(output);
-		}
-
-		@Override
-		public int getSerializedSize() {
-			int size = memoizedSize;
-			if (size != -1) return size;
-
-			size = 0;
-			if (!getHostBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, host_);
-			}
-			if (!getDateTimeBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, dateTime_);
-			}
-			if (!getRequestMethodBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, requestMethod_);
-			}
-			if (!getRequestURLBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, requestURL_);
-			}
-			if (!getParamsBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, params_);
-			}
-			if (!getStatesCodeBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, statesCode_);
-			}
-			if (time_ != 0) {
-				size += com.google.protobuf.CodedOutputStream
-						.computeInt32Size(7, time_);
-			}
-			if (!getUserAgentBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, userAgent_);
-			}
-			if (!getIpBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, ip_);
-			}
-			if (!getUpstreamBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, upstream_);
-			}
-			size += unknownFields.getSerializedSize();
-			memoizedSize = size;
-			return size;
-		}
-
-		@Override
-		public boolean equals(final Object obj) {
-			if (obj == this) {
-				return true;
-			}
-			if (!(obj instanceof NginxLog)) {
-				return super.equals(obj);
-			}
-			NginxLog other = (NginxLog) obj;
-
-			if (!getHost()
-					.equals(other.getHost())) return false;
-			if (!getDateTime()
-					.equals(other.getDateTime())) return false;
-			if (!getRequestMethod()
-					.equals(other.getRequestMethod())) return false;
-			if (!getRequestURL()
-					.equals(other.getRequestURL())) return false;
-			if (!getParams()
-					.equals(other.getParams())) return false;
-			if (!getStatesCode()
-					.equals(other.getStatesCode())) return false;
-			if (getTime()
-					!= other.getTime()) return false;
-			if (!getUserAgent()
-					.equals(other.getUserAgent())) return false;
-			if (!getIp()
-					.equals(other.getIp())) return false;
-			if (!getUpstream()
-					.equals(other.getUpstream())) return false;
-			if (!unknownFields.equals(other.unknownFields)) return false;
-			return true;
-		}
-
-		@Override
-		public int hashCode() {
-			if (memoizedHashCode != 0) {
-				return memoizedHashCode;
-			}
-			int hash = 41;
-			hash = (19 * hash) + getDescriptor().hashCode();
-			hash = (37 * hash) + HOST_FIELD_NUMBER;
-			hash = (53 * hash) + getHost().hashCode();
-			hash = (37 * hash) + DATETIME_FIELD_NUMBER;
-			hash = (53 * hash) + getDateTime().hashCode();
-			hash = (37 * hash) + REQUESTMETHOD_FIELD_NUMBER;
-			hash = (53 * hash) + getRequestMethod().hashCode();
-			hash = (37 * hash) + REQUESTURL_FIELD_NUMBER;
-			hash = (53 * hash) + getRequestURL().hashCode();
-			hash = (37 * hash) + PARAMS_FIELD_NUMBER;
-			hash = (53 * hash) + getParams().hashCode();
-			hash = (37 * hash) + STATESCODE_FIELD_NUMBER;
-			hash = (53 * hash) + getStatesCode().hashCode();
-			hash = (37 * hash) + TIME_FIELD_NUMBER;
-			hash = (53 * hash) + getTime();
-			hash = (37 * hash) + USERAGENT_FIELD_NUMBER;
-			hash = (53 * hash) + getUserAgent().hashCode();
-			hash = (37 * hash) + IP_FIELD_NUMBER;
-			hash = (53 * hash) + getIp().hashCode();
-			hash = (37 * hash) + UPSTREAM_FIELD_NUMBER;
-			hash = (53 * hash) + getUpstream().hashCode();
-			hash = (29 * hash) + unknownFields.hashCode();
-			memoizedHashCode = hash;
-			return hash;
-		}
-
-		public static NginxLog parseFrom(
-				java.nio.ByteBuffer data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static NginxLog parseFrom(
-				java.nio.ByteBuffer data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static NginxLog parseFrom(
-				com.google.protobuf.ByteString data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static NginxLog parseFrom(
-				com.google.protobuf.ByteString data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static NginxLog parseFrom(byte[] data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static NginxLog parseFrom(
-				byte[] data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static NginxLog parseFrom(java.io.InputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input);
-		}
-		public static NginxLog parseFrom(
-				java.io.InputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input, extensionRegistry);
-		}
-		public static NginxLog parseDelimitedFrom(java.io.InputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseDelimitedWithIOException(PARSER, input);
-		}
-		public static NginxLog parseDelimitedFrom(
-				java.io.InputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-		}
-		public static NginxLog parseFrom(
-				com.google.protobuf.CodedInputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input);
-		}
-		public static NginxLog parseFrom(
-				com.google.protobuf.CodedInputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input, extensionRegistry);
-		}
-
-		@Override
-		public Builder newBuilderForType() { return newBuilder(); }
-		public static Builder newBuilder() {
-			return DEFAULT_INSTANCE.toBuilder();
-		}
-		public static Builder newBuilder(NginxLog prototype) {
-			return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-		}
-		@Override
-		public Builder toBuilder() {
-			return this == DEFAULT_INSTANCE
-					? new Builder() : new Builder().mergeFrom(this);
-		}
-
-		@Override
-		protected Builder newBuilderForType(
-				BuilderParent parent) {
-			Builder builder = new Builder(parent);
-			return builder;
-		}
-		/**
-		 * <pre>
-		 *log_format main  '$remote_addr - $remote_user [$time_local] "$request" '
-		 *                      '$status $body_bytes_sent "$http_referer"  "$request_body"'
-		 *                      '"$http_user_agent" "$http_x_forwarded_for" "$upstream_addr"';
-		 * </pre>
-		 *
-		 * Protobuf type {@code NginxLog}
-		 */
-		public static final class Builder extends
-				com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-				// @@protoc_insertion_point(builder_implements:NginxLog)
-				NginxLogOrBuilder {
-			public static final com.google.protobuf.Descriptors.Descriptor
-			getDescriptor() {
-				return LogFactory.internal_static_NginxLog_descriptor;
-			}
-
-			@Override
-			protected FieldAccessorTable
-			internalGetFieldAccessorTable() {
-				return LogFactory.internal_static_NginxLog_fieldAccessorTable
-						.ensureFieldAccessorsInitialized(
-								NginxLog.class, Builder.class);
-			}
-
-			// Construct using com.cl.log.config.model.LogFactory.NginxLog.newBuilder()
-			private Builder() {
-				maybeForceBuilderInitialization();
-			}
-
-			private Builder(
-					BuilderParent parent) {
-				super(parent);
-				maybeForceBuilderInitialization();
-			}
-			private void maybeForceBuilderInitialization() {
-				if (com.google.protobuf.GeneratedMessageV3
-						.alwaysUseFieldBuilders) {
-				}
-			}
-			@Override
-			public Builder clear() {
-				super.clear();
-				host_ = "";
-
-				dateTime_ = "";
-
-				requestMethod_ = "";
-
-				requestURL_ = "";
-
-				params_ = "";
-
-				statesCode_ = "";
-
-				time_ = 0;
-
-				userAgent_ = "";
-
-				ip_ = "";
-
-				upstream_ = "";
-
-				return this;
-			}
-
-			@Override
-			public com.google.protobuf.Descriptors.Descriptor
-			getDescriptorForType() {
-				return LogFactory.internal_static_NginxLog_descriptor;
-			}
-
-			@Override
-			public NginxLog getDefaultInstanceForType() {
-				return NginxLog.getDefaultInstance();
-			}
-
-			@Override
-			public NginxLog build() {
-				NginxLog result = buildPartial();
-				if (!result.isInitialized()) {
-					throw newUninitializedMessageException(result);
-				}
-				return result;
-			}
-
-			@Override
-			public NginxLog buildPartial() {
-				NginxLog result = new NginxLog(this);
-				result.host_ = host_;
-				result.dateTime_ = dateTime_;
-				result.requestMethod_ = requestMethod_;
-				result.requestURL_ = requestURL_;
-				result.params_ = params_;
-				result.statesCode_ = statesCode_;
-				result.time_ = time_;
-				result.userAgent_ = userAgent_;
-				result.ip_ = ip_;
-				result.upstream_ = upstream_;
-				onBuilt();
-				return result;
-			}
-
-			@Override
-			public Builder clone() {
-				return super.clone();
-			}
-			@Override
-			public Builder setField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					Object value) {
-				return super.setField(field, value);
-			}
-			@Override
-			public Builder clearField(
-					com.google.protobuf.Descriptors.FieldDescriptor field) {
-				return super.clearField(field);
-			}
-			@Override
-			public Builder clearOneof(
-					com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-				return super.clearOneof(oneof);
-			}
-			@Override
-			public Builder setRepeatedField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					int index, Object value) {
-				return super.setRepeatedField(field, index, value);
-			}
-			@Override
-			public Builder addRepeatedField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					Object value) {
-				return super.addRepeatedField(field, value);
-			}
-			@Override
-			public Builder mergeFrom(com.google.protobuf.Message other) {
-				if (other instanceof NginxLog) {
-					return mergeFrom((NginxLog)other);
-				} else {
-					super.mergeFrom(other);
-					return this;
-				}
-			}
-
-			public Builder mergeFrom(NginxLog other) {
-				if (other == NginxLog.getDefaultInstance()) return this;
-				if (!other.getHost().isEmpty()) {
-					host_ = other.host_;
-					onChanged();
-				}
-				if (!other.getDateTime().isEmpty()) {
-					dateTime_ = other.dateTime_;
-					onChanged();
-				}
-				if (!other.getRequestMethod().isEmpty()) {
-					requestMethod_ = other.requestMethod_;
-					onChanged();
-				}
-				if (!other.getRequestURL().isEmpty()) {
-					requestURL_ = other.requestURL_;
-					onChanged();
-				}
-				if (!other.getParams().isEmpty()) {
-					params_ = other.params_;
-					onChanged();
-				}
-				if (!other.getStatesCode().isEmpty()) {
-					statesCode_ = other.statesCode_;
-					onChanged();
-				}
-				if (other.getTime() != 0) {
-					setTime(other.getTime());
-				}
-				if (!other.getUserAgent().isEmpty()) {
-					userAgent_ = other.userAgent_;
-					onChanged();
-				}
-				if (!other.getIp().isEmpty()) {
-					ip_ = other.ip_;
-					onChanged();
-				}
-				if (!other.getUpstream().isEmpty()) {
-					upstream_ = other.upstream_;
-					onChanged();
-				}
-				this.mergeUnknownFields(other.unknownFields);
-				onChanged();
-				return this;
-			}
-
-			@Override
-			public final boolean isInitialized() {
-				return true;
-			}
-
-			@Override
-			public Builder mergeFrom(
-					com.google.protobuf.CodedInputStream input,
-					com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-					throws java.io.IOException {
-				NginxLog parsedMessage = null;
-				try {
-					parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-				} catch (com.google.protobuf.InvalidProtocolBufferException e) {
-					parsedMessage = (NginxLog) e.getUnfinishedMessage();
-					throw e.unwrapIOException();
-				} finally {
-					if (parsedMessage != null) {
-						mergeFrom(parsedMessage);
-					}
-				}
-				return this;
-			}
-
-			private Object host_ = "";
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @return The host.
-			 */
-			public String getHost() {
-				Object ref = host_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					host_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @return The bytes for host.
-			 */
-			public com.google.protobuf.ByteString
-			getHostBytes() {
-				Object ref = host_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					host_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @param value The host to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setHost(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				host_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearHost() {
-
-				host_ = getDefaultInstance().getHost();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @param value The bytes for host to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setHostBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				host_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object dateTime_ = "";
-			/**
-			 * <pre>
-			 * 时间
-			 * </pre>
-			 *
-			 * <code>string dateTime = 2;</code>
-			 * @return The dateTime.
-			 */
-			public String getDateTime() {
-				Object ref = dateTime_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					dateTime_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 时间
-			 * </pre>
-			 *
-			 * <code>string dateTime = 2;</code>
-			 * @return The bytes for dateTime.
-			 */
-			public com.google.protobuf.ByteString
-			getDateTimeBytes() {
-				Object ref = dateTime_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					dateTime_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 时间
-			 * </pre>
-			 *
-			 * <code>string dateTime = 2;</code>
-			 * @param value The dateTime to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setDateTime(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				dateTime_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 时间
-			 * </pre>
-			 *
-			 * <code>string dateTime = 2;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearDateTime() {
-
-				dateTime_ = getDefaultInstance().getDateTime();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 时间
-			 * </pre>
-			 *
-			 * <code>string dateTime = 2;</code>
-			 * @param value The bytes for dateTime to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setDateTimeBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				dateTime_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object requestMethod_ = "";
-			/**
-			 * <code>string requestMethod = 3;</code>
-			 * @return The requestMethod.
-			 */
-			public String getRequestMethod() {
-				Object ref = requestMethod_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					requestMethod_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <code>string requestMethod = 3;</code>
-			 * @return The bytes for requestMethod.
-			 */
-			public com.google.protobuf.ByteString
-			getRequestMethodBytes() {
-				Object ref = requestMethod_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					requestMethod_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <code>string requestMethod = 3;</code>
-			 * @param value The requestMethod to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setRequestMethod(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				requestMethod_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>string requestMethod = 3;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearRequestMethod() {
-
-				requestMethod_ = getDefaultInstance().getRequestMethod();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>string requestMethod = 3;</code>
-			 * @param value The bytes for requestMethod to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setRequestMethodBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				requestMethod_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object requestURL_ = "";
-			/**
-			 * <code>string requestURL = 4;</code>
-			 * @return The requestURL.
-			 */
-			public String getRequestURL() {
-				Object ref = requestURL_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					requestURL_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <code>string requestURL = 4;</code>
-			 * @return The bytes for requestURL.
-			 */
-			public com.google.protobuf.ByteString
-			getRequestURLBytes() {
-				Object ref = requestURL_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					requestURL_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <code>string requestURL = 4;</code>
-			 * @param value The requestURL to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setRequestURL(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				requestURL_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>string requestURL = 4;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearRequestURL() {
-
-				requestURL_ = getDefaultInstance().getRequestURL();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>string requestURL = 4;</code>
-			 * @param value The bytes for requestURL to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setRequestURLBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				requestURL_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object params_ = "";
-			/**
-			 * <code>string params = 5;</code>
-			 * @return The params.
-			 */
-			public String getParams() {
-				Object ref = params_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					params_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <code>string params = 5;</code>
-			 * @return The bytes for params.
-			 */
-			public com.google.protobuf.ByteString
-			getParamsBytes() {
-				Object ref = params_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					params_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <code>string params = 5;</code>
-			 * @param value The params to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setParams(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				params_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>string params = 5;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearParams() {
-
-				params_ = getDefaultInstance().getParams();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>string params = 5;</code>
-			 * @param value The bytes for params to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setParamsBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				params_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object statesCode_ = "";
-			/**
-			 * <pre>
-			 * 状态码
-			 * </pre>
-			 *
-			 * <code>string statesCode = 6;</code>
-			 * @return The statesCode.
-			 */
-			public String getStatesCode() {
-				Object ref = statesCode_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					statesCode_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 状态码
-			 * </pre>
-			 *
-			 * <code>string statesCode = 6;</code>
-			 * @return The bytes for statesCode.
-			 */
-			public com.google.protobuf.ByteString
-			getStatesCodeBytes() {
-				Object ref = statesCode_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					statesCode_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 状态码
-			 * </pre>
-			 *
-			 * <code>string statesCode = 6;</code>
-			 * @param value The statesCode to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setStatesCode(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				statesCode_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 状态码
-			 * </pre>
-			 *
-			 * <code>string statesCode = 6;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearStatesCode() {
-
-				statesCode_ = getDefaultInstance().getStatesCode();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 状态码
-			 * </pre>
-			 *
-			 * <code>string statesCode = 6;</code>
-			 * @param value The bytes for statesCode to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setStatesCodeBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				statesCode_ = value;
-				onChanged();
-				return this;
-			}
-
-			private int time_ ;
-			/**
-			 * <pre>
-			 * 耗时
-			 * </pre>
-			 *
-			 * <code>int32 time = 7;</code>
-			 * @return The time.
-			 */
-			@Override
-			public int getTime() {
-				return time_;
-			}
-			/**
-			 * <pre>
-			 * 耗时
-			 * </pre>
-			 *
-			 * <code>int32 time = 7;</code>
-			 * @param value The time to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setTime(int value) {
-
-				time_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 耗时
-			 * </pre>
-			 *
-			 * <code>int32 time = 7;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearTime() {
-
-				time_ = 0;
-				onChanged();
-				return this;
-			}
-
-			private Object userAgent_ = "";
-			/**
-			 * <pre>
-			 * </pre>
-			 *
-			 * <code>string userAgent = 8;</code>
-			 * @return The userAgent.
-			 */
-			public String getUserAgent() {
-				Object ref = userAgent_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					userAgent_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * </pre>
-			 *
-			 * <code>string userAgent = 8;</code>
-			 * @return The bytes for userAgent.
-			 */
-			public com.google.protobuf.ByteString
-			getUserAgentBytes() {
-				Object ref = userAgent_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					userAgent_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * </pre>
-			 *
-			 * <code>string userAgent = 8;</code>
-			 * @param value The userAgent to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setUserAgent(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				userAgent_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * </pre>
-			 *
-			 * <code>string userAgent = 8;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearUserAgent() {
-
-				userAgent_ = getDefaultInstance().getUserAgent();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * </pre>
-			 *
-			 * <code>string userAgent = 8;</code>
-			 * @param value The bytes for userAgent to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setUserAgentBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				userAgent_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object ip_ = "";
-			/**
-			 * <pre>
-			 * ip
-			 * </pre>
-			 *
-			 * <code>string ip = 9;</code>
-			 * @return The ip.
-			 */
-			public String getIp() {
-				Object ref = ip_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					ip_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * ip
-			 * </pre>
-			 *
-			 * <code>string ip = 9;</code>
-			 * @return The bytes for ip.
-			 */
-			public com.google.protobuf.ByteString
-			getIpBytes() {
-				Object ref = ip_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					ip_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * ip
-			 * </pre>
-			 *
-			 * <code>string ip = 9;</code>
-			 * @param value The ip to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setIp(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				ip_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * ip
-			 * </pre>
-			 *
-			 * <code>string ip = 9;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearIp() {
-
-				ip_ = getDefaultInstance().getIp();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * ip
-			 * </pre>
-			 *
-			 * <code>string ip = 9;</code>
-			 * @param value The bytes for ip to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setIpBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				ip_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object upstream_ = "";
-			/**
-			 * <code>string upstream = 10;</code>
-			 * @return The upstream.
-			 */
-			public String getUpstream() {
-				Object ref = upstream_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					upstream_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <code>string upstream = 10;</code>
-			 * @return The bytes for upstream.
-			 */
-			public com.google.protobuf.ByteString
-			getUpstreamBytes() {
-				Object ref = upstream_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					upstream_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <code>string upstream = 10;</code>
-			 * @param value The upstream to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setUpstream(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				upstream_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>string upstream = 10;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearUpstream() {
-
-				upstream_ = getDefaultInstance().getUpstream();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>string upstream = 10;</code>
-			 * @param value The bytes for upstream to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setUpstreamBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				upstream_ = value;
-				onChanged();
-				return this;
-			}
-			@Override
-			public final Builder setUnknownFields(
-					final com.google.protobuf.UnknownFieldSet unknownFields) {
-				return super.setUnknownFields(unknownFields);
-			}
-
-			@Override
-			public final Builder mergeUnknownFields(
-					final com.google.protobuf.UnknownFieldSet unknownFields) {
-				return super.mergeUnknownFields(unknownFields);
-			}
-
-
-			// @@protoc_insertion_point(builder_scope:NginxLog)
-		}
-
-		// @@protoc_insertion_point(class_scope:NginxLog)
-		private static final NginxLog DEFAULT_INSTANCE;
-		static {
-			DEFAULT_INSTANCE = new NginxLog();
-		}
-
-		public static NginxLog getDefaultInstance() {
-			return DEFAULT_INSTANCE;
-		}
-
-		private static final com.google.protobuf.Parser<NginxLog>
-				PARSER = new com.google.protobuf.AbstractParser<NginxLog>() {
-			@Override
-			public NginxLog parsePartialFrom(
-					com.google.protobuf.CodedInputStream input,
-					com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-					throws com.google.protobuf.InvalidProtocolBufferException {
-				return new NginxLog(input, extensionRegistry);
-			}
-		};
-
-		public static com.google.protobuf.Parser<NginxLog> parser() {
-			return PARSER;
-		}
-
-		@Override
-		public com.google.protobuf.Parser<NginxLog> getParserForType() {
-			return PARSER;
-		}
-
-		@Override
-		public NginxLog getDefaultInstanceForType() {
-			return DEFAULT_INSTANCE;
-		}
-
-	}
-
-	public interface TomcatAccessLogOrBuilder extends
-			// @@protoc_insertion_point(interface_extends:TomcatAccessLog)
-			com.google.protobuf.MessageOrBuilder {
-
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The host.
-		 */
-		String getHost();
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The bytes for host.
-		 */
-		com.google.protobuf.ByteString
-		getHostBytes();
-
-		/**
-		 * <pre>
-		 * 调用链id
-		 * </pre>
-		 *
-		 * <code>string traceId = 2;</code>
-		 * @return The traceId.
-		 */
-		String getTraceId();
-		/**
-		 * <pre>
-		 * 调用链id
-		 * </pre>
-		 *
-		 * <code>string traceId = 2;</code>
-		 * @return The bytes for traceId.
-		 */
-		com.google.protobuf.ByteString
-		getTraceIdBytes();
-
-		/**
-		 * <pre>
-		 * 业务组件
-		 * </pre>
-		 *
-		 * <code>string biz = 3;</code>
-		 * @return The biz.
-		 */
-		String getBiz();
-		/**
-		 * <pre>
-		 * 业务组件
-		 * </pre>
-		 *
-		 * <code>string biz = 3;</code>
-		 * @return The bytes for biz.
-		 */
-		com.google.protobuf.ByteString
-		getBizBytes();
-
-		/**
-		 * <pre>
-		 * 端口
-		 * </pre>
-		 *
-		 * <code>int32 port = 4;</code>
-		 * @return The port.
-		 */
-		int getPort();
-
-		/**
-		 * <pre>
-		 * 用户ID
-		 * </pre>
-		 *
-		 * <code>string userId = 5;</code>
-		 * @return The userId.
-		 */
-		String getUserId();
-		/**
-		 * <pre>
-		 * 用户ID
-		 * </pre>
-		 *
-		 * <code>string userId = 5;</code>
-		 * @return The bytes for userId.
-		 */
-		com.google.protobuf.ByteString
-		getUserIdBytes();
-
-		/**
-		 * <pre>
-		 * 时间
-		 * </pre>
-		 *
-		 * <code>string dataTime = 6;</code>
-		 * @return The dataTime.
-		 */
-		String getDataTime();
-		/**
-		 * <pre>
-		 * 时间
-		 * </pre>
-		 *
-		 * <code>string dataTime = 6;</code>
-		 * @return The bytes for dataTime.
-		 */
-		com.google.protobuf.ByteString
-		getDataTimeBytes();
-
-		/**
-		 * <pre>
-		 * 状态码
-		 * </pre>
-		 *
-		 * <code>string statesCode = 7;</code>
-		 * @return The statesCode.
-		 */
-		String getStatesCode();
-		/**
-		 * <pre>
-		 * 状态码
-		 * </pre>
-		 *
-		 * <code>string statesCode = 7;</code>
-		 * @return The bytes for statesCode.
-		 */
-		com.google.protobuf.ByteString
-		getStatesCodeBytes();
-
-		/**
-		 * <pre>
-		 * 耗时
-		 * </pre>
-		 *
-		 * <code>int32 time = 8;</code>
-		 * @return The time.
-		 */
-		int getTime();
-
-		/**
-		 * <pre>
-		 * ip
-		 * </pre>
-		 *
-		 * <code>string ip = 9;</code>
-		 * @return The ip.
-		 */
-		String getIp();
-		/**
-		 * <pre>
-		 * ip
-		 * </pre>
-		 *
-		 * <code>string ip = 9;</code>
-		 * @return The bytes for ip.
-		 */
-		com.google.protobuf.ByteString
-		getIpBytes();
-
-		/**
-		 * <code>string requestMethod = 10;</code>
-		 * @return The requestMethod.
-		 */
-		String getRequestMethod();
-		/**
-		 * <code>string requestMethod = 10;</code>
-		 * @return The bytes for requestMethod.
-		 */
-		com.google.protobuf.ByteString
-		getRequestMethodBytes();
-
-		/**
-		 * <code>string requestURL = 11;</code>
-		 * @return The requestURL.
-		 */
-		String getRequestURL();
-		/**
-		 * <code>string requestURL = 11;</code>
-		 * @return The bytes for requestURL.
-		 */
-		com.google.protobuf.ByteString
-		getRequestURLBytes();
-
-		/**
-		 * <code>string params = 12;</code>
-		 * @return The params.
-		 */
-		String getParams();
-		/**
-		 * <code>string params = 12;</code>
-		 * @return The bytes for params.
-		 */
-		com.google.protobuf.ByteString
-		getParamsBytes();
-	}
-	/**
-	 * <pre>
-	 * &lt;pattern&gt;%reqAttribute{traceId} %reqAttribute{parentTraceId} %reqAttribute{curTraceId}
-	 * %reqAttribute{appName} %reqAttribute{appPort} %reqAttribute{userId} %t{yyyy-MM-ddHH:mm:ss.SSS} %s %b %D [%i{X-Forwarded-For}] "%r"&lt;/pattern&gt;
-	 * </pre>
-	 *
-	 * Protobuf type {@code TomcatAccessLog}
-	 */
-	public static final class TomcatAccessLog extends
-			com.google.protobuf.GeneratedMessageV3 implements
-			// @@protoc_insertion_point(message_implements:TomcatAccessLog)
-			TomcatAccessLogOrBuilder {
-		private static final long serialVersionUID = 0L;
-		// Use TomcatAccessLog.newBuilder() to construct.
-		private TomcatAccessLog(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-			super(builder);
-		}
-		private TomcatAccessLog() {
-			host_ = "";
-			traceId_ = "";
-			biz_ = "";
-			userId_ = "";
-			dataTime_ = "";
-			statesCode_ = "";
-			ip_ = "";
-			requestMethod_ = "";
-			requestURL_ = "";
-			params_ = "";
-		}
-
-		@Override
-		@SuppressWarnings({"unused"})
-		protected Object newInstance(
-				UnusedPrivateParameter unused) {
-			return new TomcatAccessLog();
-		}
-
-		@Override
-		public final com.google.protobuf.UnknownFieldSet
-		getUnknownFields() {
-			return this.unknownFields;
-		}
-		private TomcatAccessLog(
-				com.google.protobuf.CodedInputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			this();
-			if (extensionRegistry == null) {
-				throw new NullPointerException();
-			}
-			com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-					com.google.protobuf.UnknownFieldSet.newBuilder();
-			try {
-				boolean done = false;
-				while (!done) {
-					int tag = input.readTag();
-					switch (tag) {
-						case 0:
-							done = true;
-							break;
-						case 10: {
-							String s = input.readStringRequireUtf8();
-
-							host_ = s;
-							break;
-						}
-						case 18: {
-							String s = input.readStringRequireUtf8();
-
-							traceId_ = s;
-							break;
-						}
-						case 26: {
-							String s = input.readStringRequireUtf8();
-
-							biz_ = s;
-							break;
-						}
-						case 32: {
-
-							port_ = input.readInt32();
-							break;
-						}
-						case 42: {
-							String s = input.readStringRequireUtf8();
-
-							userId_ = s;
-							break;
-						}
-						case 50: {
-							String s = input.readStringRequireUtf8();
-
-							dataTime_ = s;
-							break;
-						}
-						case 58: {
-							String s = input.readStringRequireUtf8();
-
-							statesCode_ = s;
-							break;
-						}
-						case 64: {
-
-							time_ = input.readInt32();
-							break;
-						}
-						case 74: {
-							String s = input.readStringRequireUtf8();
-
-							ip_ = s;
-							break;
-						}
-						case 82: {
-							String s = input.readStringRequireUtf8();
-
-							requestMethod_ = s;
-							break;
-						}
-						case 90: {
-							String s = input.readStringRequireUtf8();
-
-							requestURL_ = s;
-							break;
-						}
-						case 98: {
-							String s = input.readStringRequireUtf8();
-
-							params_ = s;
-							break;
-						}
-						default: {
-							if (!parseUnknownField(
-									input, unknownFields, extensionRegistry, tag)) {
-								done = true;
-							}
-							break;
-						}
-					}
-				}
-			} catch (com.google.protobuf.InvalidProtocolBufferException e) {
-				throw e.setUnfinishedMessage(this);
-			} catch (java.io.IOException e) {
-				throw new com.google.protobuf.InvalidProtocolBufferException(
-						e).setUnfinishedMessage(this);
-			} finally {
-				this.unknownFields = unknownFields.build();
-				makeExtensionsImmutable();
-			}
-		}
-		public static final com.google.protobuf.Descriptors.Descriptor
-		getDescriptor() {
-			return LogFactory.internal_static_TomcatAccessLog_descriptor;
-		}
-
-		@Override
-		protected FieldAccessorTable
-		internalGetFieldAccessorTable() {
-			return LogFactory.internal_static_TomcatAccessLog_fieldAccessorTable
-					.ensureFieldAccessorsInitialized(
-							TomcatAccessLog.class, Builder.class);
-		}
-
-		public static final int HOST_FIELD_NUMBER = 1;
-		private volatile Object host_;
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The host.
-		 */
-		@Override
-		public String getHost() {
-			Object ref = host_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				host_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The bytes for host.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getHostBytes() {
-			Object ref = host_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				host_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int TRACEID_FIELD_NUMBER = 2;
-		private volatile Object traceId_;
-		/**
-		 * <pre>
-		 * 调用链id
-		 * </pre>
-		 *
-		 * <code>string traceId = 2;</code>
-		 * @return The traceId.
-		 */
-		@Override
-		public String getTraceId() {
-			Object ref = traceId_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				traceId_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 调用链id
-		 * </pre>
-		 *
-		 * <code>string traceId = 2;</code>
-		 * @return The bytes for traceId.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getTraceIdBytes() {
-			Object ref = traceId_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				traceId_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int BIZ_FIELD_NUMBER = 3;
-		private volatile Object biz_;
-		/**
-		 * <pre>
-		 * 业务组件
-		 * </pre>
-		 *
-		 * <code>string biz = 3;</code>
-		 * @return The biz.
-		 */
-		@Override
-		public String getBiz() {
-			Object ref = biz_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				biz_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 业务组件
-		 * </pre>
-		 *
-		 * <code>string biz = 3;</code>
-		 * @return The bytes for biz.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getBizBytes() {
-			Object ref = biz_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				biz_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int PORT_FIELD_NUMBER = 4;
-		private int port_;
-		/**
-		 * <pre>
-		 * 端口
-		 * </pre>
-		 *
-		 * <code>int32 port = 4;</code>
-		 * @return The port.
-		 */
-		@Override
-		public int getPort() {
-			return port_;
-		}
-
-		public static final int USERID_FIELD_NUMBER = 5;
-		private volatile Object userId_;
-		/**
-		 * <pre>
-		 * 用户ID
-		 * </pre>
-		 *
-		 * <code>string userId = 5;</code>
-		 * @return The userId.
-		 */
-		@Override
-		public String getUserId() {
-			Object ref = userId_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				userId_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 用户ID
-		 * </pre>
-		 *
-		 * <code>string userId = 5;</code>
-		 * @return The bytes for userId.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getUserIdBytes() {
-			Object ref = userId_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				userId_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int DATATIME_FIELD_NUMBER = 6;
-		private volatile Object dataTime_;
-		/**
-		 * <pre>
-		 * 时间
-		 * </pre>
-		 *
-		 * <code>string dataTime = 6;</code>
-		 * @return The dataTime.
-		 */
-		@Override
-		public String getDataTime() {
-			Object ref = dataTime_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				dataTime_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 时间
-		 * </pre>
-		 *
-		 * <code>string dataTime = 6;</code>
-		 * @return The bytes for dataTime.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getDataTimeBytes() {
-			Object ref = dataTime_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				dataTime_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int STATESCODE_FIELD_NUMBER = 7;
-		private volatile Object statesCode_;
-		/**
-		 * <pre>
-		 * 状态码
-		 * </pre>
-		 *
-		 * <code>string statesCode = 7;</code>
-		 * @return The statesCode.
-		 */
-		@Override
-		public String getStatesCode() {
-			Object ref = statesCode_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				statesCode_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 状态码
-		 * </pre>
-		 *
-		 * <code>string statesCode = 7;</code>
-		 * @return The bytes for statesCode.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getStatesCodeBytes() {
-			Object ref = statesCode_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				statesCode_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int TIME_FIELD_NUMBER = 8;
-		private int time_;
-		/**
-		 * <pre>
-		 * 耗时
-		 * </pre>
-		 *
-		 * <code>int32 time = 8;</code>
-		 * @return The time.
-		 */
-		@Override
-		public int getTime() {
-			return time_;
-		}
-
-		public static final int IP_FIELD_NUMBER = 9;
-		private volatile Object ip_;
-		/**
-		 * <pre>
-		 * ip
-		 * </pre>
-		 *
-		 * <code>string ip = 9;</code>
-		 * @return The ip.
-		 */
-		@Override
-		public String getIp() {
-			Object ref = ip_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				ip_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * ip
-		 * </pre>
-		 *
-		 * <code>string ip = 9;</code>
-		 * @return The bytes for ip.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getIpBytes() {
-			Object ref = ip_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				ip_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int REQUESTMETHOD_FIELD_NUMBER = 10;
-		private volatile Object requestMethod_;
-		/**
-		 * <code>string requestMethod = 10;</code>
-		 * @return The requestMethod.
-		 */
-		@Override
-		public String getRequestMethod() {
-			Object ref = requestMethod_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				requestMethod_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <code>string requestMethod = 10;</code>
-		 * @return The bytes for requestMethod.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getRequestMethodBytes() {
-			Object ref = requestMethod_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				requestMethod_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int REQUESTURL_FIELD_NUMBER = 11;
-		private volatile Object requestURL_;
-		/**
-		 * <code>string requestURL = 11;</code>
-		 * @return The requestURL.
-		 */
-		@Override
-		public String getRequestURL() {
-			Object ref = requestURL_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				requestURL_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <code>string requestURL = 11;</code>
-		 * @return The bytes for requestURL.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getRequestURLBytes() {
-			Object ref = requestURL_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				requestURL_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int PARAMS_FIELD_NUMBER = 12;
-		private volatile Object params_;
-		/**
-		 * <code>string params = 12;</code>
-		 * @return The params.
-		 */
-		@Override
-		public String getParams() {
-			Object ref = params_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				params_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <code>string params = 12;</code>
-		 * @return The bytes for params.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getParamsBytes() {
-			Object ref = params_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				params_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		private byte memoizedIsInitialized = -1;
-		@Override
-		public final boolean isInitialized() {
-			byte isInitialized = memoizedIsInitialized;
-			if (isInitialized == 1) return true;
-			if (isInitialized == 0) return false;
-
-			memoizedIsInitialized = 1;
-			return true;
-		}
-
-		@Override
-		public void writeTo(com.google.protobuf.CodedOutputStream output)
-				throws java.io.IOException {
-			if (!getHostBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 1, host_);
-			}
-			if (!getTraceIdBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 2, traceId_);
-			}
-			if (!getBizBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 3, biz_);
-			}
-			if (port_ != 0) {
-				output.writeInt32(4, port_);
-			}
-			if (!getUserIdBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 5, userId_);
-			}
-			if (!getDataTimeBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 6, dataTime_);
-			}
-			if (!getStatesCodeBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 7, statesCode_);
-			}
-			if (time_ != 0) {
-				output.writeInt32(8, time_);
-			}
-			if (!getIpBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 9, ip_);
-			}
-			if (!getRequestMethodBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 10, requestMethod_);
-			}
-			if (!getRequestURLBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 11, requestURL_);
-			}
-			if (!getParamsBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 12, params_);
-			}
-			unknownFields.writeTo(output);
-		}
-
-		@Override
-		public int getSerializedSize() {
-			int size = memoizedSize;
-			if (size != -1) return size;
-
-			size = 0;
-			if (!getHostBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, host_);
-			}
-			if (!getTraceIdBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, traceId_);
-			}
-			if (!getBizBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, biz_);
-			}
-			if (port_ != 0) {
-				size += com.google.protobuf.CodedOutputStream
-						.computeInt32Size(4, port_);
-			}
-			if (!getUserIdBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, userId_);
-			}
-			if (!getDataTimeBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, dataTime_);
-			}
-			if (!getStatesCodeBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, statesCode_);
-			}
-			if (time_ != 0) {
-				size += com.google.protobuf.CodedOutputStream
-						.computeInt32Size(8, time_);
-			}
-			if (!getIpBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, ip_);
-			}
-			if (!getRequestMethodBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, requestMethod_);
-			}
-			if (!getRequestURLBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(11, requestURL_);
-			}
-			if (!getParamsBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(12, params_);
-			}
-			size += unknownFields.getSerializedSize();
-			memoizedSize = size;
-			return size;
-		}
-
-		@Override
-		public boolean equals(final Object obj) {
-			if (obj == this) {
-				return true;
-			}
-			if (!(obj instanceof TomcatAccessLog)) {
-				return super.equals(obj);
-			}
-			TomcatAccessLog other = (TomcatAccessLog) obj;
-
-			if (!getHost()
-					.equals(other.getHost())) return false;
-			if (!getTraceId()
-					.equals(other.getTraceId())) return false;
-			if (!getBiz()
-					.equals(other.getBiz())) return false;
-			if (getPort()
-					!= other.getPort()) return false;
-			if (!getUserId()
-					.equals(other.getUserId())) return false;
-			if (!getDataTime()
-					.equals(other.getDataTime())) return false;
-			if (!getStatesCode()
-					.equals(other.getStatesCode())) return false;
-			if (getTime()
-					!= other.getTime()) return false;
-			if (!getIp()
-					.equals(other.getIp())) return false;
-			if (!getRequestMethod()
-					.equals(other.getRequestMethod())) return false;
-			if (!getRequestURL()
-					.equals(other.getRequestURL())) return false;
-			if (!getParams()
-					.equals(other.getParams())) return false;
-			if (!unknownFields.equals(other.unknownFields)) return false;
-			return true;
-		}
-
-		@Override
-		public int hashCode() {
-			if (memoizedHashCode != 0) {
-				return memoizedHashCode;
-			}
-			int hash = 41;
-			hash = (19 * hash) + getDescriptor().hashCode();
-			hash = (37 * hash) + HOST_FIELD_NUMBER;
-			hash = (53 * hash) + getHost().hashCode();
-			hash = (37 * hash) + TRACEID_FIELD_NUMBER;
-			hash = (53 * hash) + getTraceId().hashCode();
-			hash = (37 * hash) + BIZ_FIELD_NUMBER;
-			hash = (53 * hash) + getBiz().hashCode();
-			hash = (37 * hash) + PORT_FIELD_NUMBER;
-			hash = (53 * hash) + getPort();
-			hash = (37 * hash) + USERID_FIELD_NUMBER;
-			hash = (53 * hash) + getUserId().hashCode();
-			hash = (37 * hash) + DATATIME_FIELD_NUMBER;
-			hash = (53 * hash) + getDataTime().hashCode();
-			hash = (37 * hash) + STATESCODE_FIELD_NUMBER;
-			hash = (53 * hash) + getStatesCode().hashCode();
-			hash = (37 * hash) + TIME_FIELD_NUMBER;
-			hash = (53 * hash) + getTime();
-			hash = (37 * hash) + IP_FIELD_NUMBER;
-			hash = (53 * hash) + getIp().hashCode();
-			hash = (37 * hash) + REQUESTMETHOD_FIELD_NUMBER;
-			hash = (53 * hash) + getRequestMethod().hashCode();
-			hash = (37 * hash) + REQUESTURL_FIELD_NUMBER;
-			hash = (53 * hash) + getRequestURL().hashCode();
-			hash = (37 * hash) + PARAMS_FIELD_NUMBER;
-			hash = (53 * hash) + getParams().hashCode();
-			hash = (29 * hash) + unknownFields.hashCode();
-			memoizedHashCode = hash;
-			return hash;
-		}
-
-		public static TomcatAccessLog parseFrom(
-				java.nio.ByteBuffer data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static TomcatAccessLog parseFrom(
-				java.nio.ByteBuffer data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static TomcatAccessLog parseFrom(
-				com.google.protobuf.ByteString data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static TomcatAccessLog parseFrom(
-				com.google.protobuf.ByteString data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static TomcatAccessLog parseFrom(byte[] data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static TomcatAccessLog parseFrom(
-				byte[] data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static TomcatAccessLog parseFrom(java.io.InputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input);
-		}
-		public static TomcatAccessLog parseFrom(
-				java.io.InputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input, extensionRegistry);
-		}
-		public static TomcatAccessLog parseDelimitedFrom(java.io.InputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseDelimitedWithIOException(PARSER, input);
-		}
-		public static TomcatAccessLog parseDelimitedFrom(
-				java.io.InputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-		}
-		public static TomcatAccessLog parseFrom(
-				com.google.protobuf.CodedInputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input);
-		}
-		public static TomcatAccessLog parseFrom(
-				com.google.protobuf.CodedInputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input, extensionRegistry);
-		}
-
-		@Override
-		public Builder newBuilderForType() { return newBuilder(); }
-		public static Builder newBuilder() {
-			return DEFAULT_INSTANCE.toBuilder();
-		}
-		public static Builder newBuilder(TomcatAccessLog prototype) {
-			return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-		}
-		@Override
-		public Builder toBuilder() {
-			return this == DEFAULT_INSTANCE
-					? new Builder() : new Builder().mergeFrom(this);
-		}
-
-		@Override
-		protected Builder newBuilderForType(
-				BuilderParent parent) {
-			Builder builder = new Builder(parent);
-			return builder;
-		}
-		/**
-		 * <pre>
-		 * &lt;pattern&gt;%reqAttribute{traceId} %reqAttribute{parentTraceId} %reqAttribute{curTraceId}
-		 * %reqAttribute{appName} %reqAttribute{appPort} %reqAttribute{userId} %t{yyyy-MM-ddHH:mm:ss.SSS} %s %b %D [%i{X-Forwarded-For}] "%r"&lt;/pattern&gt;
-		 * </pre>
-		 *
-		 * Protobuf type {@code TomcatAccessLog}
-		 */
-		public static final class Builder extends
-				com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-				// @@protoc_insertion_point(builder_implements:TomcatAccessLog)
-				TomcatAccessLogOrBuilder {
-			public static final com.google.protobuf.Descriptors.Descriptor
-			getDescriptor() {
-				return LogFactory.internal_static_TomcatAccessLog_descriptor;
-			}
-
-			@Override
-			protected FieldAccessorTable
-			internalGetFieldAccessorTable() {
-				return LogFactory.internal_static_TomcatAccessLog_fieldAccessorTable
-						.ensureFieldAccessorsInitialized(
-								TomcatAccessLog.class, Builder.class);
-			}
-
-			// Construct using com.cl.log.config.model.LogFactory.TomcatAccessLog.newBuilder()
-			private Builder() {
-				maybeForceBuilderInitialization();
-			}
-
-			private Builder(
-					BuilderParent parent) {
-				super(parent);
-				maybeForceBuilderInitialization();
-			}
-			private void maybeForceBuilderInitialization() {
-				if (com.google.protobuf.GeneratedMessageV3
-						.alwaysUseFieldBuilders) {
-				}
-			}
-			@Override
-			public Builder clear() {
-				super.clear();
-				host_ = "";
-
-				traceId_ = "";
-
-				biz_ = "";
-
-				port_ = 0;
-
-				userId_ = "";
-
-				dataTime_ = "";
-
-				statesCode_ = "";
-
-				time_ = 0;
-
-				ip_ = "";
-
-				requestMethod_ = "";
-
-				requestURL_ = "";
-
-				params_ = "";
-
-				return this;
-			}
-
-			@Override
-			public com.google.protobuf.Descriptors.Descriptor
-			getDescriptorForType() {
-				return LogFactory.internal_static_TomcatAccessLog_descriptor;
-			}
-
-			@Override
-			public TomcatAccessLog getDefaultInstanceForType() {
-				return TomcatAccessLog.getDefaultInstance();
-			}
-
-			@Override
-			public TomcatAccessLog build() {
-				TomcatAccessLog result = buildPartial();
-				if (!result.isInitialized()) {
-					throw newUninitializedMessageException(result);
-				}
-				return result;
-			}
-
-			@Override
-			public TomcatAccessLog buildPartial() {
-				TomcatAccessLog result = new TomcatAccessLog(this);
-				result.host_ = host_;
-				result.traceId_ = traceId_;
-				result.biz_ = biz_;
-				result.port_ = port_;
-				result.userId_ = userId_;
-				result.dataTime_ = dataTime_;
-				result.statesCode_ = statesCode_;
-				result.time_ = time_;
-				result.ip_ = ip_;
-				result.requestMethod_ = requestMethod_;
-				result.requestURL_ = requestURL_;
-				result.params_ = params_;
-				onBuilt();
-				return result;
-			}
-
-			@Override
-			public Builder clone() {
-				return super.clone();
-			}
-			@Override
-			public Builder setField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					Object value) {
-				return super.setField(field, value);
-			}
-			@Override
-			public Builder clearField(
-					com.google.protobuf.Descriptors.FieldDescriptor field) {
-				return super.clearField(field);
-			}
-			@Override
-			public Builder clearOneof(
-					com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-				return super.clearOneof(oneof);
-			}
-			@Override
-			public Builder setRepeatedField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					int index, Object value) {
-				return super.setRepeatedField(field, index, value);
-			}
-			@Override
-			public Builder addRepeatedField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					Object value) {
-				return super.addRepeatedField(field, value);
-			}
-			@Override
-			public Builder mergeFrom(com.google.protobuf.Message other) {
-				if (other instanceof TomcatAccessLog) {
-					return mergeFrom((TomcatAccessLog)other);
-				} else {
-					super.mergeFrom(other);
-					return this;
-				}
-			}
-
-			public Builder mergeFrom(TomcatAccessLog other) {
-				if (other == TomcatAccessLog.getDefaultInstance()) return this;
-				if (!other.getHost().isEmpty()) {
-					host_ = other.host_;
-					onChanged();
-				}
-				if (!other.getTraceId().isEmpty()) {
-					traceId_ = other.traceId_;
-					onChanged();
-				}
-				if (!other.getBiz().isEmpty()) {
-					biz_ = other.biz_;
-					onChanged();
-				}
-				if (other.getPort() != 0) {
-					setPort(other.getPort());
-				}
-				if (!other.getUserId().isEmpty()) {
-					userId_ = other.userId_;
-					onChanged();
-				}
-				if (!other.getDataTime().isEmpty()) {
-					dataTime_ = other.dataTime_;
-					onChanged();
-				}
-				if (!other.getStatesCode().isEmpty()) {
-					statesCode_ = other.statesCode_;
-					onChanged();
-				}
-				if (other.getTime() != 0) {
-					setTime(other.getTime());
-				}
-				if (!other.getIp().isEmpty()) {
-					ip_ = other.ip_;
-					onChanged();
-				}
-				if (!other.getRequestMethod().isEmpty()) {
-					requestMethod_ = other.requestMethod_;
-					onChanged();
-				}
-				if (!other.getRequestURL().isEmpty()) {
-					requestURL_ = other.requestURL_;
-					onChanged();
-				}
-				if (!other.getParams().isEmpty()) {
-					params_ = other.params_;
-					onChanged();
-				}
-				this.mergeUnknownFields(other.unknownFields);
-				onChanged();
-				return this;
-			}
-
-			@Override
-			public final boolean isInitialized() {
-				return true;
-			}
-
-			@Override
-			public Builder mergeFrom(
-					com.google.protobuf.CodedInputStream input,
-					com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-					throws java.io.IOException {
-				TomcatAccessLog parsedMessage = null;
-				try {
-					parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-				} catch (com.google.protobuf.InvalidProtocolBufferException e) {
-					parsedMessage = (TomcatAccessLog) e.getUnfinishedMessage();
-					throw e.unwrapIOException();
-				} finally {
-					if (parsedMessage != null) {
-						mergeFrom(parsedMessage);
-					}
-				}
-				return this;
-			}
-
-			private Object host_ = "";
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @return The host.
-			 */
-			public String getHost() {
-				Object ref = host_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					host_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @return The bytes for host.
-			 */
-			public com.google.protobuf.ByteString
-			getHostBytes() {
-				Object ref = host_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					host_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @param value The host to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setHost(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				host_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearHost() {
-
-				host_ = getDefaultInstance().getHost();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @param value The bytes for host to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setHostBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				host_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object traceId_ = "";
-			/**
-			 * <pre>
-			 * 调用链id
-			 * </pre>
-			 *
-			 * <code>string traceId = 2;</code>
-			 * @return The traceId.
-			 */
-			public String getTraceId() {
-				Object ref = traceId_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					traceId_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 调用链id
-			 * </pre>
-			 *
-			 * <code>string traceId = 2;</code>
-			 * @return The bytes for traceId.
-			 */
-			public com.google.protobuf.ByteString
-			getTraceIdBytes() {
-				Object ref = traceId_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					traceId_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 调用链id
-			 * </pre>
-			 *
-			 * <code>string traceId = 2;</code>
-			 * @param value The traceId to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setTraceId(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				traceId_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 调用链id
-			 * </pre>
-			 *
-			 * <code>string traceId = 2;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearTraceId() {
-
-				traceId_ = getDefaultInstance().getTraceId();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 调用链id
-			 * </pre>
-			 *
-			 * <code>string traceId = 2;</code>
-			 * @param value The bytes for traceId to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setTraceIdBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				traceId_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object biz_ = "";
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 3;</code>
-			 * @return The biz.
-			 */
-			public String getBiz() {
-				Object ref = biz_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					biz_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 3;</code>
-			 * @return The bytes for biz.
-			 */
-			public com.google.protobuf.ByteString
-			getBizBytes() {
-				Object ref = biz_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					biz_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 3;</code>
-			 * @param value The biz to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setBiz(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				biz_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 3;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearBiz() {
-
-				biz_ = getDefaultInstance().getBiz();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 3;</code>
-			 * @param value The bytes for biz to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setBizBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				biz_ = value;
-				onChanged();
-				return this;
-			}
-
-			private int port_ ;
-			/**
-			 * <pre>
-			 * 端口
-			 * </pre>
-			 *
-			 * <code>int32 port = 4;</code>
-			 * @return The port.
-			 */
-			@Override
-			public int getPort() {
-				return port_;
-			}
-			/**
-			 * <pre>
-			 * 端口
-			 * </pre>
-			 *
-			 * <code>int32 port = 4;</code>
-			 * @param value The port to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setPort(int value) {
-
-				port_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 端口
-			 * </pre>
-			 *
-			 * <code>int32 port = 4;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearPort() {
-
-				port_ = 0;
-				onChanged();
-				return this;
-			}
-
-			private Object userId_ = "";
-			/**
-			 * <pre>
-			 * 用户ID
-			 * </pre>
-			 *
-			 * <code>string userId = 5;</code>
-			 * @return The userId.
-			 */
-			public String getUserId() {
-				Object ref = userId_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					userId_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 用户ID
-			 * </pre>
-			 *
-			 * <code>string userId = 5;</code>
-			 * @return The bytes for userId.
-			 */
-			public com.google.protobuf.ByteString
-			getUserIdBytes() {
-				Object ref = userId_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					userId_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 用户ID
-			 * </pre>
-			 *
-			 * <code>string userId = 5;</code>
-			 * @param value The userId to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setUserId(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				userId_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 用户ID
-			 * </pre>
-			 *
-			 * <code>string userId = 5;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearUserId() {
-
-				userId_ = getDefaultInstance().getUserId();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 用户ID
-			 * </pre>
-			 *
-			 * <code>string userId = 5;</code>
-			 * @param value The bytes for userId to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setUserIdBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				userId_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object dataTime_ = "";
-			/**
-			 * <pre>
-			 * 时间
-			 * </pre>
-			 *
-			 * <code>string dataTime = 6;</code>
-			 * @return The dataTime.
-			 */
-			public String getDataTime() {
-				Object ref = dataTime_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					dataTime_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 时间
-			 * </pre>
-			 *
-			 * <code>string dataTime = 6;</code>
-			 * @return The bytes for dataTime.
-			 */
-			public com.google.protobuf.ByteString
-			getDataTimeBytes() {
-				Object ref = dataTime_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					dataTime_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 时间
-			 * </pre>
-			 *
-			 * <code>string dataTime = 6;</code>
-			 * @param value The dataTime to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setDataTime(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				dataTime_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 时间
-			 * </pre>
-			 *
-			 * <code>string dataTime = 6;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearDataTime() {
-
-				dataTime_ = getDefaultInstance().getDataTime();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 时间
-			 * </pre>
-			 *
-			 * <code>string dataTime = 6;</code>
-			 * @param value The bytes for dataTime to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setDataTimeBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				dataTime_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object statesCode_ = "";
-			/**
-			 * <pre>
-			 * 状态码
-			 * </pre>
-			 *
-			 * <code>string statesCode = 7;</code>
-			 * @return The statesCode.
-			 */
-			public String getStatesCode() {
-				Object ref = statesCode_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					statesCode_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 状态码
-			 * </pre>
-			 *
-			 * <code>string statesCode = 7;</code>
-			 * @return The bytes for statesCode.
-			 */
-			public com.google.protobuf.ByteString
-			getStatesCodeBytes() {
-				Object ref = statesCode_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					statesCode_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 状态码
-			 * </pre>
-			 *
-			 * <code>string statesCode = 7;</code>
-			 * @param value The statesCode to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setStatesCode(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				statesCode_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 状态码
-			 * </pre>
-			 *
-			 * <code>string statesCode = 7;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearStatesCode() {
-
-				statesCode_ = getDefaultInstance().getStatesCode();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 状态码
-			 * </pre>
-			 *
-			 * <code>string statesCode = 7;</code>
-			 * @param value The bytes for statesCode to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setStatesCodeBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				statesCode_ = value;
-				onChanged();
-				return this;
-			}
-
-			private int time_ ;
-			/**
-			 * <pre>
-			 * 耗时
-			 * </pre>
-			 *
-			 * <code>int32 time = 8;</code>
-			 * @return The time.
-			 */
-			@Override
-			public int getTime() {
-				return time_;
-			}
-			/**
-			 * <pre>
-			 * 耗时
-			 * </pre>
-			 *
-			 * <code>int32 time = 8;</code>
-			 * @param value The time to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setTime(int value) {
-
-				time_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 耗时
-			 * </pre>
-			 *
-			 * <code>int32 time = 8;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearTime() {
-
-				time_ = 0;
-				onChanged();
-				return this;
-			}
-
-			private Object ip_ = "";
-			/**
-			 * <pre>
-			 * ip
-			 * </pre>
-			 *
-			 * <code>string ip = 9;</code>
-			 * @return The ip.
-			 */
-			public String getIp() {
-				Object ref = ip_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					ip_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * ip
-			 * </pre>
-			 *
-			 * <code>string ip = 9;</code>
-			 * @return The bytes for ip.
-			 */
-			public com.google.protobuf.ByteString
-			getIpBytes() {
-				Object ref = ip_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					ip_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * ip
-			 * </pre>
-			 *
-			 * <code>string ip = 9;</code>
-			 * @param value The ip to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setIp(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				ip_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * ip
-			 * </pre>
-			 *
-			 * <code>string ip = 9;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearIp() {
-
-				ip_ = getDefaultInstance().getIp();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * ip
-			 * </pre>
-			 *
-			 * <code>string ip = 9;</code>
-			 * @param value The bytes for ip to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setIpBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				ip_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object requestMethod_ = "";
-			/**
-			 * <code>string requestMethod = 10;</code>
-			 * @return The requestMethod.
-			 */
-			public String getRequestMethod() {
-				Object ref = requestMethod_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					requestMethod_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <code>string requestMethod = 10;</code>
-			 * @return The bytes for requestMethod.
-			 */
-			public com.google.protobuf.ByteString
-			getRequestMethodBytes() {
-				Object ref = requestMethod_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					requestMethod_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <code>string requestMethod = 10;</code>
-			 * @param value The requestMethod to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setRequestMethod(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				requestMethod_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>string requestMethod = 10;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearRequestMethod() {
-
-				requestMethod_ = getDefaultInstance().getRequestMethod();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>string requestMethod = 10;</code>
-			 * @param value The bytes for requestMethod to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setRequestMethodBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				requestMethod_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object requestURL_ = "";
-			/**
-			 * <code>string requestURL = 11;</code>
-			 * @return The requestURL.
-			 */
-			public String getRequestURL() {
-				Object ref = requestURL_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					requestURL_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <code>string requestURL = 11;</code>
-			 * @return The bytes for requestURL.
-			 */
-			public com.google.protobuf.ByteString
-			getRequestURLBytes() {
-				Object ref = requestURL_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					requestURL_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <code>string requestURL = 11;</code>
-			 * @param value The requestURL to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setRequestURL(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				requestURL_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>string requestURL = 11;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearRequestURL() {
-
-				requestURL_ = getDefaultInstance().getRequestURL();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>string requestURL = 11;</code>
-			 * @param value The bytes for requestURL to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setRequestURLBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				requestURL_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object params_ = "";
-			/**
-			 * <code>string params = 12;</code>
-			 * @return The params.
-			 */
-			public String getParams() {
-				Object ref = params_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					params_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <code>string params = 12;</code>
-			 * @return The bytes for params.
-			 */
-			public com.google.protobuf.ByteString
-			getParamsBytes() {
-				Object ref = params_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					params_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <code>string params = 12;</code>
-			 * @param value The params to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setParams(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				params_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>string params = 12;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearParams() {
-
-				params_ = getDefaultInstance().getParams();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <code>string params = 12;</code>
-			 * @param value The bytes for params to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setParamsBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				params_ = value;
-				onChanged();
-				return this;
-			}
-			@Override
-			public final Builder setUnknownFields(
-					final com.google.protobuf.UnknownFieldSet unknownFields) {
-				return super.setUnknownFields(unknownFields);
-			}
-
-			@Override
-			public final Builder mergeUnknownFields(
-					final com.google.protobuf.UnknownFieldSet unknownFields) {
-				return super.mergeUnknownFields(unknownFields);
-			}
-
-
-			// @@protoc_insertion_point(builder_scope:TomcatAccessLog)
-		}
-
-		// @@protoc_insertion_point(class_scope:TomcatAccessLog)
-		private static final TomcatAccessLog DEFAULT_INSTANCE;
-		static {
-			DEFAULT_INSTANCE = new TomcatAccessLog();
-		}
-
-		public static TomcatAccessLog getDefaultInstance() {
-			return DEFAULT_INSTANCE;
-		}
-
-		private static final com.google.protobuf.Parser<TomcatAccessLog>
-				PARSER = new com.google.protobuf.AbstractParser<TomcatAccessLog>() {
-			@Override
-			public TomcatAccessLog parsePartialFrom(
-					com.google.protobuf.CodedInputStream input,
-					com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-					throws com.google.protobuf.InvalidProtocolBufferException {
-				return new TomcatAccessLog(input, extensionRegistry);
-			}
-		};
-
-		public static com.google.protobuf.Parser<TomcatAccessLog> parser() {
-			return PARSER;
-		}
-
-		@Override
-		public com.google.protobuf.Parser<TomcatAccessLog> getParserForType() {
-			return PARSER;
-		}
-
-		@Override
-		public TomcatAccessLog getDefaultInstanceForType() {
-			return DEFAULT_INSTANCE;
-		}
-
-	}
-
-	public interface BizLogOrBuilder extends
-			// @@protoc_insertion_point(interface_extends:BizLog)
-			com.google.protobuf.MessageOrBuilder {
-
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The host.
-		 */
-		String getHost();
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The bytes for host.
-		 */
-		com.google.protobuf.ByteString
-		getHostBytes();
-
-		/**
-		 * <pre>
-		 * 业务组件
-		 * </pre>
-		 *
-		 * <code>string biz = 2;</code>
-		 * @return The biz.
-		 */
-		String getBiz();
-		/**
-		 * <pre>
-		 * 业务组件
-		 * </pre>
-		 *
-		 * <code>string biz = 2;</code>
-		 * @return The bytes for biz.
-		 */
-		com.google.protobuf.ByteString
-		getBizBytes();
-
-		/**
-		 * <pre>
-		 * 调用链id
-		 * </pre>
-		 *
-		 * <code>string traceId = 3;</code>
-		 * @return The traceId.
-		 */
-		String getTraceId();
-		/**
-		 * <pre>
-		 * 调用链id
-		 * </pre>
-		 *
-		 * <code>string traceId = 3;</code>
-		 * @return The bytes for traceId.
-		 */
-		com.google.protobuf.ByteString
-		getTraceIdBytes();
-
-		/**
-		 * <pre>
-		 * 日期时间
-		 * </pre>
-		 *
-		 * <code>string dataTime = 4;</code>
-		 * @return The dataTime.
-		 */
-		String getDataTime();
-		/**
-		 * <pre>
-		 * 日期时间
-		 * </pre>
-		 *
-		 * <code>string dataTime = 4;</code>
-		 * @return The bytes for dataTime.
-		 */
-		com.google.protobuf.ByteString
-		getDataTimeBytes();
-
-		/**
-		 * <pre>
-		 * 线程
-		 * </pre>
-		 *
-		 * <code>string thread = 5;</code>
-		 * @return The thread.
-		 */
-		String getThread();
-		/**
-		 * <pre>
-		 * 线程
-		 * </pre>
-		 *
-		 * <code>string thread = 5;</code>
-		 * @return The bytes for thread.
-		 */
-		com.google.protobuf.ByteString
-		getThreadBytes();
-
-		/**
-		 * <pre>
-		 * 日志级别
-		 * </pre>
-		 *
-		 * <code>string level = 6;</code>
-		 * @return The level.
-		 */
-		String getLevel();
-		/**
-		 * <pre>
-		 * 日志级别
-		 * </pre>
-		 *
-		 * <code>string level = 6;</code>
-		 * @return The bytes for level.
-		 */
-		com.google.protobuf.ByteString
-		getLevelBytes();
-
-		/**
-		 * <pre>
-		 * 类名
-		 * </pre>
-		 *
-		 * <code>string clazz = 7;</code>
-		 * @return The clazz.
-		 */
-		String getClazz();
-		/**
-		 * <pre>
-		 * 类名
-		 * </pre>
-		 *
-		 * <code>string clazz = 7;</code>
-		 * @return The bytes for clazz.
-		 */
-		com.google.protobuf.ByteString
-		getClazzBytes();
-
-		/**
-		 * <pre>
-		 * 消息
-		 * </pre>
-		 *
-		 * <code>string msg = 8;</code>
-		 * @return The msg.
-		 */
-		String getMsg();
-		/**
-		 * <pre>
-		 * 消息
-		 * </pre>
-		 *
-		 * <code>string msg = 8;</code>
-		 * @return The bytes for msg.
-		 */
-		com.google.protobuf.ByteString
-		getMsgBytes();
-	}
-	/**
-	 * <pre>
-	 * %X{traceId:-0123456789} %X{parentTraceId:-123} %X{curTraceId:-321} %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%msg%n
-	 * </pre>
-	 *
-	 * Protobuf type {@code BizLog}
-	 */
-	public static final class BizLog extends
-			com.google.protobuf.GeneratedMessageV3 implements
-			// @@protoc_insertion_point(message_implements:BizLog)
-			BizLogOrBuilder {
-		private static final long serialVersionUID = 0L;
-		// Use BizLog.newBuilder() to construct.
-		private BizLog(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-			super(builder);
-		}
-		private BizLog() {
-			host_ = "";
-			biz_ = "";
-			traceId_ = "";
-			dataTime_ = "";
-			thread_ = "";
-			level_ = "";
-			clazz_ = "";
-			msg_ = "";
-		}
-
-		@Override
-		@SuppressWarnings({"unused"})
-		protected Object newInstance(
-				UnusedPrivateParameter unused) {
-			return new BizLog();
-		}
-
-		@Override
-		public final com.google.protobuf.UnknownFieldSet
-		getUnknownFields() {
-			return this.unknownFields;
-		}
-		private BizLog(
-				com.google.protobuf.CodedInputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			this();
-			if (extensionRegistry == null) {
-				throw new NullPointerException();
-			}
-			com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-					com.google.protobuf.UnknownFieldSet.newBuilder();
-			try {
-				boolean done = false;
-				while (!done) {
-					int tag = input.readTag();
-					switch (tag) {
-						case 0:
-							done = true;
-							break;
-						case 10: {
-							String s = input.readStringRequireUtf8();
-
-							host_ = s;
-							break;
-						}
-						case 18: {
-							String s = input.readStringRequireUtf8();
-
-							biz_ = s;
-							break;
-						}
-						case 26: {
-							String s = input.readStringRequireUtf8();
-
-							traceId_ = s;
-							break;
-						}
-						case 34: {
-							String s = input.readStringRequireUtf8();
-
-							dataTime_ = s;
-							break;
-						}
-						case 42: {
-							String s = input.readStringRequireUtf8();
-
-							thread_ = s;
-							break;
-						}
-						case 50: {
-							String s = input.readStringRequireUtf8();
-
-							level_ = s;
-							break;
-						}
-						case 58: {
-							String s = input.readStringRequireUtf8();
-
-							clazz_ = s;
-							break;
-						}
-						case 66: {
-							String s = input.readStringRequireUtf8();
-
-							msg_ = s;
-							break;
-						}
-						default: {
-							if (!parseUnknownField(
-									input, unknownFields, extensionRegistry, tag)) {
-								done = true;
-							}
-							break;
-						}
-					}
-				}
-			} catch (com.google.protobuf.InvalidProtocolBufferException e) {
-				throw e.setUnfinishedMessage(this);
-			} catch (java.io.IOException e) {
-				throw new com.google.protobuf.InvalidProtocolBufferException(
-						e).setUnfinishedMessage(this);
-			} finally {
-				this.unknownFields = unknownFields.build();
-				makeExtensionsImmutable();
-			}
-		}
-		public static final com.google.protobuf.Descriptors.Descriptor
-		getDescriptor() {
-			return LogFactory.internal_static_BizLog_descriptor;
-		}
-
-		@Override
-		protected FieldAccessorTable
-		internalGetFieldAccessorTable() {
-			return LogFactory.internal_static_BizLog_fieldAccessorTable
-					.ensureFieldAccessorsInitialized(
-							BizLog.class, Builder.class);
-		}
-
-		public static final int HOST_FIELD_NUMBER = 1;
-		private volatile Object host_;
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The host.
-		 */
-		@Override
-		public String getHost() {
-			Object ref = host_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				host_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The bytes for host.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getHostBytes() {
-			Object ref = host_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				host_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int BIZ_FIELD_NUMBER = 2;
-		private volatile Object biz_;
-		/**
-		 * <pre>
-		 * 业务组件
-		 * </pre>
-		 *
-		 * <code>string biz = 2;</code>
-		 * @return The biz.
-		 */
-		@Override
-		public String getBiz() {
-			Object ref = biz_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				biz_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 业务组件
-		 * </pre>
-		 *
-		 * <code>string biz = 2;</code>
-		 * @return The bytes for biz.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getBizBytes() {
-			Object ref = biz_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				biz_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int TRACEID_FIELD_NUMBER = 3;
-		private volatile Object traceId_;
-		/**
-		 * <pre>
-		 * 调用链id
-		 * </pre>
-		 *
-		 * <code>string traceId = 3;</code>
-		 * @return The traceId.
-		 */
-		@Override
-		public String getTraceId() {
-			Object ref = traceId_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				traceId_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 调用链id
-		 * </pre>
-		 *
-		 * <code>string traceId = 3;</code>
-		 * @return The bytes for traceId.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getTraceIdBytes() {
-			Object ref = traceId_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				traceId_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int DATATIME_FIELD_NUMBER = 4;
-		private volatile Object dataTime_;
-		/**
-		 * <pre>
-		 * 日期时间
-		 * </pre>
-		 *
-		 * <code>string dataTime = 4;</code>
-		 * @return The dataTime.
-		 */
-		@Override
-		public String getDataTime() {
-			Object ref = dataTime_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				dataTime_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 日期时间
-		 * </pre>
-		 *
-		 * <code>string dataTime = 4;</code>
-		 * @return The bytes for dataTime.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getDataTimeBytes() {
-			Object ref = dataTime_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				dataTime_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int THREAD_FIELD_NUMBER = 5;
-		private volatile Object thread_;
-		/**
-		 * <pre>
-		 * 线程
-		 * </pre>
-		 *
-		 * <code>string thread = 5;</code>
-		 * @return The thread.
-		 */
-		@Override
-		public String getThread() {
-			Object ref = thread_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				thread_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 线程
-		 * </pre>
-		 *
-		 * <code>string thread = 5;</code>
-		 * @return The bytes for thread.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getThreadBytes() {
-			Object ref = thread_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				thread_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int LEVEL_FIELD_NUMBER = 6;
-		private volatile Object level_;
-		/**
-		 * <pre>
-		 * 日志级别
-		 * </pre>
-		 *
-		 * <code>string level = 6;</code>
-		 * @return The level.
-		 */
-		@Override
-		public String getLevel() {
-			Object ref = level_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				level_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 日志级别
-		 * </pre>
-		 *
-		 * <code>string level = 6;</code>
-		 * @return The bytes for level.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getLevelBytes() {
-			Object ref = level_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				level_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int CLAZZ_FIELD_NUMBER = 7;
-		private volatile Object clazz_;
-		/**
-		 * <pre>
-		 * 类名
-		 * </pre>
-		 *
-		 * <code>string clazz = 7;</code>
-		 * @return The clazz.
-		 */
-		@Override
-		public String getClazz() {
-			Object ref = clazz_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				clazz_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 类名
-		 * </pre>
-		 *
-		 * <code>string clazz = 7;</code>
-		 * @return The bytes for clazz.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getClazzBytes() {
-			Object ref = clazz_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				clazz_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int MSG_FIELD_NUMBER = 8;
-		private volatile Object msg_;
-		/**
-		 * <pre>
-		 * 消息
-		 * </pre>
-		 *
-		 * <code>string msg = 8;</code>
-		 * @return The msg.
-		 */
-		@Override
-		public String getMsg() {
-			Object ref = msg_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				msg_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 消息
-		 * </pre>
-		 *
-		 * <code>string msg = 8;</code>
-		 * @return The bytes for msg.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getMsgBytes() {
-			Object ref = msg_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				msg_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		private byte memoizedIsInitialized = -1;
-		@Override
-		public final boolean isInitialized() {
-			byte isInitialized = memoizedIsInitialized;
-			if (isInitialized == 1) return true;
-			if (isInitialized == 0) return false;
-
-			memoizedIsInitialized = 1;
-			return true;
-		}
-
-		@Override
-		public void writeTo(com.google.protobuf.CodedOutputStream output)
-				throws java.io.IOException {
-			if (!getHostBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 1, host_);
-			}
-			if (!getBizBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 2, biz_);
-			}
-			if (!getTraceIdBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 3, traceId_);
-			}
-			if (!getDataTimeBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 4, dataTime_);
-			}
-			if (!getThreadBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 5, thread_);
-			}
-			if (!getLevelBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 6, level_);
-			}
-			if (!getClazzBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 7, clazz_);
-			}
-			if (!getMsgBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 8, msg_);
-			}
-			unknownFields.writeTo(output);
-		}
-
-		@Override
-		public int getSerializedSize() {
-			int size = memoizedSize;
-			if (size != -1) return size;
-
-			size = 0;
-			if (!getHostBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, host_);
-			}
-			if (!getBizBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, biz_);
-			}
-			if (!getTraceIdBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, traceId_);
-			}
-			if (!getDataTimeBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, dataTime_);
-			}
-			if (!getThreadBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, thread_);
-			}
-			if (!getLevelBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, level_);
-			}
-			if (!getClazzBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, clazz_);
-			}
-			if (!getMsgBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, msg_);
-			}
-			size += unknownFields.getSerializedSize();
-			memoizedSize = size;
-			return size;
-		}
-
-		@Override
-		public boolean equals(final Object obj) {
-			if (obj == this) {
-				return true;
-			}
-			if (!(obj instanceof BizLog)) {
-				return super.equals(obj);
-			}
-			BizLog other = (BizLog) obj;
-
-			if (!getHost()
-					.equals(other.getHost())) return false;
-			if (!getBiz()
-					.equals(other.getBiz())) return false;
-			if (!getTraceId()
-					.equals(other.getTraceId())) return false;
-			if (!getDataTime()
-					.equals(other.getDataTime())) return false;
-			if (!getThread()
-					.equals(other.getThread())) return false;
-			if (!getLevel()
-					.equals(other.getLevel())) return false;
-			if (!getClazz()
-					.equals(other.getClazz())) return false;
-			if (!getMsg()
-					.equals(other.getMsg())) return false;
-			if (!unknownFields.equals(other.unknownFields)) return false;
-			return true;
-		}
-
-		@Override
-		public int hashCode() {
-			if (memoizedHashCode != 0) {
-				return memoizedHashCode;
-			}
-			int hash = 41;
-			hash = (19 * hash) + getDescriptor().hashCode();
-			hash = (37 * hash) + HOST_FIELD_NUMBER;
-			hash = (53 * hash) + getHost().hashCode();
-			hash = (37 * hash) + BIZ_FIELD_NUMBER;
-			hash = (53 * hash) + getBiz().hashCode();
-			hash = (37 * hash) + TRACEID_FIELD_NUMBER;
-			hash = (53 * hash) + getTraceId().hashCode();
-			hash = (37 * hash) + DATATIME_FIELD_NUMBER;
-			hash = (53 * hash) + getDataTime().hashCode();
-			hash = (37 * hash) + THREAD_FIELD_NUMBER;
-			hash = (53 * hash) + getThread().hashCode();
-			hash = (37 * hash) + LEVEL_FIELD_NUMBER;
-			hash = (53 * hash) + getLevel().hashCode();
-			hash = (37 * hash) + CLAZZ_FIELD_NUMBER;
-			hash = (53 * hash) + getClazz().hashCode();
-			hash = (37 * hash) + MSG_FIELD_NUMBER;
-			hash = (53 * hash) + getMsg().hashCode();
-			hash = (29 * hash) + unknownFields.hashCode();
-			memoizedHashCode = hash;
-			return hash;
-		}
-
-		public static BizLog parseFrom(
-				java.nio.ByteBuffer data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static BizLog parseFrom(
-				java.nio.ByteBuffer data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static BizLog parseFrom(
-				com.google.protobuf.ByteString data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static BizLog parseFrom(
-				com.google.protobuf.ByteString data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static BizLog parseFrom(byte[] data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static BizLog parseFrom(
-				byte[] data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static BizLog parseFrom(java.io.InputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input);
-		}
-		public static BizLog parseFrom(
-				java.io.InputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input, extensionRegistry);
-		}
-		public static BizLog parseDelimitedFrom(java.io.InputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseDelimitedWithIOException(PARSER, input);
-		}
-		public static BizLog parseDelimitedFrom(
-				java.io.InputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-		}
-		public static BizLog parseFrom(
-				com.google.protobuf.CodedInputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input);
-		}
-		public static BizLog parseFrom(
-				com.google.protobuf.CodedInputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input, extensionRegistry);
-		}
-
-		@Override
-		public Builder newBuilderForType() { return newBuilder(); }
-		public static Builder newBuilder() {
-			return DEFAULT_INSTANCE.toBuilder();
-		}
-		public static Builder newBuilder(BizLog prototype) {
-			return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-		}
-		@Override
-		public Builder toBuilder() {
-			return this == DEFAULT_INSTANCE
-					? new Builder() : new Builder().mergeFrom(this);
-		}
-
-		@Override
-		protected Builder newBuilderForType(
-				BuilderParent parent) {
-			Builder builder = new Builder(parent);
-			return builder;
-		}
-		/**
-		 * <pre>
-		 * %X{traceId:-0123456789} %X{parentTraceId:-123} %X{curTraceId:-321} %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%msg%n
-		 * </pre>
-		 *
-		 * Protobuf type {@code BizLog}
-		 */
-		public static final class Builder extends
-				com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-				// @@protoc_insertion_point(builder_implements:BizLog)
-				BizLogOrBuilder {
-			public static final com.google.protobuf.Descriptors.Descriptor
-			getDescriptor() {
-				return LogFactory.internal_static_BizLog_descriptor;
-			}
-
-			@Override
-			protected FieldAccessorTable
-			internalGetFieldAccessorTable() {
-				return LogFactory.internal_static_BizLog_fieldAccessorTable
-						.ensureFieldAccessorsInitialized(
-								BizLog.class, Builder.class);
-			}
-
-			// Construct using com.cl.log.config.model.LogFactory.BizLog.newBuilder()
-			private Builder() {
-				maybeForceBuilderInitialization();
-			}
-
-			private Builder(
-					BuilderParent parent) {
-				super(parent);
-				maybeForceBuilderInitialization();
-			}
-			private void maybeForceBuilderInitialization() {
-				if (com.google.protobuf.GeneratedMessageV3
-						.alwaysUseFieldBuilders) {
-				}
-			}
-			@Override
-			public Builder clear() {
-				super.clear();
-				host_ = "";
-
-				biz_ = "";
-
-				traceId_ = "";
-
-				dataTime_ = "";
-
-				thread_ = "";
-
-				level_ = "";
-
-				clazz_ = "";
-
-				msg_ = "";
-
-				return this;
-			}
-
-			@Override
-			public com.google.protobuf.Descriptors.Descriptor
-			getDescriptorForType() {
-				return LogFactory.internal_static_BizLog_descriptor;
-			}
-
-			@Override
-			public BizLog getDefaultInstanceForType() {
-				return BizLog.getDefaultInstance();
-			}
-
-			@Override
-			public BizLog build() {
-				BizLog result = buildPartial();
-				if (!result.isInitialized()) {
-					throw newUninitializedMessageException(result);
-				}
-				return result;
-			}
-
-			@Override
-			public BizLog buildPartial() {
-				BizLog result = new BizLog(this);
-				result.host_ = host_;
-				result.biz_ = biz_;
-				result.traceId_ = traceId_;
-				result.dataTime_ = dataTime_;
-				result.thread_ = thread_;
-				result.level_ = level_;
-				result.clazz_ = clazz_;
-				result.msg_ = msg_;
-				onBuilt();
-				return result;
-			}
-
-			@Override
-			public Builder clone() {
-				return super.clone();
-			}
-			@Override
-			public Builder setField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					Object value) {
-				return super.setField(field, value);
-			}
-			@Override
-			public Builder clearField(
-					com.google.protobuf.Descriptors.FieldDescriptor field) {
-				return super.clearField(field);
-			}
-			@Override
-			public Builder clearOneof(
-					com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-				return super.clearOneof(oneof);
-			}
-			@Override
-			public Builder setRepeatedField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					int index, Object value) {
-				return super.setRepeatedField(field, index, value);
-			}
-			@Override
-			public Builder addRepeatedField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					Object value) {
-				return super.addRepeatedField(field, value);
-			}
-			@Override
-			public Builder mergeFrom(com.google.protobuf.Message other) {
-				if (other instanceof BizLog) {
-					return mergeFrom((BizLog)other);
-				} else {
-					super.mergeFrom(other);
-					return this;
-				}
-			}
-
-			public Builder mergeFrom(BizLog other) {
-				if (other == BizLog.getDefaultInstance()) return this;
-				if (!other.getHost().isEmpty()) {
-					host_ = other.host_;
-					onChanged();
-				}
-				if (!other.getBiz().isEmpty()) {
-					biz_ = other.biz_;
-					onChanged();
-				}
-				if (!other.getTraceId().isEmpty()) {
-					traceId_ = other.traceId_;
-					onChanged();
-				}
-				if (!other.getDataTime().isEmpty()) {
-					dataTime_ = other.dataTime_;
-					onChanged();
-				}
-				if (!other.getThread().isEmpty()) {
-					thread_ = other.thread_;
-					onChanged();
-				}
-				if (!other.getLevel().isEmpty()) {
-					level_ = other.level_;
-					onChanged();
-				}
-				if (!other.getClazz().isEmpty()) {
-					clazz_ = other.clazz_;
-					onChanged();
-				}
-				if (!other.getMsg().isEmpty()) {
-					msg_ = other.msg_;
-					onChanged();
-				}
-				this.mergeUnknownFields(other.unknownFields);
-				onChanged();
-				return this;
-			}
-
-			@Override
-			public final boolean isInitialized() {
-				return true;
-			}
-
-			@Override
-			public Builder mergeFrom(
-					com.google.protobuf.CodedInputStream input,
-					com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-					throws java.io.IOException {
-				BizLog parsedMessage = null;
-				try {
-					parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-				} catch (com.google.protobuf.InvalidProtocolBufferException e) {
-					parsedMessage = (BizLog) e.getUnfinishedMessage();
-					throw e.unwrapIOException();
-				} finally {
-					if (parsedMessage != null) {
-						mergeFrom(parsedMessage);
-					}
-				}
-				return this;
-			}
-
-			private Object host_ = "";
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @return The host.
-			 */
-			public String getHost() {
-				Object ref = host_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					host_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @return The bytes for host.
-			 */
-			public com.google.protobuf.ByteString
-			getHostBytes() {
-				Object ref = host_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					host_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @param value The host to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setHost(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				host_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearHost() {
-
-				host_ = getDefaultInstance().getHost();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @param value The bytes for host to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setHostBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				host_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object biz_ = "";
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 2;</code>
-			 * @return The biz.
-			 */
-			public String getBiz() {
-				Object ref = biz_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					biz_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 2;</code>
-			 * @return The bytes for biz.
-			 */
-			public com.google.protobuf.ByteString
-			getBizBytes() {
-				Object ref = biz_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					biz_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 2;</code>
-			 * @param value The biz to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setBiz(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				biz_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 2;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearBiz() {
-
-				biz_ = getDefaultInstance().getBiz();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 2;</code>
-			 * @param value The bytes for biz to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setBizBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				biz_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object traceId_ = "";
-			/**
-			 * <pre>
-			 * 调用链id
-			 * </pre>
-			 *
-			 * <code>string traceId = 3;</code>
-			 * @return The traceId.
-			 */
-			public String getTraceId() {
-				Object ref = traceId_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					traceId_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 调用链id
-			 * </pre>
-			 *
-			 * <code>string traceId = 3;</code>
-			 * @return The bytes for traceId.
-			 */
-			public com.google.protobuf.ByteString
-			getTraceIdBytes() {
-				Object ref = traceId_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					traceId_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 调用链id
-			 * </pre>
-			 *
-			 * <code>string traceId = 3;</code>
-			 * @param value The traceId to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setTraceId(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				traceId_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 调用链id
-			 * </pre>
-			 *
-			 * <code>string traceId = 3;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearTraceId() {
-
-				traceId_ = getDefaultInstance().getTraceId();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 调用链id
-			 * </pre>
-			 *
-			 * <code>string traceId = 3;</code>
-			 * @param value The bytes for traceId to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setTraceIdBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				traceId_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object dataTime_ = "";
-			/**
-			 * <pre>
-			 * 日期时间
-			 * </pre>
-			 *
-			 * <code>string dataTime = 4;</code>
-			 * @return The dataTime.
-			 */
-			public String getDataTime() {
-				Object ref = dataTime_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					dataTime_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 日期时间
-			 * </pre>
-			 *
-			 * <code>string dataTime = 4;</code>
-			 * @return The bytes for dataTime.
-			 */
-			public com.google.protobuf.ByteString
-			getDataTimeBytes() {
-				Object ref = dataTime_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					dataTime_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 日期时间
-			 * </pre>
-			 *
-			 * <code>string dataTime = 4;</code>
-			 * @param value The dataTime to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setDataTime(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				dataTime_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 日期时间
-			 * </pre>
-			 *
-			 * <code>string dataTime = 4;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearDataTime() {
-
-				dataTime_ = getDefaultInstance().getDataTime();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 日期时间
-			 * </pre>
-			 *
-			 * <code>string dataTime = 4;</code>
-			 * @param value The bytes for dataTime to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setDataTimeBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				dataTime_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object thread_ = "";
-			/**
-			 * <pre>
-			 * 线程
-			 * </pre>
-			 *
-			 * <code>string thread = 5;</code>
-			 * @return The thread.
-			 */
-			public String getThread() {
-				Object ref = thread_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					thread_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 线程
-			 * </pre>
-			 *
-			 * <code>string thread = 5;</code>
-			 * @return The bytes for thread.
-			 */
-			public com.google.protobuf.ByteString
-			getThreadBytes() {
-				Object ref = thread_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					thread_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 线程
-			 * </pre>
-			 *
-			 * <code>string thread = 5;</code>
-			 * @param value The thread to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setThread(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				thread_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 线程
-			 * </pre>
-			 *
-			 * <code>string thread = 5;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearThread() {
-
-				thread_ = getDefaultInstance().getThread();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 线程
-			 * </pre>
-			 *
-			 * <code>string thread = 5;</code>
-			 * @param value The bytes for thread to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setThreadBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				thread_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object level_ = "";
-			/**
-			 * <pre>
-			 * 日志级别
-			 * </pre>
-			 *
-			 * <code>string level = 6;</code>
-			 * @return The level.
-			 */
-			public String getLevel() {
-				Object ref = level_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					level_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 日志级别
-			 * </pre>
-			 *
-			 * <code>string level = 6;</code>
-			 * @return The bytes for level.
-			 */
-			public com.google.protobuf.ByteString
-			getLevelBytes() {
-				Object ref = level_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					level_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 日志级别
-			 * </pre>
-			 *
-			 * <code>string level = 6;</code>
-			 * @param value The level to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setLevel(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				level_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 日志级别
-			 * </pre>
-			 *
-			 * <code>string level = 6;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearLevel() {
-
-				level_ = getDefaultInstance().getLevel();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 日志级别
-			 * </pre>
-			 *
-			 * <code>string level = 6;</code>
-			 * @param value The bytes for level to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setLevelBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				level_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object clazz_ = "";
-			/**
-			 * <pre>
-			 * 类名
-			 * </pre>
-			 *
-			 * <code>string clazz = 7;</code>
-			 * @return The clazz.
-			 */
-			public String getClazz() {
-				Object ref = clazz_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					clazz_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 类名
-			 * </pre>
-			 *
-			 * <code>string clazz = 7;</code>
-			 * @return The bytes for clazz.
-			 */
-			public com.google.protobuf.ByteString
-			getClazzBytes() {
-				Object ref = clazz_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					clazz_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 类名
-			 * </pre>
-			 *
-			 * <code>string clazz = 7;</code>
-			 * @param value The clazz to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setClazz(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				clazz_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 类名
-			 * </pre>
-			 *
-			 * <code>string clazz = 7;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearClazz() {
-
-				clazz_ = getDefaultInstance().getClazz();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 类名
-			 * </pre>
-			 *
-			 * <code>string clazz = 7;</code>
-			 * @param value The bytes for clazz to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setClazzBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				clazz_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object msg_ = "";
-			/**
-			 * <pre>
-			 * 消息
-			 * </pre>
-			 *
-			 * <code>string msg = 8;</code>
-			 * @return The msg.
-			 */
-			public String getMsg() {
-				Object ref = msg_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					msg_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 消息
-			 * </pre>
-			 *
-			 * <code>string msg = 8;</code>
-			 * @return The bytes for msg.
-			 */
-			public com.google.protobuf.ByteString
-			getMsgBytes() {
-				Object ref = msg_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					msg_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 消息
-			 * </pre>
-			 *
-			 * <code>string msg = 8;</code>
-			 * @param value The msg to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setMsg(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				msg_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 消息
-			 * </pre>
-			 *
-			 * <code>string msg = 8;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearMsg() {
-
-				msg_ = getDefaultInstance().getMsg();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 消息
-			 * </pre>
-			 *
-			 * <code>string msg = 8;</code>
-			 * @param value The bytes for msg to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setMsgBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				msg_ = value;
-				onChanged();
-				return this;
-			}
-			@Override
-			public final Builder setUnknownFields(
-					final com.google.protobuf.UnknownFieldSet unknownFields) {
-				return super.setUnknownFields(unknownFields);
-			}
-
-			@Override
-			public final Builder mergeUnknownFields(
-					final com.google.protobuf.UnknownFieldSet unknownFields) {
-				return super.mergeUnknownFields(unknownFields);
-			}
-
-
-			// @@protoc_insertion_point(builder_scope:BizLog)
-		}
-
-		// @@protoc_insertion_point(class_scope:BizLog)
-		private static final BizLog DEFAULT_INSTANCE;
-		static {
-			DEFAULT_INSTANCE = new BizLog();
-		}
-
-		public static BizLog getDefaultInstance() {
-			return DEFAULT_INSTANCE;
-		}
-
-		private static final com.google.protobuf.Parser<BizLog>
-				PARSER = new com.google.protobuf.AbstractParser<BizLog>() {
-			@Override
-			public BizLog parsePartialFrom(
-					com.google.protobuf.CodedInputStream input,
-					com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-					throws com.google.protobuf.InvalidProtocolBufferException {
-				return new BizLog(input, extensionRegistry);
-			}
-		};
-
-		public static com.google.protobuf.Parser<BizLog> parser() {
-			return PARSER;
-		}
-
-		@Override
-		public com.google.protobuf.Parser<BizLog> getParserForType() {
-			return PARSER;
-		}
-
-		@Override
-		public BizLog getDefaultInstanceForType() {
-			return DEFAULT_INSTANCE;
-		}
-
-	}
-
-	public interface PerfLogOrBuilder extends
-			// @@protoc_insertion_point(interface_extends:PerfLog)
-			com.google.protobuf.MessageOrBuilder {
-
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The host.
-		 */
-		String getHost();
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The bytes for host.
-		 */
-		com.google.protobuf.ByteString
-		getHostBytes();
-
-		/**
-		 * <pre>
-		 * 业务组件
-		 * </pre>
-		 *
-		 * <code>string biz = 2;</code>
-		 * @return The biz.
-		 */
-		String getBiz();
-		/**
-		 * <pre>
-		 * 业务组件
-		 * </pre>
-		 *
-		 * <code>string biz = 2;</code>
-		 * @return The bytes for biz.
-		 */
-		com.google.protobuf.ByteString
-		getBizBytes();
-
-		/**
-		 * <pre>
-		 * 接口全类名
-		 * </pre>
-		 *
-		 * <code>string clazz = 3;</code>
-		 * @return The clazz.
-		 */
-		String getClazz();
-		/**
-		 * <pre>
-		 * 接口全类名
-		 * </pre>
-		 *
-		 * <code>string clazz = 3;</code>
-		 * @return The bytes for clazz.
-		 */
-		com.google.protobuf.ByteString
-		getClazzBytes();
-
-		/**
-		 * <pre>
-		 * 方法
-		 * </pre>
-		 *
-		 * <code>string method = 4;</code>
-		 * @return The method.
-		 */
-		String getMethod();
-		/**
-		 * <pre>
-		 * 方法
-		 * </pre>
-		 *
-		 * <code>string method = 4;</code>
-		 * @return The bytes for method.
-		 */
-		com.google.protobuf.ByteString
-		getMethodBytes();
-
-		/**
-		 * <pre>
-		 * 耗时
-		 * </pre>
-		 *
-		 * <code>string time = 5;</code>
-		 * @return The time.
-		 */
-		String getTime();
-		/**
-		 * <pre>
-		 * 耗时
-		 * </pre>
-		 *
-		 * <code>string time = 5;</code>
-		 * @return The bytes for time.
-		 */
-		com.google.protobuf.ByteString
-		getTimeBytes();
-	}
-	/**
-	 * Protobuf type {@code PerfLog}
-	 */
-	public static final class PerfLog extends
-			com.google.protobuf.GeneratedMessageV3 implements
-			// @@protoc_insertion_point(message_implements:PerfLog)
-			PerfLogOrBuilder {
-		private static final long serialVersionUID = 0L;
-		// Use PerfLog.newBuilder() to construct.
-		private PerfLog(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-			super(builder);
-		}
-		private PerfLog() {
-			host_ = "";
-			biz_ = "";
-			clazz_ = "";
-			method_ = "";
-			time_ = "";
-		}
-
-		@Override
-		@SuppressWarnings({"unused"})
-		protected Object newInstance(
-				UnusedPrivateParameter unused) {
-			return new PerfLog();
-		}
-
-		@Override
-		public final com.google.protobuf.UnknownFieldSet
-		getUnknownFields() {
-			return this.unknownFields;
-		}
-		private PerfLog(
-				com.google.protobuf.CodedInputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			this();
-			if (extensionRegistry == null) {
-				throw new NullPointerException();
-			}
-			com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-					com.google.protobuf.UnknownFieldSet.newBuilder();
-			try {
-				boolean done = false;
-				while (!done) {
-					int tag = input.readTag();
-					switch (tag) {
-						case 0:
-							done = true;
-							break;
-						case 10: {
-							String s = input.readStringRequireUtf8();
-
-							host_ = s;
-							break;
-						}
-						case 18: {
-							String s = input.readStringRequireUtf8();
-
-							biz_ = s;
-							break;
-						}
-						case 26: {
-							String s = input.readStringRequireUtf8();
-
-							clazz_ = s;
-							break;
-						}
-						case 34: {
-							String s = input.readStringRequireUtf8();
-
-							method_ = s;
-							break;
-						}
-						case 42: {
-							String s = input.readStringRequireUtf8();
-
-							time_ = s;
-							break;
-						}
-						default: {
-							if (!parseUnknownField(
-									input, unknownFields, extensionRegistry, tag)) {
-								done = true;
-							}
-							break;
-						}
-					}
-				}
-			} catch (com.google.protobuf.InvalidProtocolBufferException e) {
-				throw e.setUnfinishedMessage(this);
-			} catch (java.io.IOException e) {
-				throw new com.google.protobuf.InvalidProtocolBufferException(
-						e).setUnfinishedMessage(this);
-			} finally {
-				this.unknownFields = unknownFields.build();
-				makeExtensionsImmutable();
-			}
-		}
-		public static final com.google.protobuf.Descriptors.Descriptor
-		getDescriptor() {
-			return LogFactory.internal_static_PerfLog_descriptor;
-		}
-
-		@Override
-		protected FieldAccessorTable
-		internalGetFieldAccessorTable() {
-			return LogFactory.internal_static_PerfLog_fieldAccessorTable
-					.ensureFieldAccessorsInitialized(
-							PerfLog.class, Builder.class);
-		}
-
-		public static final int HOST_FIELD_NUMBER = 1;
-		private volatile Object host_;
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The host.
-		 */
-		@Override
-		public String getHost() {
-			Object ref = host_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				host_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 主机
-		 * </pre>
-		 *
-		 * <code>string host = 1;</code>
-		 * @return The bytes for host.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getHostBytes() {
-			Object ref = host_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				host_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int BIZ_FIELD_NUMBER = 2;
-		private volatile Object biz_;
-		/**
-		 * <pre>
-		 * 业务组件
-		 * </pre>
-		 *
-		 * <code>string biz = 2;</code>
-		 * @return The biz.
-		 */
-		@Override
-		public String getBiz() {
-			Object ref = biz_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				biz_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 业务组件
-		 * </pre>
-		 *
-		 * <code>string biz = 2;</code>
-		 * @return The bytes for biz.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getBizBytes() {
-			Object ref = biz_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				biz_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int CLAZZ_FIELD_NUMBER = 3;
-		private volatile Object clazz_;
-		/**
-		 * <pre>
-		 * 接口全类名
-		 * </pre>
-		 *
-		 * <code>string clazz = 3;</code>
-		 * @return The clazz.
-		 */
-		@Override
-		public String getClazz() {
-			Object ref = clazz_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				clazz_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 接口全类名
-		 * </pre>
-		 *
-		 * <code>string clazz = 3;</code>
-		 * @return The bytes for clazz.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getClazzBytes() {
-			Object ref = clazz_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				clazz_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int METHOD_FIELD_NUMBER = 4;
-		private volatile Object method_;
-		/**
-		 * <pre>
-		 * 方法
-		 * </pre>
-		 *
-		 * <code>string method = 4;</code>
-		 * @return The method.
-		 */
-		@Override
-		public String getMethod() {
-			Object ref = method_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				method_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 方法
-		 * </pre>
-		 *
-		 * <code>string method = 4;</code>
-		 * @return The bytes for method.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getMethodBytes() {
-			Object ref = method_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				method_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		public static final int TIME_FIELD_NUMBER = 5;
-		private volatile Object time_;
-		/**
-		 * <pre>
-		 * 耗时
-		 * </pre>
-		 *
-		 * <code>string time = 5;</code>
-		 * @return The time.
-		 */
-		@Override
-		public String getTime() {
-			Object ref = time_;
-			if (ref instanceof String) {
-				return (String) ref;
-			} else {
-				com.google.protobuf.ByteString bs =
-						(com.google.protobuf.ByteString) ref;
-				String s = bs.toStringUtf8();
-				time_ = s;
-				return s;
-			}
-		}
-		/**
-		 * <pre>
-		 * 耗时
-		 * </pre>
-		 *
-		 * <code>string time = 5;</code>
-		 * @return The bytes for time.
-		 */
-		@Override
-		public com.google.protobuf.ByteString
-		getTimeBytes() {
-			Object ref = time_;
-			if (ref instanceof String) {
-				com.google.protobuf.ByteString b =
-						com.google.protobuf.ByteString.copyFromUtf8(
-								(String) ref);
-				time_ = b;
-				return b;
-			} else {
-				return (com.google.protobuf.ByteString) ref;
-			}
-		}
-
-		private byte memoizedIsInitialized = -1;
-		@Override
-		public final boolean isInitialized() {
-			byte isInitialized = memoizedIsInitialized;
-			if (isInitialized == 1) return true;
-			if (isInitialized == 0) return false;
-
-			memoizedIsInitialized = 1;
-			return true;
-		}
-
-		@Override
-		public void writeTo(com.google.protobuf.CodedOutputStream output)
-				throws java.io.IOException {
-			if (!getHostBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 1, host_);
-			}
-			if (!getBizBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 2, biz_);
-			}
-			if (!getClazzBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 3, clazz_);
-			}
-			if (!getMethodBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 4, method_);
-			}
-			if (!getTimeBytes().isEmpty()) {
-				com.google.protobuf.GeneratedMessageV3.writeString(output, 5, time_);
-			}
-			unknownFields.writeTo(output);
-		}
-
-		@Override
-		public int getSerializedSize() {
-			int size = memoizedSize;
-			if (size != -1) return size;
-
-			size = 0;
-			if (!getHostBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, host_);
-			}
-			if (!getBizBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, biz_);
-			}
-			if (!getClazzBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, clazz_);
-			}
-			if (!getMethodBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, method_);
-			}
-			if (!getTimeBytes().isEmpty()) {
-				size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, time_);
-			}
-			size += unknownFields.getSerializedSize();
-			memoizedSize = size;
-			return size;
-		}
-
-		@Override
-		public boolean equals(final Object obj) {
-			if (obj == this) {
-				return true;
-			}
-			if (!(obj instanceof PerfLog)) {
-				return super.equals(obj);
-			}
-			PerfLog other = (PerfLog) obj;
-
-			if (!getHost()
-					.equals(other.getHost())) return false;
-			if (!getBiz()
-					.equals(other.getBiz())) return false;
-			if (!getClazz()
-					.equals(other.getClazz())) return false;
-			if (!getMethod()
-					.equals(other.getMethod())) return false;
-			if (!getTime()
-					.equals(other.getTime())) return false;
-			if (!unknownFields.equals(other.unknownFields)) return false;
-			return true;
-		}
-
-		@Override
-		public int hashCode() {
-			if (memoizedHashCode != 0) {
-				return memoizedHashCode;
-			}
-			int hash = 41;
-			hash = (19 * hash) + getDescriptor().hashCode();
-			hash = (37 * hash) + HOST_FIELD_NUMBER;
-			hash = (53 * hash) + getHost().hashCode();
-			hash = (37 * hash) + BIZ_FIELD_NUMBER;
-			hash = (53 * hash) + getBiz().hashCode();
-			hash = (37 * hash) + CLAZZ_FIELD_NUMBER;
-			hash = (53 * hash) + getClazz().hashCode();
-			hash = (37 * hash) + METHOD_FIELD_NUMBER;
-			hash = (53 * hash) + getMethod().hashCode();
-			hash = (37 * hash) + TIME_FIELD_NUMBER;
-			hash = (53 * hash) + getTime().hashCode();
-			hash = (29 * hash) + unknownFields.hashCode();
-			memoizedHashCode = hash;
-			return hash;
-		}
-
-		public static PerfLog parseFrom(
-				java.nio.ByteBuffer data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static PerfLog parseFrom(
-				java.nio.ByteBuffer data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static PerfLog parseFrom(
-				com.google.protobuf.ByteString data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static PerfLog parseFrom(
-				com.google.protobuf.ByteString data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static PerfLog parseFrom(byte[] data)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data);
-		}
-		public static PerfLog parseFrom(
-				byte[] data,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws com.google.protobuf.InvalidProtocolBufferException {
-			return PARSER.parseFrom(data, extensionRegistry);
-		}
-		public static PerfLog parseFrom(java.io.InputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input);
-		}
-		public static PerfLog parseFrom(
-				java.io.InputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input, extensionRegistry);
-		}
-		public static PerfLog parseDelimitedFrom(java.io.InputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseDelimitedWithIOException(PARSER, input);
-		}
-		public static PerfLog parseDelimitedFrom(
-				java.io.InputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-		}
-		public static PerfLog parseFrom(
-				com.google.protobuf.CodedInputStream input)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input);
-		}
-		public static PerfLog parseFrom(
-				com.google.protobuf.CodedInputStream input,
-				com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-				throws java.io.IOException {
-			return com.google.protobuf.GeneratedMessageV3
-					.parseWithIOException(PARSER, input, extensionRegistry);
-		}
-
-		@Override
-		public Builder newBuilderForType() { return newBuilder(); }
-		public static Builder newBuilder() {
-			return DEFAULT_INSTANCE.toBuilder();
-		}
-		public static Builder newBuilder(PerfLog prototype) {
-			return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-		}
-		@Override
-		public Builder toBuilder() {
-			return this == DEFAULT_INSTANCE
-					? new Builder() : new Builder().mergeFrom(this);
-		}
-
-		@Override
-		protected Builder newBuilderForType(
-				BuilderParent parent) {
-			Builder builder = new Builder(parent);
-			return builder;
-		}
-		/**
-		 * Protobuf type {@code PerfLog}
-		 */
-		public static final class Builder extends
-				com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-				// @@protoc_insertion_point(builder_implements:PerfLog)
-				PerfLogOrBuilder {
-			public static final com.google.protobuf.Descriptors.Descriptor
-			getDescriptor() {
-				return LogFactory.internal_static_PerfLog_descriptor;
-			}
-
-			@Override
-			protected FieldAccessorTable
-			internalGetFieldAccessorTable() {
-				return LogFactory.internal_static_PerfLog_fieldAccessorTable
-						.ensureFieldAccessorsInitialized(
-								PerfLog.class, Builder.class);
-			}
-
-			// Construct using com.cl.log.config.model.LogFactory.PerfLog.newBuilder()
-			private Builder() {
-				maybeForceBuilderInitialization();
-			}
-
-			private Builder(
-					BuilderParent parent) {
-				super(parent);
-				maybeForceBuilderInitialization();
-			}
-			private void maybeForceBuilderInitialization() {
-				if (com.google.protobuf.GeneratedMessageV3
-						.alwaysUseFieldBuilders) {
-				}
-			}
-			@Override
-			public Builder clear() {
-				super.clear();
-				host_ = "";
-
-				biz_ = "";
-
-				clazz_ = "";
-
-				method_ = "";
-
-				time_ = "";
-
-				return this;
-			}
-
-			@Override
-			public com.google.protobuf.Descriptors.Descriptor
-			getDescriptorForType() {
-				return LogFactory.internal_static_PerfLog_descriptor;
-			}
-
-			@Override
-			public PerfLog getDefaultInstanceForType() {
-				return PerfLog.getDefaultInstance();
-			}
-
-			@Override
-			public PerfLog build() {
-				PerfLog result = buildPartial();
-				if (!result.isInitialized()) {
-					throw newUninitializedMessageException(result);
-				}
-				return result;
-			}
-
-			@Override
-			public PerfLog buildPartial() {
-				PerfLog result = new PerfLog(this);
-				result.host_ = host_;
-				result.biz_ = biz_;
-				result.clazz_ = clazz_;
-				result.method_ = method_;
-				result.time_ = time_;
-				onBuilt();
-				return result;
-			}
-
-			@Override
-			public Builder clone() {
-				return super.clone();
-			}
-			@Override
-			public Builder setField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					Object value) {
-				return super.setField(field, value);
-			}
-			@Override
-			public Builder clearField(
-					com.google.protobuf.Descriptors.FieldDescriptor field) {
-				return super.clearField(field);
-			}
-			@Override
-			public Builder clearOneof(
-					com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-				return super.clearOneof(oneof);
-			}
-			@Override
-			public Builder setRepeatedField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					int index, Object value) {
-				return super.setRepeatedField(field, index, value);
-			}
-			@Override
-			public Builder addRepeatedField(
-					com.google.protobuf.Descriptors.FieldDescriptor field,
-					Object value) {
-				return super.addRepeatedField(field, value);
-			}
-			@Override
-			public Builder mergeFrom(com.google.protobuf.Message other) {
-				if (other instanceof PerfLog) {
-					return mergeFrom((PerfLog)other);
-				} else {
-					super.mergeFrom(other);
-					return this;
-				}
-			}
-
-			public Builder mergeFrom(PerfLog other) {
-				if (other == PerfLog.getDefaultInstance()) return this;
-				if (!other.getHost().isEmpty()) {
-					host_ = other.host_;
-					onChanged();
-				}
-				if (!other.getBiz().isEmpty()) {
-					biz_ = other.biz_;
-					onChanged();
-				}
-				if (!other.getClazz().isEmpty()) {
-					clazz_ = other.clazz_;
-					onChanged();
-				}
-				if (!other.getMethod().isEmpty()) {
-					method_ = other.method_;
-					onChanged();
-				}
-				if (!other.getTime().isEmpty()) {
-					time_ = other.time_;
-					onChanged();
-				}
-				this.mergeUnknownFields(other.unknownFields);
-				onChanged();
-				return this;
-			}
-
-			@Override
-			public final boolean isInitialized() {
-				return true;
-			}
-
-			@Override
-			public Builder mergeFrom(
-					com.google.protobuf.CodedInputStream input,
-					com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-					throws java.io.IOException {
-				PerfLog parsedMessage = null;
-				try {
-					parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-				} catch (com.google.protobuf.InvalidProtocolBufferException e) {
-					parsedMessage = (PerfLog) e.getUnfinishedMessage();
-					throw e.unwrapIOException();
-				} finally {
-					if (parsedMessage != null) {
-						mergeFrom(parsedMessage);
-					}
-				}
-				return this;
-			}
-
-			private Object host_ = "";
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @return The host.
-			 */
-			public String getHost() {
-				Object ref = host_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					host_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @return The bytes for host.
-			 */
-			public com.google.protobuf.ByteString
-			getHostBytes() {
-				Object ref = host_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					host_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @param value The host to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setHost(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				host_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearHost() {
-
-				host_ = getDefaultInstance().getHost();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 主机
-			 * </pre>
-			 *
-			 * <code>string host = 1;</code>
-			 * @param value The bytes for host to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setHostBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				host_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object biz_ = "";
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 2;</code>
-			 * @return The biz.
-			 */
-			public String getBiz() {
-				Object ref = biz_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					biz_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 2;</code>
-			 * @return The bytes for biz.
-			 */
-			public com.google.protobuf.ByteString
-			getBizBytes() {
-				Object ref = biz_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					biz_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 2;</code>
-			 * @param value The biz to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setBiz(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				biz_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 2;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearBiz() {
-
-				biz_ = getDefaultInstance().getBiz();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 业务组件
-			 * </pre>
-			 *
-			 * <code>string biz = 2;</code>
-			 * @param value The bytes for biz to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setBizBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				biz_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object clazz_ = "";
-			/**
-			 * <pre>
-			 * 接口全类名
-			 * </pre>
-			 *
-			 * <code>string clazz = 3;</code>
-			 * @return The clazz.
-			 */
-			public String getClazz() {
-				Object ref = clazz_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					clazz_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 接口全类名
-			 * </pre>
-			 *
-			 * <code>string clazz = 3;</code>
-			 * @return The bytes for clazz.
-			 */
-			public com.google.protobuf.ByteString
-			getClazzBytes() {
-				Object ref = clazz_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					clazz_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 接口全类名
-			 * </pre>
-			 *
-			 * <code>string clazz = 3;</code>
-			 * @param value The clazz to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setClazz(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				clazz_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 接口全类名
-			 * </pre>
-			 *
-			 * <code>string clazz = 3;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearClazz() {
-
-				clazz_ = getDefaultInstance().getClazz();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 接口全类名
-			 * </pre>
-			 *
-			 * <code>string clazz = 3;</code>
-			 * @param value The bytes for clazz to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setClazzBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				clazz_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object method_ = "";
-			/**
-			 * <pre>
-			 * 方法
-			 * </pre>
-			 *
-			 * <code>string method = 4;</code>
-			 * @return The method.
-			 */
-			public String getMethod() {
-				Object ref = method_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					method_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 方法
-			 * </pre>
-			 *
-			 * <code>string method = 4;</code>
-			 * @return The bytes for method.
-			 */
-			public com.google.protobuf.ByteString
-			getMethodBytes() {
-				Object ref = method_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					method_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 方法
-			 * </pre>
-			 *
-			 * <code>string method = 4;</code>
-			 * @param value The method to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setMethod(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				method_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 方法
-			 * </pre>
-			 *
-			 * <code>string method = 4;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearMethod() {
-
-				method_ = getDefaultInstance().getMethod();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 方法
-			 * </pre>
-			 *
-			 * <code>string method = 4;</code>
-			 * @param value The bytes for method to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setMethodBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				method_ = value;
-				onChanged();
-				return this;
-			}
-
-			private Object time_ = "";
-			/**
-			 * <pre>
-			 * 耗时
-			 * </pre>
-			 *
-			 * <code>string time = 5;</code>
-			 * @return The time.
-			 */
-			public String getTime() {
-				Object ref = time_;
-				if (!(ref instanceof String)) {
-					com.google.protobuf.ByteString bs =
-							(com.google.protobuf.ByteString) ref;
-					String s = bs.toStringUtf8();
-					time_ = s;
-					return s;
-				} else {
-					return (String) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 耗时
-			 * </pre>
-			 *
-			 * <code>string time = 5;</code>
-			 * @return The bytes for time.
-			 */
-			public com.google.protobuf.ByteString
-			getTimeBytes() {
-				Object ref = time_;
-				if (ref instanceof String) {
-					com.google.protobuf.ByteString b =
-							com.google.protobuf.ByteString.copyFromUtf8(
-									(String) ref);
-					time_ = b;
-					return b;
-				} else {
-					return (com.google.protobuf.ByteString) ref;
-				}
-			}
-			/**
-			 * <pre>
-			 * 耗时
-			 * </pre>
-			 *
-			 * <code>string time = 5;</code>
-			 * @param value The time to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setTime(
-					String value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-
-				time_ = value;
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 耗时
-			 * </pre>
-			 *
-			 * <code>string time = 5;</code>
-			 * @return This builder for chaining.
-			 */
-			public Builder clearTime() {
-
-				time_ = getDefaultInstance().getTime();
-				onChanged();
-				return this;
-			}
-			/**
-			 * <pre>
-			 * 耗时
-			 * </pre>
-			 *
-			 * <code>string time = 5;</code>
-			 * @param value The bytes for time to set.
-			 * @return This builder for chaining.
-			 */
-			public Builder setTimeBytes(
-					com.google.protobuf.ByteString value) {
-				if (value == null) {
-					throw new NullPointerException();
-				}
-				checkByteStringIsUtf8(value);
-
-				time_ = value;
-				onChanged();
-				return this;
-			}
-			@Override
-			public final Builder setUnknownFields(
-					final com.google.protobuf.UnknownFieldSet unknownFields) {
-				return super.setUnknownFields(unknownFields);
-			}
-
-			@Override
-			public final Builder mergeUnknownFields(
-					final com.google.protobuf.UnknownFieldSet unknownFields) {
-				return super.mergeUnknownFields(unknownFields);
-			}
-
-
-			// @@protoc_insertion_point(builder_scope:PerfLog)
-		}
-
-		// @@protoc_insertion_point(class_scope:PerfLog)
-		private static final PerfLog DEFAULT_INSTANCE;
-		static {
-			DEFAULT_INSTANCE = new PerfLog();
-		}
-
-		public static PerfLog getDefaultInstance() {
-			return DEFAULT_INSTANCE;
-		}
-
-		private static final com.google.protobuf.Parser<PerfLog>
-				PARSER = new com.google.protobuf.AbstractParser<PerfLog>() {
-			@Override
-			public PerfLog parsePartialFrom(
-					com.google.protobuf.CodedInputStream input,
-					com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-					throws com.google.protobuf.InvalidProtocolBufferException {
-				return new PerfLog(input, extensionRegistry);
-			}
-		};
-
-		public static com.google.protobuf.Parser<PerfLog> parser() {
-			return PARSER;
-		}
-
-		@Override
-		public com.google.protobuf.Parser<PerfLog> getParserForType() {
-			return PARSER;
-		}
-
-		@Override
-		public PerfLog getDefaultInstanceForType() {
-			return DEFAULT_INSTANCE;
-		}
-
-	}
-
-	private static final com.google.protobuf.Descriptors.Descriptor
-			internal_static_Log_descriptor;
-	private static final
-	com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-			internal_static_Log_fieldAccessorTable;
-	private static final com.google.protobuf.Descriptors.Descriptor
-			internal_static_NginxLog_descriptor;
-	private static final
-	com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-			internal_static_NginxLog_fieldAccessorTable;
-	private static final com.google.protobuf.Descriptors.Descriptor
-			internal_static_TomcatAccessLog_descriptor;
-	private static final
-	com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-			internal_static_TomcatAccessLog_fieldAccessorTable;
-	private static final com.google.protobuf.Descriptors.Descriptor
-			internal_static_BizLog_descriptor;
-	private static final
-	com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-			internal_static_BizLog_fieldAccessorTable;
-	private static final com.google.protobuf.Descriptors.Descriptor
-			internal_static_PerfLog_descriptor;
-	private static final
-	com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-			internal_static_PerfLog_fieldAccessorTable;
-
-	public static com.google.protobuf.Descriptors.FileDescriptor
-	getDescriptor() {
-		return descriptor;
-	}
-	private static  com.google.protobuf.Descriptors.FileDescriptor
-			descriptor;
-	static {
-		String[] descriptorData = {
-				"\n\tLog.proto\"\377\001\n\003Log\022\037\n\010category\030\001 \001(\0162\r." +
-						"Log.Category\022\035\n\010nginxLog\030\002 \001(\0132\t.NginxLo" +
-						"gH\000\022+\n\017tomcatAccessLog\030\003 \001(\0132\020.TomcatAcc" +
-						"essLogH\000\022\031\n\006bizLog\030\004 \001(\0132\007.BizLogH\000\022\033\n\007p" +
-						"erfLog\030\005 \001(\0132\010.PerfLogH\000\"K\n\010Category\022\r\n\t" +
-						"nginx_log\020\000\022\025\n\021tomcat_access_log\020\001\022\013\n\007bi" +
-						"z_log\020\002\022\014\n\010perf_log\020\003B\006\n\004body\"\270\001\n\010NginxL" +
-						"og\022\014\n\004host\030\001 \001(\t\022\020\n\010dateTime\030\002 \001(\t\022\025\n\rre" +
-						"questMethod\030\003 \001(\t\022\022\n\nrequestURL\030\004 \001(\t\022\016\n" +
-						"\006params\030\005 \001(\t\022\022\n\nstatesCode\030\006 \001(\t\022\014\n\004tim" +
-						"e\030\007 \001(\005\022\021\n\tuserAgent\030\010 \001(\t\022\n\n\002ip\030\t \001(\t\022\020" +
-						"\n\010upstream\030\n \001(\t\"\326\001\n\017TomcatAccessLog\022\014\n\004" +
-						"host\030\001 \001(\t\022\017\n\007traceId\030\002 \001(\t\022\013\n\003biz\030\003 \001(\t" +
-						"\022\014\n\004port\030\004 \001(\005\022\016\n\006userId\030\005 \001(\t\022\020\n\010dataTi" +
-						"me\030\006 \001(\t\022\022\n\nstatesCode\030\007 \001(\t\022\014\n\004time\030\010 \001" +
-						"(\005\022\n\n\002ip\030\t \001(\t\022\025\n\rrequestMethod\030\n \001(\t\022\022\n" +
-						"\nrequestURL\030\013 \001(\t\022\016\n\006params\030\014 \001(\t\"\201\001\n\006Bi" +
-						"zLog\022\014\n\004host\030\001 \001(\t\022\013\n\003biz\030\002 \001(\t\022\017\n\007trace" +
-						"Id\030\003 \001(\t\022\020\n\010dataTime\030\004 \001(\t\022\016\n\006thread\030\005 \001" +
-						"(\t\022\r\n\005level\030\006 \001(\t\022\r\n\005clazz\030\007 \001(\t\022\013\n\003msg\030" +
-						"\010 \001(\t\"Q\n\007PerfLog\022\014\n\004host\030\001 \001(\t\022\013\n\003biz\030\002 " +
-						"\001(\t\022\r\n\005clazz\030\003 \001(\t\022\016\n\006method\030\004 \001(\t\022\014\n\004ti" +
-						"me\030\005 \001(\tB\'\n\027com.cl.log.config.modelB\nLog" +
-						"FactoryH\001b\006proto3"
-		};
-		descriptor = com.google.protobuf.Descriptors.FileDescriptor
-				.internalBuildGeneratedFileFrom(descriptorData,
-						new com.google.protobuf.Descriptors.FileDescriptor[] {
-						});
-		internal_static_Log_descriptor =
-				getDescriptor().getMessageTypes().get(0);
-		internal_static_Log_fieldAccessorTable = new
-				com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-				internal_static_Log_descriptor,
-				new String[] { "Category", "NginxLog", "TomcatAccessLog", "BizLog", "PerfLog", "Body", });
-		internal_static_NginxLog_descriptor =
-				getDescriptor().getMessageTypes().get(1);
-		internal_static_NginxLog_fieldAccessorTable = new
-				com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-				internal_static_NginxLog_descriptor,
-				new String[] { "Host", "DateTime", "RequestMethod", "RequestURL", "Params", "StatesCode", "Time", "UserAgent", "Ip", "Upstream", });
-		internal_static_TomcatAccessLog_descriptor =
-				getDescriptor().getMessageTypes().get(2);
-		internal_static_TomcatAccessLog_fieldAccessorTable = new
-				com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-				internal_static_TomcatAccessLog_descriptor,
-				new String[] { "Host", "TraceId", "Biz", "Port", "UserId", "DataTime", "StatesCode", "Time", "Ip", "RequestMethod", "RequestURL", "Params", });
-		internal_static_BizLog_descriptor =
-				getDescriptor().getMessageTypes().get(3);
-		internal_static_BizLog_fieldAccessorTable = new
-				com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-				internal_static_BizLog_descriptor,
-				new String[] { "Host", "Biz", "TraceId", "DataTime", "Thread", "Level", "Clazz", "Msg", });
-		internal_static_PerfLog_descriptor =
-				getDescriptor().getMessageTypes().get(4);
-		internal_static_PerfLog_fieldAccessorTable = new
-				com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-				internal_static_PerfLog_descriptor,
-				new String[] { "Host", "Biz", "Clazz", "Method", "Time", });
-	}
-
-	// @@protoc_insertion_point(outer_class_scope)
+  private LogFactory() {}
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistryLite registry) {
+  }
+
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistry registry) {
+    registerAllExtensions(
+        (com.google.protobuf.ExtensionRegistryLite) registry);
+  }
+  public interface LogOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Log)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.Log.Category category = 1;</code>
+     */
+    int getCategoryValue();
+    /**
+     * <code>.Log.Category category = 1;</code>
+     */
+    com.cl.log.config.model.LogFactory.Log.Category getCategory();
+
+    /**
+     * <code>.NginxLog nginxLog = 2;</code>
+     */
+    boolean hasNginxLog();
+    /**
+     * <code>.NginxLog nginxLog = 2;</code>
+     */
+    com.cl.log.config.model.LogFactory.NginxLog getNginxLog();
+    /**
+     * <code>.NginxLog nginxLog = 2;</code>
+     */
+    com.cl.log.config.model.LogFactory.NginxLogOrBuilder getNginxLogOrBuilder();
+
+    /**
+     * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+     */
+    boolean hasTomcatAccessLog();
+    /**
+     * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+     */
+    com.cl.log.config.model.LogFactory.TomcatAccessLog getTomcatAccessLog();
+    /**
+     * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+     */
+    com.cl.log.config.model.LogFactory.TomcatAccessLogOrBuilder getTomcatAccessLogOrBuilder();
+
+    /**
+     * <code>.BizLog bizLog = 4;</code>
+     */
+    boolean hasBizLog();
+    /**
+     * <code>.BizLog bizLog = 4;</code>
+     */
+    com.cl.log.config.model.LogFactory.BizLog getBizLog();
+    /**
+     * <code>.BizLog bizLog = 4;</code>
+     */
+    com.cl.log.config.model.LogFactory.BizLogOrBuilder getBizLogOrBuilder();
+
+    /**
+     * <code>.PerfLog perfLog = 5;</code>
+     */
+    boolean hasPerfLog();
+    /**
+     * <code>.PerfLog perfLog = 5;</code>
+     */
+    com.cl.log.config.model.LogFactory.PerfLog getPerfLog();
+    /**
+     * <code>.PerfLog perfLog = 5;</code>
+     */
+    com.cl.log.config.model.LogFactory.PerfLogOrBuilder getPerfLogOrBuilder();
+
+    public com.cl.log.config.model.LogFactory.Log.BodyCase getBodyCase();
+  }
+  /**
+   * Protobuf type {@code Log}
+   */
+  public  static final class Log extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Log)
+      LogOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Log.newBuilder() to construct.
+    private Log(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Log() {
+      category_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Log(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              int rawValue = input.readEnum();
+
+              category_ = rawValue;
+              break;
+            }
+            case 18: {
+              com.cl.log.config.model.LogFactory.NginxLog.Builder subBuilder = null;
+              if (bodyCase_ == 2) {
+                subBuilder = ((com.cl.log.config.model.LogFactory.NginxLog) body_).toBuilder();
+              }
+              body_ =
+                  input.readMessage(com.cl.log.config.model.LogFactory.NginxLog.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.cl.log.config.model.LogFactory.NginxLog) body_);
+                body_ = subBuilder.buildPartial();
+              }
+              bodyCase_ = 2;
+              break;
+            }
+            case 26: {
+              com.cl.log.config.model.LogFactory.TomcatAccessLog.Builder subBuilder = null;
+              if (bodyCase_ == 3) {
+                subBuilder = ((com.cl.log.config.model.LogFactory.TomcatAccessLog) body_).toBuilder();
+              }
+              body_ =
+                  input.readMessage(com.cl.log.config.model.LogFactory.TomcatAccessLog.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.cl.log.config.model.LogFactory.TomcatAccessLog) body_);
+                body_ = subBuilder.buildPartial();
+              }
+              bodyCase_ = 3;
+              break;
+            }
+            case 34: {
+              com.cl.log.config.model.LogFactory.BizLog.Builder subBuilder = null;
+              if (bodyCase_ == 4) {
+                subBuilder = ((com.cl.log.config.model.LogFactory.BizLog) body_).toBuilder();
+              }
+              body_ =
+                  input.readMessage(com.cl.log.config.model.LogFactory.BizLog.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.cl.log.config.model.LogFactory.BizLog) body_);
+                body_ = subBuilder.buildPartial();
+              }
+              bodyCase_ = 4;
+              break;
+            }
+            case 42: {
+              com.cl.log.config.model.LogFactory.PerfLog.Builder subBuilder = null;
+              if (bodyCase_ == 5) {
+                subBuilder = ((com.cl.log.config.model.LogFactory.PerfLog) body_).toBuilder();
+              }
+              body_ =
+                  input.readMessage(com.cl.log.config.model.LogFactory.PerfLog.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.cl.log.config.model.LogFactory.PerfLog) body_);
+                body_ = subBuilder.buildPartial();
+              }
+              bodyCase_ = 5;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cl.log.config.model.LogFactory.internal_static_Log_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cl.log.config.model.LogFactory.internal_static_Log_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cl.log.config.model.LogFactory.Log.class, com.cl.log.config.model.LogFactory.Log.Builder.class);
+    }
+
+    /**
+     * Protobuf enum {@code Log.Category}
+     */
+    public enum Category
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>nginx_log = 0;</code>
+       */
+      nginx_log(0),
+      /**
+       * <code>tomcat_access_log = 1;</code>
+       */
+      tomcat_access_log(1),
+      /**
+       * <code>biz_log = 2;</code>
+       */
+      biz_log(2),
+      /**
+       * <code>perf_log = 3;</code>
+       */
+      perf_log(3),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>nginx_log = 0;</code>
+       */
+      public static final int nginx_log_VALUE = 0;
+      /**
+       * <code>tomcat_access_log = 1;</code>
+       */
+      public static final int tomcat_access_log_VALUE = 1;
+      /**
+       * <code>biz_log = 2;</code>
+       */
+      public static final int biz_log_VALUE = 2;
+      /**
+       * <code>perf_log = 3;</code>
+       */
+      public static final int perf_log_VALUE = 3;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Category valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static Category forNumber(int value) {
+        switch (value) {
+          case 0: return nginx_log;
+          case 1: return tomcat_access_log;
+          case 2: return biz_log;
+          case 3: return perf_log;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Category>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Category> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Category>() {
+              public Category findValueByNumber(int number) {
+                return Category.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.cl.log.config.model.LogFactory.Log.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Category[] VALUES = values();
+
+      public static Category valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Category(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:Log.Category)
+    }
+
+    private int bodyCase_ = 0;
+    private java.lang.Object body_;
+    public enum BodyCase
+        implements com.google.protobuf.Internal.EnumLite {
+      NGINXLOG(2),
+      TOMCATACCESSLOG(3),
+      BIZLOG(4),
+      PERFLOG(5),
+      BODY_NOT_SET(0);
+      private final int value;
+      private BodyCase(int value) {
+        this.value = value;
+      }
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static BodyCase valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static BodyCase forNumber(int value) {
+        switch (value) {
+          case 2: return NGINXLOG;
+          case 3: return TOMCATACCESSLOG;
+          case 4: return BIZLOG;
+          case 5: return PERFLOG;
+          case 0: return BODY_NOT_SET;
+          default: return null;
+        }
+      }
+      public int getNumber() {
+        return this.value;
+      }
+    };
+
+    public BodyCase
+    getBodyCase() {
+      return BodyCase.forNumber(
+          bodyCase_);
+    }
+
+    public static final int CATEGORY_FIELD_NUMBER = 1;
+    private int category_;
+    /**
+     * <code>.Log.Category category = 1;</code>
+     */
+    public int getCategoryValue() {
+      return category_;
+    }
+    /**
+     * <code>.Log.Category category = 1;</code>
+     */
+    public com.cl.log.config.model.LogFactory.Log.Category getCategory() {
+      @SuppressWarnings("deprecation")
+      com.cl.log.config.model.LogFactory.Log.Category result = com.cl.log.config.model.LogFactory.Log.Category.valueOf(category_);
+      return result == null ? com.cl.log.config.model.LogFactory.Log.Category.UNRECOGNIZED : result;
+    }
+
+    public static final int NGINXLOG_FIELD_NUMBER = 2;
+    /**
+     * <code>.NginxLog nginxLog = 2;</code>
+     */
+    public boolean hasNginxLog() {
+      return bodyCase_ == 2;
+    }
+    /**
+     * <code>.NginxLog nginxLog = 2;</code>
+     */
+    public com.cl.log.config.model.LogFactory.NginxLog getNginxLog() {
+      if (bodyCase_ == 2) {
+         return (com.cl.log.config.model.LogFactory.NginxLog) body_;
+      }
+      return com.cl.log.config.model.LogFactory.NginxLog.getDefaultInstance();
+    }
+    /**
+     * <code>.NginxLog nginxLog = 2;</code>
+     */
+    public com.cl.log.config.model.LogFactory.NginxLogOrBuilder getNginxLogOrBuilder() {
+      if (bodyCase_ == 2) {
+         return (com.cl.log.config.model.LogFactory.NginxLog) body_;
+      }
+      return com.cl.log.config.model.LogFactory.NginxLog.getDefaultInstance();
+    }
+
+    public static final int TOMCATACCESSLOG_FIELD_NUMBER = 3;
+    /**
+     * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+     */
+    public boolean hasTomcatAccessLog() {
+      return bodyCase_ == 3;
+    }
+    /**
+     * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+     */
+    public com.cl.log.config.model.LogFactory.TomcatAccessLog getTomcatAccessLog() {
+      if (bodyCase_ == 3) {
+         return (com.cl.log.config.model.LogFactory.TomcatAccessLog) body_;
+      }
+      return com.cl.log.config.model.LogFactory.TomcatAccessLog.getDefaultInstance();
+    }
+    /**
+     * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+     */
+    public com.cl.log.config.model.LogFactory.TomcatAccessLogOrBuilder getTomcatAccessLogOrBuilder() {
+      if (bodyCase_ == 3) {
+         return (com.cl.log.config.model.LogFactory.TomcatAccessLog) body_;
+      }
+      return com.cl.log.config.model.LogFactory.TomcatAccessLog.getDefaultInstance();
+    }
+
+    public static final int BIZLOG_FIELD_NUMBER = 4;
+    /**
+     * <code>.BizLog bizLog = 4;</code>
+     */
+    public boolean hasBizLog() {
+      return bodyCase_ == 4;
+    }
+    /**
+     * <code>.BizLog bizLog = 4;</code>
+     */
+    public com.cl.log.config.model.LogFactory.BizLog getBizLog() {
+      if (bodyCase_ == 4) {
+         return (com.cl.log.config.model.LogFactory.BizLog) body_;
+      }
+      return com.cl.log.config.model.LogFactory.BizLog.getDefaultInstance();
+    }
+    /**
+     * <code>.BizLog bizLog = 4;</code>
+     */
+    public com.cl.log.config.model.LogFactory.BizLogOrBuilder getBizLogOrBuilder() {
+      if (bodyCase_ == 4) {
+         return (com.cl.log.config.model.LogFactory.BizLog) body_;
+      }
+      return com.cl.log.config.model.LogFactory.BizLog.getDefaultInstance();
+    }
+
+    public static final int PERFLOG_FIELD_NUMBER = 5;
+    /**
+     * <code>.PerfLog perfLog = 5;</code>
+     */
+    public boolean hasPerfLog() {
+      return bodyCase_ == 5;
+    }
+    /**
+     * <code>.PerfLog perfLog = 5;</code>
+     */
+    public com.cl.log.config.model.LogFactory.PerfLog getPerfLog() {
+      if (bodyCase_ == 5) {
+         return (com.cl.log.config.model.LogFactory.PerfLog) body_;
+      }
+      return com.cl.log.config.model.LogFactory.PerfLog.getDefaultInstance();
+    }
+    /**
+     * <code>.PerfLog perfLog = 5;</code>
+     */
+    public com.cl.log.config.model.LogFactory.PerfLogOrBuilder getPerfLogOrBuilder() {
+      if (bodyCase_ == 5) {
+         return (com.cl.log.config.model.LogFactory.PerfLog) body_;
+      }
+      return com.cl.log.config.model.LogFactory.PerfLog.getDefaultInstance();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (category_ != com.cl.log.config.model.LogFactory.Log.Category.nginx_log.getNumber()) {
+        output.writeEnum(1, category_);
+      }
+      if (bodyCase_ == 2) {
+        output.writeMessage(2, (com.cl.log.config.model.LogFactory.NginxLog) body_);
+      }
+      if (bodyCase_ == 3) {
+        output.writeMessage(3, (com.cl.log.config.model.LogFactory.TomcatAccessLog) body_);
+      }
+      if (bodyCase_ == 4) {
+        output.writeMessage(4, (com.cl.log.config.model.LogFactory.BizLog) body_);
+      }
+      if (bodyCase_ == 5) {
+        output.writeMessage(5, (com.cl.log.config.model.LogFactory.PerfLog) body_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (category_ != com.cl.log.config.model.LogFactory.Log.Category.nginx_log.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, category_);
+      }
+      if (bodyCase_ == 2) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, (com.cl.log.config.model.LogFactory.NginxLog) body_);
+      }
+      if (bodyCase_ == 3) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, (com.cl.log.config.model.LogFactory.TomcatAccessLog) body_);
+      }
+      if (bodyCase_ == 4) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, (com.cl.log.config.model.LogFactory.BizLog) body_);
+      }
+      if (bodyCase_ == 5) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, (com.cl.log.config.model.LogFactory.PerfLog) body_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cl.log.config.model.LogFactory.Log)) {
+        return super.equals(obj);
+      }
+      com.cl.log.config.model.LogFactory.Log other = (com.cl.log.config.model.LogFactory.Log) obj;
+
+      boolean result = true;
+      result = result && category_ == other.category_;
+      result = result && getBodyCase().equals(
+          other.getBodyCase());
+      if (!result) return false;
+      switch (bodyCase_) {
+        case 2:
+          result = result && getNginxLog()
+              .equals(other.getNginxLog());
+          break;
+        case 3:
+          result = result && getTomcatAccessLog()
+              .equals(other.getTomcatAccessLog());
+          break;
+        case 4:
+          result = result && getBizLog()
+              .equals(other.getBizLog());
+          break;
+        case 5:
+          result = result && getPerfLog()
+              .equals(other.getPerfLog());
+          break;
+        case 0:
+        default:
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CATEGORY_FIELD_NUMBER;
+      hash = (53 * hash) + category_;
+      switch (bodyCase_) {
+        case 2:
+          hash = (37 * hash) + NGINXLOG_FIELD_NUMBER;
+          hash = (53 * hash) + getNginxLog().hashCode();
+          break;
+        case 3:
+          hash = (37 * hash) + TOMCATACCESSLOG_FIELD_NUMBER;
+          hash = (53 * hash) + getTomcatAccessLog().hashCode();
+          break;
+        case 4:
+          hash = (37 * hash) + BIZLOG_FIELD_NUMBER;
+          hash = (53 * hash) + getBizLog().hashCode();
+          break;
+        case 5:
+          hash = (37 * hash) + PERFLOG_FIELD_NUMBER;
+          hash = (53 * hash) + getPerfLog().hashCode();
+          break;
+        case 0:
+        default:
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cl.log.config.model.LogFactory.Log parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.Log parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.Log parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.Log parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.Log parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.Log parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.Log parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.Log parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.Log parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.Log parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.Log parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.Log parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cl.log.config.model.LogFactory.Log prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Log}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Log)
+        com.cl.log.config.model.LogFactory.LogOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cl.log.config.model.LogFactory.internal_static_Log_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cl.log.config.model.LogFactory.internal_static_Log_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cl.log.config.model.LogFactory.Log.class, com.cl.log.config.model.LogFactory.Log.Builder.class);
+      }
+
+      // Construct using com.cl.log.config.model.LogFactory.Log.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        category_ = 0;
+
+        bodyCase_ = 0;
+        body_ = null;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cl.log.config.model.LogFactory.internal_static_Log_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.Log getDefaultInstanceForType() {
+        return com.cl.log.config.model.LogFactory.Log.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.Log build() {
+        com.cl.log.config.model.LogFactory.Log result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.Log buildPartial() {
+        com.cl.log.config.model.LogFactory.Log result = new com.cl.log.config.model.LogFactory.Log(this);
+        result.category_ = category_;
+        if (bodyCase_ == 2) {
+          if (nginxLogBuilder_ == null) {
+            result.body_ = body_;
+          } else {
+            result.body_ = nginxLogBuilder_.build();
+          }
+        }
+        if (bodyCase_ == 3) {
+          if (tomcatAccessLogBuilder_ == null) {
+            result.body_ = body_;
+          } else {
+            result.body_ = tomcatAccessLogBuilder_.build();
+          }
+        }
+        if (bodyCase_ == 4) {
+          if (bizLogBuilder_ == null) {
+            result.body_ = body_;
+          } else {
+            result.body_ = bizLogBuilder_.build();
+          }
+        }
+        if (bodyCase_ == 5) {
+          if (perfLogBuilder_ == null) {
+            result.body_ = body_;
+          } else {
+            result.body_ = perfLogBuilder_.build();
+          }
+        }
+        result.bodyCase_ = bodyCase_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cl.log.config.model.LogFactory.Log) {
+          return mergeFrom((com.cl.log.config.model.LogFactory.Log)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cl.log.config.model.LogFactory.Log other) {
+        if (other == com.cl.log.config.model.LogFactory.Log.getDefaultInstance()) return this;
+        if (other.category_ != 0) {
+          setCategoryValue(other.getCategoryValue());
+        }
+        switch (other.getBodyCase()) {
+          case NGINXLOG: {
+            mergeNginxLog(other.getNginxLog());
+            break;
+          }
+          case TOMCATACCESSLOG: {
+            mergeTomcatAccessLog(other.getTomcatAccessLog());
+            break;
+          }
+          case BIZLOG: {
+            mergeBizLog(other.getBizLog());
+            break;
+          }
+          case PERFLOG: {
+            mergePerfLog(other.getPerfLog());
+            break;
+          }
+          case BODY_NOT_SET: {
+            break;
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cl.log.config.model.LogFactory.Log parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cl.log.config.model.LogFactory.Log) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bodyCase_ = 0;
+      private java.lang.Object body_;
+      public BodyCase
+          getBodyCase() {
+        return BodyCase.forNumber(
+            bodyCase_);
+      }
+
+      public Builder clearBody() {
+        bodyCase_ = 0;
+        body_ = null;
+        onChanged();
+        return this;
+      }
+
+
+      private int category_ = 0;
+      /**
+       * <code>.Log.Category category = 1;</code>
+       */
+      public int getCategoryValue() {
+        return category_;
+      }
+      /**
+       * <code>.Log.Category category = 1;</code>
+       */
+      public Builder setCategoryValue(int value) {
+        category_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.Log.Category category = 1;</code>
+       */
+      public com.cl.log.config.model.LogFactory.Log.Category getCategory() {
+        @SuppressWarnings("deprecation")
+        com.cl.log.config.model.LogFactory.Log.Category result = com.cl.log.config.model.LogFactory.Log.Category.valueOf(category_);
+        return result == null ? com.cl.log.config.model.LogFactory.Log.Category.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.Log.Category category = 1;</code>
+       */
+      public Builder setCategory(com.cl.log.config.model.LogFactory.Log.Category value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        category_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.Log.Category category = 1;</code>
+       */
+      public Builder clearCategory() {
+        
+        category_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.cl.log.config.model.LogFactory.NginxLog, com.cl.log.config.model.LogFactory.NginxLog.Builder, com.cl.log.config.model.LogFactory.NginxLogOrBuilder> nginxLogBuilder_;
+      /**
+       * <code>.NginxLog nginxLog = 2;</code>
+       */
+      public boolean hasNginxLog() {
+        return bodyCase_ == 2;
+      }
+      /**
+       * <code>.NginxLog nginxLog = 2;</code>
+       */
+      public com.cl.log.config.model.LogFactory.NginxLog getNginxLog() {
+        if (nginxLogBuilder_ == null) {
+          if (bodyCase_ == 2) {
+            return (com.cl.log.config.model.LogFactory.NginxLog) body_;
+          }
+          return com.cl.log.config.model.LogFactory.NginxLog.getDefaultInstance();
+        } else {
+          if (bodyCase_ == 2) {
+            return nginxLogBuilder_.getMessage();
+          }
+          return com.cl.log.config.model.LogFactory.NginxLog.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.NginxLog nginxLog = 2;</code>
+       */
+      public Builder setNginxLog(com.cl.log.config.model.LogFactory.NginxLog value) {
+        if (nginxLogBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          body_ = value;
+          onChanged();
+        } else {
+          nginxLogBuilder_.setMessage(value);
+        }
+        bodyCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.NginxLog nginxLog = 2;</code>
+       */
+      public Builder setNginxLog(
+          com.cl.log.config.model.LogFactory.NginxLog.Builder builderForValue) {
+        if (nginxLogBuilder_ == null) {
+          body_ = builderForValue.build();
+          onChanged();
+        } else {
+          nginxLogBuilder_.setMessage(builderForValue.build());
+        }
+        bodyCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.NginxLog nginxLog = 2;</code>
+       */
+      public Builder mergeNginxLog(com.cl.log.config.model.LogFactory.NginxLog value) {
+        if (nginxLogBuilder_ == null) {
+          if (bodyCase_ == 2 &&
+              body_ != com.cl.log.config.model.LogFactory.NginxLog.getDefaultInstance()) {
+            body_ = com.cl.log.config.model.LogFactory.NginxLog.newBuilder((com.cl.log.config.model.LogFactory.NginxLog) body_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            body_ = value;
+          }
+          onChanged();
+        } else {
+          if (bodyCase_ == 2) {
+            nginxLogBuilder_.mergeFrom(value);
+          }
+          nginxLogBuilder_.setMessage(value);
+        }
+        bodyCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.NginxLog nginxLog = 2;</code>
+       */
+      public Builder clearNginxLog() {
+        if (nginxLogBuilder_ == null) {
+          if (bodyCase_ == 2) {
+            bodyCase_ = 0;
+            body_ = null;
+            onChanged();
+          }
+        } else {
+          if (bodyCase_ == 2) {
+            bodyCase_ = 0;
+            body_ = null;
+          }
+          nginxLogBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.NginxLog nginxLog = 2;</code>
+       */
+      public com.cl.log.config.model.LogFactory.NginxLog.Builder getNginxLogBuilder() {
+        return getNginxLogFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.NginxLog nginxLog = 2;</code>
+       */
+      public com.cl.log.config.model.LogFactory.NginxLogOrBuilder getNginxLogOrBuilder() {
+        if ((bodyCase_ == 2) && (nginxLogBuilder_ != null)) {
+          return nginxLogBuilder_.getMessageOrBuilder();
+        } else {
+          if (bodyCase_ == 2) {
+            return (com.cl.log.config.model.LogFactory.NginxLog) body_;
+          }
+          return com.cl.log.config.model.LogFactory.NginxLog.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.NginxLog nginxLog = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.cl.log.config.model.LogFactory.NginxLog, com.cl.log.config.model.LogFactory.NginxLog.Builder, com.cl.log.config.model.LogFactory.NginxLogOrBuilder> 
+          getNginxLogFieldBuilder() {
+        if (nginxLogBuilder_ == null) {
+          if (!(bodyCase_ == 2)) {
+            body_ = com.cl.log.config.model.LogFactory.NginxLog.getDefaultInstance();
+          }
+          nginxLogBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.cl.log.config.model.LogFactory.NginxLog, com.cl.log.config.model.LogFactory.NginxLog.Builder, com.cl.log.config.model.LogFactory.NginxLogOrBuilder>(
+                  (com.cl.log.config.model.LogFactory.NginxLog) body_,
+                  getParentForChildren(),
+                  isClean());
+          body_ = null;
+        }
+        bodyCase_ = 2;
+        onChanged();;
+        return nginxLogBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.cl.log.config.model.LogFactory.TomcatAccessLog, com.cl.log.config.model.LogFactory.TomcatAccessLog.Builder, com.cl.log.config.model.LogFactory.TomcatAccessLogOrBuilder> tomcatAccessLogBuilder_;
+      /**
+       * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+       */
+      public boolean hasTomcatAccessLog() {
+        return bodyCase_ == 3;
+      }
+      /**
+       * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+       */
+      public com.cl.log.config.model.LogFactory.TomcatAccessLog getTomcatAccessLog() {
+        if (tomcatAccessLogBuilder_ == null) {
+          if (bodyCase_ == 3) {
+            return (com.cl.log.config.model.LogFactory.TomcatAccessLog) body_;
+          }
+          return com.cl.log.config.model.LogFactory.TomcatAccessLog.getDefaultInstance();
+        } else {
+          if (bodyCase_ == 3) {
+            return tomcatAccessLogBuilder_.getMessage();
+          }
+          return com.cl.log.config.model.LogFactory.TomcatAccessLog.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+       */
+      public Builder setTomcatAccessLog(com.cl.log.config.model.LogFactory.TomcatAccessLog value) {
+        if (tomcatAccessLogBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          body_ = value;
+          onChanged();
+        } else {
+          tomcatAccessLogBuilder_.setMessage(value);
+        }
+        bodyCase_ = 3;
+        return this;
+      }
+      /**
+       * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+       */
+      public Builder setTomcatAccessLog(
+          com.cl.log.config.model.LogFactory.TomcatAccessLog.Builder builderForValue) {
+        if (tomcatAccessLogBuilder_ == null) {
+          body_ = builderForValue.build();
+          onChanged();
+        } else {
+          tomcatAccessLogBuilder_.setMessage(builderForValue.build());
+        }
+        bodyCase_ = 3;
+        return this;
+      }
+      /**
+       * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+       */
+      public Builder mergeTomcatAccessLog(com.cl.log.config.model.LogFactory.TomcatAccessLog value) {
+        if (tomcatAccessLogBuilder_ == null) {
+          if (bodyCase_ == 3 &&
+              body_ != com.cl.log.config.model.LogFactory.TomcatAccessLog.getDefaultInstance()) {
+            body_ = com.cl.log.config.model.LogFactory.TomcatAccessLog.newBuilder((com.cl.log.config.model.LogFactory.TomcatAccessLog) body_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            body_ = value;
+          }
+          onChanged();
+        } else {
+          if (bodyCase_ == 3) {
+            tomcatAccessLogBuilder_.mergeFrom(value);
+          }
+          tomcatAccessLogBuilder_.setMessage(value);
+        }
+        bodyCase_ = 3;
+        return this;
+      }
+      /**
+       * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+       */
+      public Builder clearTomcatAccessLog() {
+        if (tomcatAccessLogBuilder_ == null) {
+          if (bodyCase_ == 3) {
+            bodyCase_ = 0;
+            body_ = null;
+            onChanged();
+          }
+        } else {
+          if (bodyCase_ == 3) {
+            bodyCase_ = 0;
+            body_ = null;
+          }
+          tomcatAccessLogBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+       */
+      public com.cl.log.config.model.LogFactory.TomcatAccessLog.Builder getTomcatAccessLogBuilder() {
+        return getTomcatAccessLogFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+       */
+      public com.cl.log.config.model.LogFactory.TomcatAccessLogOrBuilder getTomcatAccessLogOrBuilder() {
+        if ((bodyCase_ == 3) && (tomcatAccessLogBuilder_ != null)) {
+          return tomcatAccessLogBuilder_.getMessageOrBuilder();
+        } else {
+          if (bodyCase_ == 3) {
+            return (com.cl.log.config.model.LogFactory.TomcatAccessLog) body_;
+          }
+          return com.cl.log.config.model.LogFactory.TomcatAccessLog.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.TomcatAccessLog tomcatAccessLog = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.cl.log.config.model.LogFactory.TomcatAccessLog, com.cl.log.config.model.LogFactory.TomcatAccessLog.Builder, com.cl.log.config.model.LogFactory.TomcatAccessLogOrBuilder> 
+          getTomcatAccessLogFieldBuilder() {
+        if (tomcatAccessLogBuilder_ == null) {
+          if (!(bodyCase_ == 3)) {
+            body_ = com.cl.log.config.model.LogFactory.TomcatAccessLog.getDefaultInstance();
+          }
+          tomcatAccessLogBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.cl.log.config.model.LogFactory.TomcatAccessLog, com.cl.log.config.model.LogFactory.TomcatAccessLog.Builder, com.cl.log.config.model.LogFactory.TomcatAccessLogOrBuilder>(
+                  (com.cl.log.config.model.LogFactory.TomcatAccessLog) body_,
+                  getParentForChildren(),
+                  isClean());
+          body_ = null;
+        }
+        bodyCase_ = 3;
+        onChanged();;
+        return tomcatAccessLogBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.cl.log.config.model.LogFactory.BizLog, com.cl.log.config.model.LogFactory.BizLog.Builder, com.cl.log.config.model.LogFactory.BizLogOrBuilder> bizLogBuilder_;
+      /**
+       * <code>.BizLog bizLog = 4;</code>
+       */
+      public boolean hasBizLog() {
+        return bodyCase_ == 4;
+      }
+      /**
+       * <code>.BizLog bizLog = 4;</code>
+       */
+      public com.cl.log.config.model.LogFactory.BizLog getBizLog() {
+        if (bizLogBuilder_ == null) {
+          if (bodyCase_ == 4) {
+            return (com.cl.log.config.model.LogFactory.BizLog) body_;
+          }
+          return com.cl.log.config.model.LogFactory.BizLog.getDefaultInstance();
+        } else {
+          if (bodyCase_ == 4) {
+            return bizLogBuilder_.getMessage();
+          }
+          return com.cl.log.config.model.LogFactory.BizLog.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.BizLog bizLog = 4;</code>
+       */
+      public Builder setBizLog(com.cl.log.config.model.LogFactory.BizLog value) {
+        if (bizLogBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          body_ = value;
+          onChanged();
+        } else {
+          bizLogBuilder_.setMessage(value);
+        }
+        bodyCase_ = 4;
+        return this;
+      }
+      /**
+       * <code>.BizLog bizLog = 4;</code>
+       */
+      public Builder setBizLog(
+          com.cl.log.config.model.LogFactory.BizLog.Builder builderForValue) {
+        if (bizLogBuilder_ == null) {
+          body_ = builderForValue.build();
+          onChanged();
+        } else {
+          bizLogBuilder_.setMessage(builderForValue.build());
+        }
+        bodyCase_ = 4;
+        return this;
+      }
+      /**
+       * <code>.BizLog bizLog = 4;</code>
+       */
+      public Builder mergeBizLog(com.cl.log.config.model.LogFactory.BizLog value) {
+        if (bizLogBuilder_ == null) {
+          if (bodyCase_ == 4 &&
+              body_ != com.cl.log.config.model.LogFactory.BizLog.getDefaultInstance()) {
+            body_ = com.cl.log.config.model.LogFactory.BizLog.newBuilder((com.cl.log.config.model.LogFactory.BizLog) body_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            body_ = value;
+          }
+          onChanged();
+        } else {
+          if (bodyCase_ == 4) {
+            bizLogBuilder_.mergeFrom(value);
+          }
+          bizLogBuilder_.setMessage(value);
+        }
+        bodyCase_ = 4;
+        return this;
+      }
+      /**
+       * <code>.BizLog bizLog = 4;</code>
+       */
+      public Builder clearBizLog() {
+        if (bizLogBuilder_ == null) {
+          if (bodyCase_ == 4) {
+            bodyCase_ = 0;
+            body_ = null;
+            onChanged();
+          }
+        } else {
+          if (bodyCase_ == 4) {
+            bodyCase_ = 0;
+            body_ = null;
+          }
+          bizLogBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.BizLog bizLog = 4;</code>
+       */
+      public com.cl.log.config.model.LogFactory.BizLog.Builder getBizLogBuilder() {
+        return getBizLogFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.BizLog bizLog = 4;</code>
+       */
+      public com.cl.log.config.model.LogFactory.BizLogOrBuilder getBizLogOrBuilder() {
+        if ((bodyCase_ == 4) && (bizLogBuilder_ != null)) {
+          return bizLogBuilder_.getMessageOrBuilder();
+        } else {
+          if (bodyCase_ == 4) {
+            return (com.cl.log.config.model.LogFactory.BizLog) body_;
+          }
+          return com.cl.log.config.model.LogFactory.BizLog.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.BizLog bizLog = 4;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.cl.log.config.model.LogFactory.BizLog, com.cl.log.config.model.LogFactory.BizLog.Builder, com.cl.log.config.model.LogFactory.BizLogOrBuilder> 
+          getBizLogFieldBuilder() {
+        if (bizLogBuilder_ == null) {
+          if (!(bodyCase_ == 4)) {
+            body_ = com.cl.log.config.model.LogFactory.BizLog.getDefaultInstance();
+          }
+          bizLogBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.cl.log.config.model.LogFactory.BizLog, com.cl.log.config.model.LogFactory.BizLog.Builder, com.cl.log.config.model.LogFactory.BizLogOrBuilder>(
+                  (com.cl.log.config.model.LogFactory.BizLog) body_,
+                  getParentForChildren(),
+                  isClean());
+          body_ = null;
+        }
+        bodyCase_ = 4;
+        onChanged();;
+        return bizLogBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.cl.log.config.model.LogFactory.PerfLog, com.cl.log.config.model.LogFactory.PerfLog.Builder, com.cl.log.config.model.LogFactory.PerfLogOrBuilder> perfLogBuilder_;
+      /**
+       * <code>.PerfLog perfLog = 5;</code>
+       */
+      public boolean hasPerfLog() {
+        return bodyCase_ == 5;
+      }
+      /**
+       * <code>.PerfLog perfLog = 5;</code>
+       */
+      public com.cl.log.config.model.LogFactory.PerfLog getPerfLog() {
+        if (perfLogBuilder_ == null) {
+          if (bodyCase_ == 5) {
+            return (com.cl.log.config.model.LogFactory.PerfLog) body_;
+          }
+          return com.cl.log.config.model.LogFactory.PerfLog.getDefaultInstance();
+        } else {
+          if (bodyCase_ == 5) {
+            return perfLogBuilder_.getMessage();
+          }
+          return com.cl.log.config.model.LogFactory.PerfLog.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.PerfLog perfLog = 5;</code>
+       */
+      public Builder setPerfLog(com.cl.log.config.model.LogFactory.PerfLog value) {
+        if (perfLogBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          body_ = value;
+          onChanged();
+        } else {
+          perfLogBuilder_.setMessage(value);
+        }
+        bodyCase_ = 5;
+        return this;
+      }
+      /**
+       * <code>.PerfLog perfLog = 5;</code>
+       */
+      public Builder setPerfLog(
+          com.cl.log.config.model.LogFactory.PerfLog.Builder builderForValue) {
+        if (perfLogBuilder_ == null) {
+          body_ = builderForValue.build();
+          onChanged();
+        } else {
+          perfLogBuilder_.setMessage(builderForValue.build());
+        }
+        bodyCase_ = 5;
+        return this;
+      }
+      /**
+       * <code>.PerfLog perfLog = 5;</code>
+       */
+      public Builder mergePerfLog(com.cl.log.config.model.LogFactory.PerfLog value) {
+        if (perfLogBuilder_ == null) {
+          if (bodyCase_ == 5 &&
+              body_ != com.cl.log.config.model.LogFactory.PerfLog.getDefaultInstance()) {
+            body_ = com.cl.log.config.model.LogFactory.PerfLog.newBuilder((com.cl.log.config.model.LogFactory.PerfLog) body_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            body_ = value;
+          }
+          onChanged();
+        } else {
+          if (bodyCase_ == 5) {
+            perfLogBuilder_.mergeFrom(value);
+          }
+          perfLogBuilder_.setMessage(value);
+        }
+        bodyCase_ = 5;
+        return this;
+      }
+      /**
+       * <code>.PerfLog perfLog = 5;</code>
+       */
+      public Builder clearPerfLog() {
+        if (perfLogBuilder_ == null) {
+          if (bodyCase_ == 5) {
+            bodyCase_ = 0;
+            body_ = null;
+            onChanged();
+          }
+        } else {
+          if (bodyCase_ == 5) {
+            bodyCase_ = 0;
+            body_ = null;
+          }
+          perfLogBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.PerfLog perfLog = 5;</code>
+       */
+      public com.cl.log.config.model.LogFactory.PerfLog.Builder getPerfLogBuilder() {
+        return getPerfLogFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.PerfLog perfLog = 5;</code>
+       */
+      public com.cl.log.config.model.LogFactory.PerfLogOrBuilder getPerfLogOrBuilder() {
+        if ((bodyCase_ == 5) && (perfLogBuilder_ != null)) {
+          return perfLogBuilder_.getMessageOrBuilder();
+        } else {
+          if (bodyCase_ == 5) {
+            return (com.cl.log.config.model.LogFactory.PerfLog) body_;
+          }
+          return com.cl.log.config.model.LogFactory.PerfLog.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.PerfLog perfLog = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.cl.log.config.model.LogFactory.PerfLog, com.cl.log.config.model.LogFactory.PerfLog.Builder, com.cl.log.config.model.LogFactory.PerfLogOrBuilder> 
+          getPerfLogFieldBuilder() {
+        if (perfLogBuilder_ == null) {
+          if (!(bodyCase_ == 5)) {
+            body_ = com.cl.log.config.model.LogFactory.PerfLog.getDefaultInstance();
+          }
+          perfLogBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.cl.log.config.model.LogFactory.PerfLog, com.cl.log.config.model.LogFactory.PerfLog.Builder, com.cl.log.config.model.LogFactory.PerfLogOrBuilder>(
+                  (com.cl.log.config.model.LogFactory.PerfLog) body_,
+                  getParentForChildren(),
+                  isClean());
+          body_ = null;
+        }
+        bodyCase_ = 5;
+        onChanged();;
+        return perfLogBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Log)
+    }
+
+    // @@protoc_insertion_point(class_scope:Log)
+    private static final com.cl.log.config.model.LogFactory.Log DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cl.log.config.model.LogFactory.Log();
+    }
+
+    public static com.cl.log.config.model.LogFactory.Log getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Log>
+        PARSER = new com.google.protobuf.AbstractParser<Log>() {
+      @java.lang.Override
+      public Log parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Log(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Log> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Log> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cl.log.config.model.LogFactory.Log getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface NginxLogOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:NginxLog)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    java.lang.String getHost();
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getHostBytes();
+
+    /**
+     * <pre>
+     * 时间
+     * </pre>
+     *
+     * <code>string dateTime = 2;</code>
+     */
+    java.lang.String getDateTime();
+    /**
+     * <pre>
+     * 时间
+     * </pre>
+     *
+     * <code>string dateTime = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getDateTimeBytes();
+
+    /**
+     * <code>string requestMethod = 3;</code>
+     */
+    java.lang.String getRequestMethod();
+    /**
+     * <code>string requestMethod = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getRequestMethodBytes();
+
+    /**
+     * <code>string requestURL = 4;</code>
+     */
+    java.lang.String getRequestURL();
+    /**
+     * <code>string requestURL = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getRequestURLBytes();
+
+    /**
+     * <code>string params = 5;</code>
+     */
+    java.lang.String getParams();
+    /**
+     * <code>string params = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getParamsBytes();
+
+    /**
+     * <pre>
+     * 状态码
+     * </pre>
+     *
+     * <code>string statesCode = 6;</code>
+     */
+    java.lang.String getStatesCode();
+    /**
+     * <pre>
+     * 状态码
+     * </pre>
+     *
+     * <code>string statesCode = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getStatesCodeBytes();
+
+    /**
+     * <pre>
+     * 耗时
+     * </pre>
+     *
+     * <code>int32 consume = 7;</code>
+     */
+    int getConsume();
+
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>string userAgent = 8;</code>
+     */
+    java.lang.String getUserAgent();
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>string userAgent = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getUserAgentBytes();
+
+    /**
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string ip = 9;</code>
+     */
+    java.lang.String getIp();
+    /**
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string ip = 9;</code>
+     */
+    com.google.protobuf.ByteString
+        getIpBytes();
+
+    /**
+     * <code>string upstream = 10;</code>
+     */
+    java.lang.String getUpstream();
+    /**
+     * <code>string upstream = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getUpstreamBytes();
+  }
+  /**
+   * Protobuf type {@code NginxLog}
+   */
+  public  static final class NginxLog extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:NginxLog)
+      NginxLogOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use NginxLog.newBuilder() to construct.
+    private NginxLog(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private NginxLog() {
+      host_ = "";
+      dateTime_ = "";
+      requestMethod_ = "";
+      requestURL_ = "";
+      params_ = "";
+      statesCode_ = "";
+      consume_ = 0;
+      userAgent_ = "";
+      ip_ = "";
+      upstream_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private NginxLog(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              host_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              dateTime_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              requestMethod_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              requestURL_ = s;
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              params_ = s;
+              break;
+            }
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              statesCode_ = s;
+              break;
+            }
+            case 56: {
+
+              consume_ = input.readInt32();
+              break;
+            }
+            case 66: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              userAgent_ = s;
+              break;
+            }
+            case 74: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              ip_ = s;
+              break;
+            }
+            case 82: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              upstream_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cl.log.config.model.LogFactory.internal_static_NginxLog_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cl.log.config.model.LogFactory.internal_static_NginxLog_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cl.log.config.model.LogFactory.NginxLog.class, com.cl.log.config.model.LogFactory.NginxLog.Builder.class);
+    }
+
+    public static final int HOST_FIELD_NUMBER = 1;
+    private volatile java.lang.Object host_;
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    public java.lang.String getHost() {
+      java.lang.Object ref = host_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        host_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getHostBytes() {
+      java.lang.Object ref = host_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        host_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DATETIME_FIELD_NUMBER = 2;
+    private volatile java.lang.Object dateTime_;
+    /**
+     * <pre>
+     * 时间
+     * </pre>
+     *
+     * <code>string dateTime = 2;</code>
+     */
+    public java.lang.String getDateTime() {
+      java.lang.Object ref = dateTime_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        dateTime_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 时间
+     * </pre>
+     *
+     * <code>string dateTime = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDateTimeBytes() {
+      java.lang.Object ref = dateTime_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        dateTime_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int REQUESTMETHOD_FIELD_NUMBER = 3;
+    private volatile java.lang.Object requestMethod_;
+    /**
+     * <code>string requestMethod = 3;</code>
+     */
+    public java.lang.String getRequestMethod() {
+      java.lang.Object ref = requestMethod_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        requestMethod_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string requestMethod = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRequestMethodBytes() {
+      java.lang.Object ref = requestMethod_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        requestMethod_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int REQUESTURL_FIELD_NUMBER = 4;
+    private volatile java.lang.Object requestURL_;
+    /**
+     * <code>string requestURL = 4;</code>
+     */
+    public java.lang.String getRequestURL() {
+      java.lang.Object ref = requestURL_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        requestURL_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string requestURL = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRequestURLBytes() {
+      java.lang.Object ref = requestURL_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        requestURL_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PARAMS_FIELD_NUMBER = 5;
+    private volatile java.lang.Object params_;
+    /**
+     * <code>string params = 5;</code>
+     */
+    public java.lang.String getParams() {
+      java.lang.Object ref = params_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        params_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string params = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getParamsBytes() {
+      java.lang.Object ref = params_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        params_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int STATESCODE_FIELD_NUMBER = 6;
+    private volatile java.lang.Object statesCode_;
+    /**
+     * <pre>
+     * 状态码
+     * </pre>
+     *
+     * <code>string statesCode = 6;</code>
+     */
+    public java.lang.String getStatesCode() {
+      java.lang.Object ref = statesCode_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        statesCode_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 状态码
+     * </pre>
+     *
+     * <code>string statesCode = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getStatesCodeBytes() {
+      java.lang.Object ref = statesCode_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        statesCode_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CONSUME_FIELD_NUMBER = 7;
+    private int consume_;
+    /**
+     * <pre>
+     * 耗时
+     * </pre>
+     *
+     * <code>int32 consume = 7;</code>
+     */
+    public int getConsume() {
+      return consume_;
+    }
+
+    public static final int USERAGENT_FIELD_NUMBER = 8;
+    private volatile java.lang.Object userAgent_;
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>string userAgent = 8;</code>
+     */
+    public java.lang.String getUserAgent() {
+      java.lang.Object ref = userAgent_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        userAgent_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>string userAgent = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUserAgentBytes() {
+      java.lang.Object ref = userAgent_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        userAgent_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int IP_FIELD_NUMBER = 9;
+    private volatile java.lang.Object ip_;
+    /**
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string ip = 9;</code>
+     */
+    public java.lang.String getIp() {
+      java.lang.Object ref = ip_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        ip_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string ip = 9;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIpBytes() {
+      java.lang.Object ref = ip_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        ip_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int UPSTREAM_FIELD_NUMBER = 10;
+    private volatile java.lang.Object upstream_;
+    /**
+     * <code>string upstream = 10;</code>
+     */
+    public java.lang.String getUpstream() {
+      java.lang.Object ref = upstream_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        upstream_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string upstream = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUpstreamBytes() {
+      java.lang.Object ref = upstream_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        upstream_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getHostBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, host_);
+      }
+      if (!getDateTimeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, dateTime_);
+      }
+      if (!getRequestMethodBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, requestMethod_);
+      }
+      if (!getRequestURLBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, requestURL_);
+      }
+      if (!getParamsBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, params_);
+      }
+      if (!getStatesCodeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, statesCode_);
+      }
+      if (consume_ != 0) {
+        output.writeInt32(7, consume_);
+      }
+      if (!getUserAgentBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, userAgent_);
+      }
+      if (!getIpBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, ip_);
+      }
+      if (!getUpstreamBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, upstream_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getHostBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, host_);
+      }
+      if (!getDateTimeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, dateTime_);
+      }
+      if (!getRequestMethodBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, requestMethod_);
+      }
+      if (!getRequestURLBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, requestURL_);
+      }
+      if (!getParamsBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, params_);
+      }
+      if (!getStatesCodeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, statesCode_);
+      }
+      if (consume_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, consume_);
+      }
+      if (!getUserAgentBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, userAgent_);
+      }
+      if (!getIpBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, ip_);
+      }
+      if (!getUpstreamBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, upstream_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cl.log.config.model.LogFactory.NginxLog)) {
+        return super.equals(obj);
+      }
+      com.cl.log.config.model.LogFactory.NginxLog other = (com.cl.log.config.model.LogFactory.NginxLog) obj;
+
+      boolean result = true;
+      result = result && getHost()
+          .equals(other.getHost());
+      result = result && getDateTime()
+          .equals(other.getDateTime());
+      result = result && getRequestMethod()
+          .equals(other.getRequestMethod());
+      result = result && getRequestURL()
+          .equals(other.getRequestURL());
+      result = result && getParams()
+          .equals(other.getParams());
+      result = result && getStatesCode()
+          .equals(other.getStatesCode());
+      result = result && (getConsume()
+          == other.getConsume());
+      result = result && getUserAgent()
+          .equals(other.getUserAgent());
+      result = result && getIp()
+          .equals(other.getIp());
+      result = result && getUpstream()
+          .equals(other.getUpstream());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + HOST_FIELD_NUMBER;
+      hash = (53 * hash) + getHost().hashCode();
+      hash = (37 * hash) + DATETIME_FIELD_NUMBER;
+      hash = (53 * hash) + getDateTime().hashCode();
+      hash = (37 * hash) + REQUESTMETHOD_FIELD_NUMBER;
+      hash = (53 * hash) + getRequestMethod().hashCode();
+      hash = (37 * hash) + REQUESTURL_FIELD_NUMBER;
+      hash = (53 * hash) + getRequestURL().hashCode();
+      hash = (37 * hash) + PARAMS_FIELD_NUMBER;
+      hash = (53 * hash) + getParams().hashCode();
+      hash = (37 * hash) + STATESCODE_FIELD_NUMBER;
+      hash = (53 * hash) + getStatesCode().hashCode();
+      hash = (37 * hash) + CONSUME_FIELD_NUMBER;
+      hash = (53 * hash) + getConsume();
+      hash = (37 * hash) + USERAGENT_FIELD_NUMBER;
+      hash = (53 * hash) + getUserAgent().hashCode();
+      hash = (37 * hash) + IP_FIELD_NUMBER;
+      hash = (53 * hash) + getIp().hashCode();
+      hash = (37 * hash) + UPSTREAM_FIELD_NUMBER;
+      hash = (53 * hash) + getUpstream().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cl.log.config.model.LogFactory.NginxLog parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.NginxLog parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.NginxLog parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.NginxLog parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.NginxLog parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.NginxLog parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.NginxLog parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.NginxLog parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.NginxLog parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.NginxLog parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.NginxLog parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.NginxLog parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cl.log.config.model.LogFactory.NginxLog prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code NginxLog}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:NginxLog)
+        com.cl.log.config.model.LogFactory.NginxLogOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cl.log.config.model.LogFactory.internal_static_NginxLog_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cl.log.config.model.LogFactory.internal_static_NginxLog_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cl.log.config.model.LogFactory.NginxLog.class, com.cl.log.config.model.LogFactory.NginxLog.Builder.class);
+      }
+
+      // Construct using com.cl.log.config.model.LogFactory.NginxLog.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        host_ = "";
+
+        dateTime_ = "";
+
+        requestMethod_ = "";
+
+        requestURL_ = "";
+
+        params_ = "";
+
+        statesCode_ = "";
+
+        consume_ = 0;
+
+        userAgent_ = "";
+
+        ip_ = "";
+
+        upstream_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cl.log.config.model.LogFactory.internal_static_NginxLog_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.NginxLog getDefaultInstanceForType() {
+        return com.cl.log.config.model.LogFactory.NginxLog.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.NginxLog build() {
+        com.cl.log.config.model.LogFactory.NginxLog result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.NginxLog buildPartial() {
+        com.cl.log.config.model.LogFactory.NginxLog result = new com.cl.log.config.model.LogFactory.NginxLog(this);
+        result.host_ = host_;
+        result.dateTime_ = dateTime_;
+        result.requestMethod_ = requestMethod_;
+        result.requestURL_ = requestURL_;
+        result.params_ = params_;
+        result.statesCode_ = statesCode_;
+        result.consume_ = consume_;
+        result.userAgent_ = userAgent_;
+        result.ip_ = ip_;
+        result.upstream_ = upstream_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cl.log.config.model.LogFactory.NginxLog) {
+          return mergeFrom((com.cl.log.config.model.LogFactory.NginxLog)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cl.log.config.model.LogFactory.NginxLog other) {
+        if (other == com.cl.log.config.model.LogFactory.NginxLog.getDefaultInstance()) return this;
+        if (!other.getHost().isEmpty()) {
+          host_ = other.host_;
+          onChanged();
+        }
+        if (!other.getDateTime().isEmpty()) {
+          dateTime_ = other.dateTime_;
+          onChanged();
+        }
+        if (!other.getRequestMethod().isEmpty()) {
+          requestMethod_ = other.requestMethod_;
+          onChanged();
+        }
+        if (!other.getRequestURL().isEmpty()) {
+          requestURL_ = other.requestURL_;
+          onChanged();
+        }
+        if (!other.getParams().isEmpty()) {
+          params_ = other.params_;
+          onChanged();
+        }
+        if (!other.getStatesCode().isEmpty()) {
+          statesCode_ = other.statesCode_;
+          onChanged();
+        }
+        if (other.getConsume() != 0) {
+          setConsume(other.getConsume());
+        }
+        if (!other.getUserAgent().isEmpty()) {
+          userAgent_ = other.userAgent_;
+          onChanged();
+        }
+        if (!other.getIp().isEmpty()) {
+          ip_ = other.ip_;
+          onChanged();
+        }
+        if (!other.getUpstream().isEmpty()) {
+          upstream_ = other.upstream_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cl.log.config.model.LogFactory.NginxLog parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cl.log.config.model.LogFactory.NginxLog) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object host_ = "";
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public java.lang.String getHost() {
+        java.lang.Object ref = host_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          host_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getHostBytes() {
+        java.lang.Object ref = host_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          host_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public Builder setHost(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        host_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public Builder clearHost() {
+        
+        host_ = getDefaultInstance().getHost();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public Builder setHostBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        host_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object dateTime_ = "";
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string dateTime = 2;</code>
+       */
+      public java.lang.String getDateTime() {
+        java.lang.Object ref = dateTime_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          dateTime_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string dateTime = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDateTimeBytes() {
+        java.lang.Object ref = dateTime_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          dateTime_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string dateTime = 2;</code>
+       */
+      public Builder setDateTime(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        dateTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string dateTime = 2;</code>
+       */
+      public Builder clearDateTime() {
+        
+        dateTime_ = getDefaultInstance().getDateTime();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string dateTime = 2;</code>
+       */
+      public Builder setDateTimeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        dateTime_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object requestMethod_ = "";
+      /**
+       * <code>string requestMethod = 3;</code>
+       */
+      public java.lang.String getRequestMethod() {
+        java.lang.Object ref = requestMethod_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          requestMethod_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string requestMethod = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRequestMethodBytes() {
+        java.lang.Object ref = requestMethod_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          requestMethod_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string requestMethod = 3;</code>
+       */
+      public Builder setRequestMethod(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        requestMethod_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string requestMethod = 3;</code>
+       */
+      public Builder clearRequestMethod() {
+        
+        requestMethod_ = getDefaultInstance().getRequestMethod();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string requestMethod = 3;</code>
+       */
+      public Builder setRequestMethodBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        requestMethod_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object requestURL_ = "";
+      /**
+       * <code>string requestURL = 4;</code>
+       */
+      public java.lang.String getRequestURL() {
+        java.lang.Object ref = requestURL_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          requestURL_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string requestURL = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRequestURLBytes() {
+        java.lang.Object ref = requestURL_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          requestURL_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string requestURL = 4;</code>
+       */
+      public Builder setRequestURL(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        requestURL_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string requestURL = 4;</code>
+       */
+      public Builder clearRequestURL() {
+        
+        requestURL_ = getDefaultInstance().getRequestURL();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string requestURL = 4;</code>
+       */
+      public Builder setRequestURLBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        requestURL_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object params_ = "";
+      /**
+       * <code>string params = 5;</code>
+       */
+      public java.lang.String getParams() {
+        java.lang.Object ref = params_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          params_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string params = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getParamsBytes() {
+        java.lang.Object ref = params_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          params_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string params = 5;</code>
+       */
+      public Builder setParams(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        params_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string params = 5;</code>
+       */
+      public Builder clearParams() {
+        
+        params_ = getDefaultInstance().getParams();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string params = 5;</code>
+       */
+      public Builder setParamsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        params_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object statesCode_ = "";
+      /**
+       * <pre>
+       * 状态码
+       * </pre>
+       *
+       * <code>string statesCode = 6;</code>
+       */
+      public java.lang.String getStatesCode() {
+        java.lang.Object ref = statesCode_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          statesCode_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 状态码
+       * </pre>
+       *
+       * <code>string statesCode = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getStatesCodeBytes() {
+        java.lang.Object ref = statesCode_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          statesCode_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 状态码
+       * </pre>
+       *
+       * <code>string statesCode = 6;</code>
+       */
+      public Builder setStatesCode(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        statesCode_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 状态码
+       * </pre>
+       *
+       * <code>string statesCode = 6;</code>
+       */
+      public Builder clearStatesCode() {
+        
+        statesCode_ = getDefaultInstance().getStatesCode();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 状态码
+       * </pre>
+       *
+       * <code>string statesCode = 6;</code>
+       */
+      public Builder setStatesCodeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        statesCode_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int consume_ ;
+      /**
+       * <pre>
+       * 耗时
+       * </pre>
+       *
+       * <code>int32 consume = 7;</code>
+       */
+      public int getConsume() {
+        return consume_;
+      }
+      /**
+       * <pre>
+       * 耗时
+       * </pre>
+       *
+       * <code>int32 consume = 7;</code>
+       */
+      public Builder setConsume(int value) {
+        
+        consume_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 耗时
+       * </pre>
+       *
+       * <code>int32 consume = 7;</code>
+       */
+      public Builder clearConsume() {
+        
+        consume_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object userAgent_ = "";
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>string userAgent = 8;</code>
+       */
+      public java.lang.String getUserAgent() {
+        java.lang.Object ref = userAgent_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          userAgent_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>string userAgent = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUserAgentBytes() {
+        java.lang.Object ref = userAgent_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          userAgent_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>string userAgent = 8;</code>
+       */
+      public Builder setUserAgent(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        userAgent_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>string userAgent = 8;</code>
+       */
+      public Builder clearUserAgent() {
+        
+        userAgent_ = getDefaultInstance().getUserAgent();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>string userAgent = 8;</code>
+       */
+      public Builder setUserAgentBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        userAgent_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object ip_ = "";
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 9;</code>
+       */
+      public java.lang.String getIp() {
+        java.lang.Object ref = ip_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          ip_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 9;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIpBytes() {
+        java.lang.Object ref = ip_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          ip_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 9;</code>
+       */
+      public Builder setIp(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        ip_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 9;</code>
+       */
+      public Builder clearIp() {
+        
+        ip_ = getDefaultInstance().getIp();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 9;</code>
+       */
+      public Builder setIpBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        ip_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object upstream_ = "";
+      /**
+       * <code>string upstream = 10;</code>
+       */
+      public java.lang.String getUpstream() {
+        java.lang.Object ref = upstream_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          upstream_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string upstream = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUpstreamBytes() {
+        java.lang.Object ref = upstream_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          upstream_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string upstream = 10;</code>
+       */
+      public Builder setUpstream(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        upstream_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string upstream = 10;</code>
+       */
+      public Builder clearUpstream() {
+        
+        upstream_ = getDefaultInstance().getUpstream();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string upstream = 10;</code>
+       */
+      public Builder setUpstreamBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        upstream_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:NginxLog)
+    }
+
+    // @@protoc_insertion_point(class_scope:NginxLog)
+    private static final com.cl.log.config.model.LogFactory.NginxLog DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cl.log.config.model.LogFactory.NginxLog();
+    }
+
+    public static com.cl.log.config.model.LogFactory.NginxLog getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<NginxLog>
+        PARSER = new com.google.protobuf.AbstractParser<NginxLog>() {
+      @java.lang.Override
+      public NginxLog parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new NginxLog(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<NginxLog> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<NginxLog> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cl.log.config.model.LogFactory.NginxLog getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TomcatAccessLogOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:TomcatAccessLog)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    java.lang.String getHost();
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getHostBytes();
+
+    /**
+     * <pre>
+     * 调用链id
+     * </pre>
+     *
+     * <code>string traceId = 2;</code>
+     */
+    java.lang.String getTraceId();
+    /**
+     * <pre>
+     * 调用链id
+     * </pre>
+     *
+     * <code>string traceId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getTraceIdBytes();
+
+    /**
+     * <pre>
+     * 业务组件
+     * </pre>
+     *
+     * <code>string biz = 3;</code>
+     */
+    java.lang.String getBiz();
+    /**
+     * <pre>
+     * 业务组件
+     * </pre>
+     *
+     * <code>string biz = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getBizBytes();
+
+    /**
+     * <pre>
+     * 端口
+     * </pre>
+     *
+     * <code>int32 port = 4;</code>
+     */
+    int getPort();
+
+    /**
+     * <pre>
+     * 用户ID
+     * </pre>
+     *
+     * <code>string userId = 5;</code>
+     */
+    java.lang.String getUserId();
+    /**
+     * <pre>
+     * 用户ID
+     * </pre>
+     *
+     * <code>string userId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getUserIdBytes();
+
+    /**
+     * <pre>
+     * 时间
+     * </pre>
+     *
+     * <code>string dateTime = 6;</code>
+     */
+    java.lang.String getDateTime();
+    /**
+     * <pre>
+     * 时间
+     * </pre>
+     *
+     * <code>string dateTime = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getDateTimeBytes();
+
+    /**
+     * <pre>
+     * 状态码
+     * </pre>
+     *
+     * <code>string statesCode = 7;</code>
+     */
+    java.lang.String getStatesCode();
+    /**
+     * <pre>
+     * 状态码
+     * </pre>
+     *
+     * <code>string statesCode = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getStatesCodeBytes();
+
+    /**
+     * <pre>
+     * 耗时
+     * </pre>
+     *
+     * <code>int32 consume = 8;</code>
+     */
+    int getConsume();
+
+    /**
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string ip = 9;</code>
+     */
+    java.lang.String getIp();
+    /**
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string ip = 9;</code>
+     */
+    com.google.protobuf.ByteString
+        getIpBytes();
+
+    /**
+     * <code>string requestMethod = 10;</code>
+     */
+    java.lang.String getRequestMethod();
+    /**
+     * <code>string requestMethod = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getRequestMethodBytes();
+
+    /**
+     * <code>string requestURL = 11;</code>
+     */
+    java.lang.String getRequestURL();
+    /**
+     * <code>string requestURL = 11;</code>
+     */
+    com.google.protobuf.ByteString
+        getRequestURLBytes();
+
+    /**
+     * <code>string params = 12;</code>
+     */
+    java.lang.String getParams();
+    /**
+     * <code>string params = 12;</code>
+     */
+    com.google.protobuf.ByteString
+        getParamsBytes();
+  }
+  /**
+   * Protobuf type {@code TomcatAccessLog}
+   */
+  public  static final class TomcatAccessLog extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:TomcatAccessLog)
+      TomcatAccessLogOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TomcatAccessLog.newBuilder() to construct.
+    private TomcatAccessLog(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TomcatAccessLog() {
+      host_ = "";
+      traceId_ = "";
+      biz_ = "";
+      port_ = 0;
+      userId_ = "";
+      dateTime_ = "";
+      statesCode_ = "";
+      consume_ = 0;
+      ip_ = "";
+      requestMethod_ = "";
+      requestURL_ = "";
+      params_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TomcatAccessLog(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              host_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              traceId_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              biz_ = s;
+              break;
+            }
+            case 32: {
+
+              port_ = input.readInt32();
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              userId_ = s;
+              break;
+            }
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              dateTime_ = s;
+              break;
+            }
+            case 58: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              statesCode_ = s;
+              break;
+            }
+            case 64: {
+
+              consume_ = input.readInt32();
+              break;
+            }
+            case 74: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              ip_ = s;
+              break;
+            }
+            case 82: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              requestMethod_ = s;
+              break;
+            }
+            case 90: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              requestURL_ = s;
+              break;
+            }
+            case 98: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              params_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cl.log.config.model.LogFactory.internal_static_TomcatAccessLog_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cl.log.config.model.LogFactory.internal_static_TomcatAccessLog_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cl.log.config.model.LogFactory.TomcatAccessLog.class, com.cl.log.config.model.LogFactory.TomcatAccessLog.Builder.class);
+    }
+
+    public static final int HOST_FIELD_NUMBER = 1;
+    private volatile java.lang.Object host_;
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    public java.lang.String getHost() {
+      java.lang.Object ref = host_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        host_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getHostBytes() {
+      java.lang.Object ref = host_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        host_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TRACEID_FIELD_NUMBER = 2;
+    private volatile java.lang.Object traceId_;
+    /**
+     * <pre>
+     * 调用链id
+     * </pre>
+     *
+     * <code>string traceId = 2;</code>
+     */
+    public java.lang.String getTraceId() {
+      java.lang.Object ref = traceId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        traceId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 调用链id
+     * </pre>
+     *
+     * <code>string traceId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTraceIdBytes() {
+      java.lang.Object ref = traceId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        traceId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int BIZ_FIELD_NUMBER = 3;
+    private volatile java.lang.Object biz_;
+    /**
+     * <pre>
+     * 业务组件
+     * </pre>
+     *
+     * <code>string biz = 3;</code>
+     */
+    public java.lang.String getBiz() {
+      java.lang.Object ref = biz_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        biz_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 业务组件
+     * </pre>
+     *
+     * <code>string biz = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBizBytes() {
+      java.lang.Object ref = biz_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        biz_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PORT_FIELD_NUMBER = 4;
+    private int port_;
+    /**
+     * <pre>
+     * 端口
+     * </pre>
+     *
+     * <code>int32 port = 4;</code>
+     */
+    public int getPort() {
+      return port_;
+    }
+
+    public static final int USERID_FIELD_NUMBER = 5;
+    private volatile java.lang.Object userId_;
+    /**
+     * <pre>
+     * 用户ID
+     * </pre>
+     *
+     * <code>string userId = 5;</code>
+     */
+    public java.lang.String getUserId() {
+      java.lang.Object ref = userId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        userId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 用户ID
+     * </pre>
+     *
+     * <code>string userId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUserIdBytes() {
+      java.lang.Object ref = userId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        userId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DATETIME_FIELD_NUMBER = 6;
+    private volatile java.lang.Object dateTime_;
+    /**
+     * <pre>
+     * 时间
+     * </pre>
+     *
+     * <code>string dateTime = 6;</code>
+     */
+    public java.lang.String getDateTime() {
+      java.lang.Object ref = dateTime_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        dateTime_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 时间
+     * </pre>
+     *
+     * <code>string dateTime = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDateTimeBytes() {
+      java.lang.Object ref = dateTime_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        dateTime_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int STATESCODE_FIELD_NUMBER = 7;
+    private volatile java.lang.Object statesCode_;
+    /**
+     * <pre>
+     * 状态码
+     * </pre>
+     *
+     * <code>string statesCode = 7;</code>
+     */
+    public java.lang.String getStatesCode() {
+      java.lang.Object ref = statesCode_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        statesCode_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 状态码
+     * </pre>
+     *
+     * <code>string statesCode = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getStatesCodeBytes() {
+      java.lang.Object ref = statesCode_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        statesCode_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CONSUME_FIELD_NUMBER = 8;
+    private int consume_;
+    /**
+     * <pre>
+     * 耗时
+     * </pre>
+     *
+     * <code>int32 consume = 8;</code>
+     */
+    public int getConsume() {
+      return consume_;
+    }
+
+    public static final int IP_FIELD_NUMBER = 9;
+    private volatile java.lang.Object ip_;
+    /**
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string ip = 9;</code>
+     */
+    public java.lang.String getIp() {
+      java.lang.Object ref = ip_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        ip_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string ip = 9;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIpBytes() {
+      java.lang.Object ref = ip_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        ip_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int REQUESTMETHOD_FIELD_NUMBER = 10;
+    private volatile java.lang.Object requestMethod_;
+    /**
+     * <code>string requestMethod = 10;</code>
+     */
+    public java.lang.String getRequestMethod() {
+      java.lang.Object ref = requestMethod_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        requestMethod_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string requestMethod = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRequestMethodBytes() {
+      java.lang.Object ref = requestMethod_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        requestMethod_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int REQUESTURL_FIELD_NUMBER = 11;
+    private volatile java.lang.Object requestURL_;
+    /**
+     * <code>string requestURL = 11;</code>
+     */
+    public java.lang.String getRequestURL() {
+      java.lang.Object ref = requestURL_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        requestURL_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string requestURL = 11;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRequestURLBytes() {
+      java.lang.Object ref = requestURL_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        requestURL_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PARAMS_FIELD_NUMBER = 12;
+    private volatile java.lang.Object params_;
+    /**
+     * <code>string params = 12;</code>
+     */
+    public java.lang.String getParams() {
+      java.lang.Object ref = params_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        params_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string params = 12;</code>
+     */
+    public com.google.protobuf.ByteString
+        getParamsBytes() {
+      java.lang.Object ref = params_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        params_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getHostBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, host_);
+      }
+      if (!getTraceIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, traceId_);
+      }
+      if (!getBizBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, biz_);
+      }
+      if (port_ != 0) {
+        output.writeInt32(4, port_);
+      }
+      if (!getUserIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, userId_);
+      }
+      if (!getDateTimeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, dateTime_);
+      }
+      if (!getStatesCodeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, statesCode_);
+      }
+      if (consume_ != 0) {
+        output.writeInt32(8, consume_);
+      }
+      if (!getIpBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, ip_);
+      }
+      if (!getRequestMethodBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, requestMethod_);
+      }
+      if (!getRequestURLBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 11, requestURL_);
+      }
+      if (!getParamsBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 12, params_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getHostBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, host_);
+      }
+      if (!getTraceIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, traceId_);
+      }
+      if (!getBizBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, biz_);
+      }
+      if (port_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, port_);
+      }
+      if (!getUserIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, userId_);
+      }
+      if (!getDateTimeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, dateTime_);
+      }
+      if (!getStatesCodeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, statesCode_);
+      }
+      if (consume_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(8, consume_);
+      }
+      if (!getIpBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, ip_);
+      }
+      if (!getRequestMethodBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, requestMethod_);
+      }
+      if (!getRequestURLBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(11, requestURL_);
+      }
+      if (!getParamsBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(12, params_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cl.log.config.model.LogFactory.TomcatAccessLog)) {
+        return super.equals(obj);
+      }
+      com.cl.log.config.model.LogFactory.TomcatAccessLog other = (com.cl.log.config.model.LogFactory.TomcatAccessLog) obj;
+
+      boolean result = true;
+      result = result && getHost()
+          .equals(other.getHost());
+      result = result && getTraceId()
+          .equals(other.getTraceId());
+      result = result && getBiz()
+          .equals(other.getBiz());
+      result = result && (getPort()
+          == other.getPort());
+      result = result && getUserId()
+          .equals(other.getUserId());
+      result = result && getDateTime()
+          .equals(other.getDateTime());
+      result = result && getStatesCode()
+          .equals(other.getStatesCode());
+      result = result && (getConsume()
+          == other.getConsume());
+      result = result && getIp()
+          .equals(other.getIp());
+      result = result && getRequestMethod()
+          .equals(other.getRequestMethod());
+      result = result && getRequestURL()
+          .equals(other.getRequestURL());
+      result = result && getParams()
+          .equals(other.getParams());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + HOST_FIELD_NUMBER;
+      hash = (53 * hash) + getHost().hashCode();
+      hash = (37 * hash) + TRACEID_FIELD_NUMBER;
+      hash = (53 * hash) + getTraceId().hashCode();
+      hash = (37 * hash) + BIZ_FIELD_NUMBER;
+      hash = (53 * hash) + getBiz().hashCode();
+      hash = (37 * hash) + PORT_FIELD_NUMBER;
+      hash = (53 * hash) + getPort();
+      hash = (37 * hash) + USERID_FIELD_NUMBER;
+      hash = (53 * hash) + getUserId().hashCode();
+      hash = (37 * hash) + DATETIME_FIELD_NUMBER;
+      hash = (53 * hash) + getDateTime().hashCode();
+      hash = (37 * hash) + STATESCODE_FIELD_NUMBER;
+      hash = (53 * hash) + getStatesCode().hashCode();
+      hash = (37 * hash) + CONSUME_FIELD_NUMBER;
+      hash = (53 * hash) + getConsume();
+      hash = (37 * hash) + IP_FIELD_NUMBER;
+      hash = (53 * hash) + getIp().hashCode();
+      hash = (37 * hash) + REQUESTMETHOD_FIELD_NUMBER;
+      hash = (53 * hash) + getRequestMethod().hashCode();
+      hash = (37 * hash) + REQUESTURL_FIELD_NUMBER;
+      hash = (53 * hash) + getRequestURL().hashCode();
+      hash = (37 * hash) + PARAMS_FIELD_NUMBER;
+      hash = (53 * hash) + getParams().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cl.log.config.model.LogFactory.TomcatAccessLog parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.TomcatAccessLog parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.TomcatAccessLog parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.TomcatAccessLog parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.TomcatAccessLog parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.TomcatAccessLog parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.TomcatAccessLog parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.TomcatAccessLog parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.TomcatAccessLog parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.TomcatAccessLog parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.TomcatAccessLog parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.TomcatAccessLog parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cl.log.config.model.LogFactory.TomcatAccessLog prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code TomcatAccessLog}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:TomcatAccessLog)
+        com.cl.log.config.model.LogFactory.TomcatAccessLogOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cl.log.config.model.LogFactory.internal_static_TomcatAccessLog_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cl.log.config.model.LogFactory.internal_static_TomcatAccessLog_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cl.log.config.model.LogFactory.TomcatAccessLog.class, com.cl.log.config.model.LogFactory.TomcatAccessLog.Builder.class);
+      }
+
+      // Construct using com.cl.log.config.model.LogFactory.TomcatAccessLog.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        host_ = "";
+
+        traceId_ = "";
+
+        biz_ = "";
+
+        port_ = 0;
+
+        userId_ = "";
+
+        dateTime_ = "";
+
+        statesCode_ = "";
+
+        consume_ = 0;
+
+        ip_ = "";
+
+        requestMethod_ = "";
+
+        requestURL_ = "";
+
+        params_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cl.log.config.model.LogFactory.internal_static_TomcatAccessLog_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.TomcatAccessLog getDefaultInstanceForType() {
+        return com.cl.log.config.model.LogFactory.TomcatAccessLog.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.TomcatAccessLog build() {
+        com.cl.log.config.model.LogFactory.TomcatAccessLog result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.TomcatAccessLog buildPartial() {
+        com.cl.log.config.model.LogFactory.TomcatAccessLog result = new com.cl.log.config.model.LogFactory.TomcatAccessLog(this);
+        result.host_ = host_;
+        result.traceId_ = traceId_;
+        result.biz_ = biz_;
+        result.port_ = port_;
+        result.userId_ = userId_;
+        result.dateTime_ = dateTime_;
+        result.statesCode_ = statesCode_;
+        result.consume_ = consume_;
+        result.ip_ = ip_;
+        result.requestMethod_ = requestMethod_;
+        result.requestURL_ = requestURL_;
+        result.params_ = params_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cl.log.config.model.LogFactory.TomcatAccessLog) {
+          return mergeFrom((com.cl.log.config.model.LogFactory.TomcatAccessLog)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cl.log.config.model.LogFactory.TomcatAccessLog other) {
+        if (other == com.cl.log.config.model.LogFactory.TomcatAccessLog.getDefaultInstance()) return this;
+        if (!other.getHost().isEmpty()) {
+          host_ = other.host_;
+          onChanged();
+        }
+        if (!other.getTraceId().isEmpty()) {
+          traceId_ = other.traceId_;
+          onChanged();
+        }
+        if (!other.getBiz().isEmpty()) {
+          biz_ = other.biz_;
+          onChanged();
+        }
+        if (other.getPort() != 0) {
+          setPort(other.getPort());
+        }
+        if (!other.getUserId().isEmpty()) {
+          userId_ = other.userId_;
+          onChanged();
+        }
+        if (!other.getDateTime().isEmpty()) {
+          dateTime_ = other.dateTime_;
+          onChanged();
+        }
+        if (!other.getStatesCode().isEmpty()) {
+          statesCode_ = other.statesCode_;
+          onChanged();
+        }
+        if (other.getConsume() != 0) {
+          setConsume(other.getConsume());
+        }
+        if (!other.getIp().isEmpty()) {
+          ip_ = other.ip_;
+          onChanged();
+        }
+        if (!other.getRequestMethod().isEmpty()) {
+          requestMethod_ = other.requestMethod_;
+          onChanged();
+        }
+        if (!other.getRequestURL().isEmpty()) {
+          requestURL_ = other.requestURL_;
+          onChanged();
+        }
+        if (!other.getParams().isEmpty()) {
+          params_ = other.params_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cl.log.config.model.LogFactory.TomcatAccessLog parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cl.log.config.model.LogFactory.TomcatAccessLog) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object host_ = "";
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public java.lang.String getHost() {
+        java.lang.Object ref = host_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          host_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getHostBytes() {
+        java.lang.Object ref = host_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          host_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public Builder setHost(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        host_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public Builder clearHost() {
+        
+        host_ = getDefaultInstance().getHost();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public Builder setHostBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        host_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object traceId_ = "";
+      /**
+       * <pre>
+       * 调用链id
+       * </pre>
+       *
+       * <code>string traceId = 2;</code>
+       */
+      public java.lang.String getTraceId() {
+        java.lang.Object ref = traceId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          traceId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 调用链id
+       * </pre>
+       *
+       * <code>string traceId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTraceIdBytes() {
+        java.lang.Object ref = traceId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          traceId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 调用链id
+       * </pre>
+       *
+       * <code>string traceId = 2;</code>
+       */
+      public Builder setTraceId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        traceId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 调用链id
+       * </pre>
+       *
+       * <code>string traceId = 2;</code>
+       */
+      public Builder clearTraceId() {
+        
+        traceId_ = getDefaultInstance().getTraceId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 调用链id
+       * </pre>
+       *
+       * <code>string traceId = 2;</code>
+       */
+      public Builder setTraceIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        traceId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object biz_ = "";
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 3;</code>
+       */
+      public java.lang.String getBiz() {
+        java.lang.Object ref = biz_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          biz_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBizBytes() {
+        java.lang.Object ref = biz_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          biz_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 3;</code>
+       */
+      public Builder setBiz(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        biz_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 3;</code>
+       */
+      public Builder clearBiz() {
+        
+        biz_ = getDefaultInstance().getBiz();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 3;</code>
+       */
+      public Builder setBizBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        biz_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int port_ ;
+      /**
+       * <pre>
+       * 端口
+       * </pre>
+       *
+       * <code>int32 port = 4;</code>
+       */
+      public int getPort() {
+        return port_;
+      }
+      /**
+       * <pre>
+       * 端口
+       * </pre>
+       *
+       * <code>int32 port = 4;</code>
+       */
+      public Builder setPort(int value) {
+        
+        port_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 端口
+       * </pre>
+       *
+       * <code>int32 port = 4;</code>
+       */
+      public Builder clearPort() {
+        
+        port_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object userId_ = "";
+      /**
+       * <pre>
+       * 用户ID
+       * </pre>
+       *
+       * <code>string userId = 5;</code>
+       */
+      public java.lang.String getUserId() {
+        java.lang.Object ref = userId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          userId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 用户ID
+       * </pre>
+       *
+       * <code>string userId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUserIdBytes() {
+        java.lang.Object ref = userId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          userId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 用户ID
+       * </pre>
+       *
+       * <code>string userId = 5;</code>
+       */
+      public Builder setUserId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        userId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 用户ID
+       * </pre>
+       *
+       * <code>string userId = 5;</code>
+       */
+      public Builder clearUserId() {
+        
+        userId_ = getDefaultInstance().getUserId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 用户ID
+       * </pre>
+       *
+       * <code>string userId = 5;</code>
+       */
+      public Builder setUserIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        userId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object dateTime_ = "";
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string dateTime = 6;</code>
+       */
+      public java.lang.String getDateTime() {
+        java.lang.Object ref = dateTime_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          dateTime_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string dateTime = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDateTimeBytes() {
+        java.lang.Object ref = dateTime_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          dateTime_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string dateTime = 6;</code>
+       */
+      public Builder setDateTime(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        dateTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string dateTime = 6;</code>
+       */
+      public Builder clearDateTime() {
+        
+        dateTime_ = getDefaultInstance().getDateTime();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string dateTime = 6;</code>
+       */
+      public Builder setDateTimeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        dateTime_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object statesCode_ = "";
+      /**
+       * <pre>
+       * 状态码
+       * </pre>
+       *
+       * <code>string statesCode = 7;</code>
+       */
+      public java.lang.String getStatesCode() {
+        java.lang.Object ref = statesCode_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          statesCode_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 状态码
+       * </pre>
+       *
+       * <code>string statesCode = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getStatesCodeBytes() {
+        java.lang.Object ref = statesCode_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          statesCode_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 状态码
+       * </pre>
+       *
+       * <code>string statesCode = 7;</code>
+       */
+      public Builder setStatesCode(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        statesCode_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 状态码
+       * </pre>
+       *
+       * <code>string statesCode = 7;</code>
+       */
+      public Builder clearStatesCode() {
+        
+        statesCode_ = getDefaultInstance().getStatesCode();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 状态码
+       * </pre>
+       *
+       * <code>string statesCode = 7;</code>
+       */
+      public Builder setStatesCodeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        statesCode_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int consume_ ;
+      /**
+       * <pre>
+       * 耗时
+       * </pre>
+       *
+       * <code>int32 consume = 8;</code>
+       */
+      public int getConsume() {
+        return consume_;
+      }
+      /**
+       * <pre>
+       * 耗时
+       * </pre>
+       *
+       * <code>int32 consume = 8;</code>
+       */
+      public Builder setConsume(int value) {
+        
+        consume_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 耗时
+       * </pre>
+       *
+       * <code>int32 consume = 8;</code>
+       */
+      public Builder clearConsume() {
+        
+        consume_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object ip_ = "";
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 9;</code>
+       */
+      public java.lang.String getIp() {
+        java.lang.Object ref = ip_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          ip_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 9;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIpBytes() {
+        java.lang.Object ref = ip_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          ip_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 9;</code>
+       */
+      public Builder setIp(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        ip_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 9;</code>
+       */
+      public Builder clearIp() {
+        
+        ip_ = getDefaultInstance().getIp();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 9;</code>
+       */
+      public Builder setIpBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        ip_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object requestMethod_ = "";
+      /**
+       * <code>string requestMethod = 10;</code>
+       */
+      public java.lang.String getRequestMethod() {
+        java.lang.Object ref = requestMethod_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          requestMethod_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string requestMethod = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRequestMethodBytes() {
+        java.lang.Object ref = requestMethod_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          requestMethod_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string requestMethod = 10;</code>
+       */
+      public Builder setRequestMethod(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        requestMethod_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string requestMethod = 10;</code>
+       */
+      public Builder clearRequestMethod() {
+        
+        requestMethod_ = getDefaultInstance().getRequestMethod();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string requestMethod = 10;</code>
+       */
+      public Builder setRequestMethodBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        requestMethod_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object requestURL_ = "";
+      /**
+       * <code>string requestURL = 11;</code>
+       */
+      public java.lang.String getRequestURL() {
+        java.lang.Object ref = requestURL_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          requestURL_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string requestURL = 11;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRequestURLBytes() {
+        java.lang.Object ref = requestURL_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          requestURL_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string requestURL = 11;</code>
+       */
+      public Builder setRequestURL(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        requestURL_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string requestURL = 11;</code>
+       */
+      public Builder clearRequestURL() {
+        
+        requestURL_ = getDefaultInstance().getRequestURL();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string requestURL = 11;</code>
+       */
+      public Builder setRequestURLBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        requestURL_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object params_ = "";
+      /**
+       * <code>string params = 12;</code>
+       */
+      public java.lang.String getParams() {
+        java.lang.Object ref = params_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          params_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string params = 12;</code>
+       */
+      public com.google.protobuf.ByteString
+          getParamsBytes() {
+        java.lang.Object ref = params_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          params_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string params = 12;</code>
+       */
+      public Builder setParams(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        params_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string params = 12;</code>
+       */
+      public Builder clearParams() {
+        
+        params_ = getDefaultInstance().getParams();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string params = 12;</code>
+       */
+      public Builder setParamsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        params_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:TomcatAccessLog)
+    }
+
+    // @@protoc_insertion_point(class_scope:TomcatAccessLog)
+    private static final com.cl.log.config.model.LogFactory.TomcatAccessLog DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cl.log.config.model.LogFactory.TomcatAccessLog();
+    }
+
+    public static com.cl.log.config.model.LogFactory.TomcatAccessLog getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TomcatAccessLog>
+        PARSER = new com.google.protobuf.AbstractParser<TomcatAccessLog>() {
+      @java.lang.Override
+      public TomcatAccessLog parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TomcatAccessLog(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<TomcatAccessLog> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TomcatAccessLog> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cl.log.config.model.LogFactory.TomcatAccessLog getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BizLogOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:BizLog)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    java.lang.String getHost();
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getHostBytes();
+
+    /**
+     * <pre>
+     * 业务组件
+     * </pre>
+     *
+     * <code>string biz = 2;</code>
+     */
+    java.lang.String getBiz();
+    /**
+     * <pre>
+     * 业务组件
+     * </pre>
+     *
+     * <code>string biz = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getBizBytes();
+
+    /**
+     * <pre>
+     * 调用链id
+     * </pre>
+     *
+     * <code>string traceId = 3;</code>
+     */
+    java.lang.String getTraceId();
+    /**
+     * <pre>
+     * 调用链id
+     * </pre>
+     *
+     * <code>string traceId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTraceIdBytes();
+
+    /**
+     * <pre>
+     * 日期时间
+     * </pre>
+     *
+     * <code>string dateTime = 4;</code>
+     */
+    java.lang.String getDateTime();
+    /**
+     * <pre>
+     * 日期时间
+     * </pre>
+     *
+     * <code>string dateTime = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getDateTimeBytes();
+
+    /**
+     * <pre>
+     * 线程
+     * </pre>
+     *
+     * <code>string thread = 5;</code>
+     */
+    java.lang.String getThread();
+    /**
+     * <pre>
+     * 线程
+     * </pre>
+     *
+     * <code>string thread = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getThreadBytes();
+
+    /**
+     * <pre>
+     * 日志级别
+     * </pre>
+     *
+     * <code>string level = 6;</code>
+     */
+    java.lang.String getLevel();
+    /**
+     * <pre>
+     * 日志级别
+     * </pre>
+     *
+     * <code>string level = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getLevelBytes();
+
+    /**
+     * <pre>
+     * 类名
+     * </pre>
+     *
+     * <code>string clazz = 7;</code>
+     */
+    java.lang.String getClazz();
+    /**
+     * <pre>
+     * 类名
+     * </pre>
+     *
+     * <code>string clazz = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getClazzBytes();
+
+    /**
+     * <pre>
+     * 消息
+     * </pre>
+     *
+     * <code>string msg = 8;</code>
+     */
+    java.lang.String getMsg();
+    /**
+     * <pre>
+     * 消息
+     * </pre>
+     *
+     * <code>string msg = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getMsgBytes();
+  }
+  /**
+   * Protobuf type {@code BizLog}
+   */
+  public  static final class BizLog extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:BizLog)
+      BizLogOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BizLog.newBuilder() to construct.
+    private BizLog(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private BizLog() {
+      host_ = "";
+      biz_ = "";
+      traceId_ = "";
+      dateTime_ = "";
+      thread_ = "";
+      level_ = "";
+      clazz_ = "";
+      msg_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BizLog(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              host_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              biz_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              traceId_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              dateTime_ = s;
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              thread_ = s;
+              break;
+            }
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              level_ = s;
+              break;
+            }
+            case 58: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              clazz_ = s;
+              break;
+            }
+            case 66: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              msg_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cl.log.config.model.LogFactory.internal_static_BizLog_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cl.log.config.model.LogFactory.internal_static_BizLog_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cl.log.config.model.LogFactory.BizLog.class, com.cl.log.config.model.LogFactory.BizLog.Builder.class);
+    }
+
+    public static final int HOST_FIELD_NUMBER = 1;
+    private volatile java.lang.Object host_;
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    public java.lang.String getHost() {
+      java.lang.Object ref = host_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        host_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getHostBytes() {
+      java.lang.Object ref = host_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        host_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int BIZ_FIELD_NUMBER = 2;
+    private volatile java.lang.Object biz_;
+    /**
+     * <pre>
+     * 业务组件
+     * </pre>
+     *
+     * <code>string biz = 2;</code>
+     */
+    public java.lang.String getBiz() {
+      java.lang.Object ref = biz_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        biz_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 业务组件
+     * </pre>
+     *
+     * <code>string biz = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBizBytes() {
+      java.lang.Object ref = biz_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        biz_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TRACEID_FIELD_NUMBER = 3;
+    private volatile java.lang.Object traceId_;
+    /**
+     * <pre>
+     * 调用链id
+     * </pre>
+     *
+     * <code>string traceId = 3;</code>
+     */
+    public java.lang.String getTraceId() {
+      java.lang.Object ref = traceId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        traceId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 调用链id
+     * </pre>
+     *
+     * <code>string traceId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTraceIdBytes() {
+      java.lang.Object ref = traceId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        traceId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DATETIME_FIELD_NUMBER = 4;
+    private volatile java.lang.Object dateTime_;
+    /**
+     * <pre>
+     * 日期时间
+     * </pre>
+     *
+     * <code>string dateTime = 4;</code>
+     */
+    public java.lang.String getDateTime() {
+      java.lang.Object ref = dateTime_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        dateTime_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 日期时间
+     * </pre>
+     *
+     * <code>string dateTime = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDateTimeBytes() {
+      java.lang.Object ref = dateTime_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        dateTime_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int THREAD_FIELD_NUMBER = 5;
+    private volatile java.lang.Object thread_;
+    /**
+     * <pre>
+     * 线程
+     * </pre>
+     *
+     * <code>string thread = 5;</code>
+     */
+    public java.lang.String getThread() {
+      java.lang.Object ref = thread_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        thread_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 线程
+     * </pre>
+     *
+     * <code>string thread = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getThreadBytes() {
+      java.lang.Object ref = thread_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        thread_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int LEVEL_FIELD_NUMBER = 6;
+    private volatile java.lang.Object level_;
+    /**
+     * <pre>
+     * 日志级别
+     * </pre>
+     *
+     * <code>string level = 6;</code>
+     */
+    public java.lang.String getLevel() {
+      java.lang.Object ref = level_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        level_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 日志级别
+     * </pre>
+     *
+     * <code>string level = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLevelBytes() {
+      java.lang.Object ref = level_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        level_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CLAZZ_FIELD_NUMBER = 7;
+    private volatile java.lang.Object clazz_;
+    /**
+     * <pre>
+     * 类名
+     * </pre>
+     *
+     * <code>string clazz = 7;</code>
+     */
+    public java.lang.String getClazz() {
+      java.lang.Object ref = clazz_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        clazz_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 类名
+     * </pre>
+     *
+     * <code>string clazz = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getClazzBytes() {
+      java.lang.Object ref = clazz_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        clazz_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MSG_FIELD_NUMBER = 8;
+    private volatile java.lang.Object msg_;
+    /**
+     * <pre>
+     * 消息
+     * </pre>
+     *
+     * <code>string msg = 8;</code>
+     */
+    public java.lang.String getMsg() {
+      java.lang.Object ref = msg_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        msg_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 消息
+     * </pre>
+     *
+     * <code>string msg = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMsgBytes() {
+      java.lang.Object ref = msg_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        msg_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getHostBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, host_);
+      }
+      if (!getBizBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, biz_);
+      }
+      if (!getTraceIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, traceId_);
+      }
+      if (!getDateTimeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, dateTime_);
+      }
+      if (!getThreadBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, thread_);
+      }
+      if (!getLevelBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, level_);
+      }
+      if (!getClazzBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, clazz_);
+      }
+      if (!getMsgBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, msg_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getHostBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, host_);
+      }
+      if (!getBizBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, biz_);
+      }
+      if (!getTraceIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, traceId_);
+      }
+      if (!getDateTimeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, dateTime_);
+      }
+      if (!getThreadBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, thread_);
+      }
+      if (!getLevelBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, level_);
+      }
+      if (!getClazzBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, clazz_);
+      }
+      if (!getMsgBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, msg_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cl.log.config.model.LogFactory.BizLog)) {
+        return super.equals(obj);
+      }
+      com.cl.log.config.model.LogFactory.BizLog other = (com.cl.log.config.model.LogFactory.BizLog) obj;
+
+      boolean result = true;
+      result = result && getHost()
+          .equals(other.getHost());
+      result = result && getBiz()
+          .equals(other.getBiz());
+      result = result && getTraceId()
+          .equals(other.getTraceId());
+      result = result && getDateTime()
+          .equals(other.getDateTime());
+      result = result && getThread()
+          .equals(other.getThread());
+      result = result && getLevel()
+          .equals(other.getLevel());
+      result = result && getClazz()
+          .equals(other.getClazz());
+      result = result && getMsg()
+          .equals(other.getMsg());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + HOST_FIELD_NUMBER;
+      hash = (53 * hash) + getHost().hashCode();
+      hash = (37 * hash) + BIZ_FIELD_NUMBER;
+      hash = (53 * hash) + getBiz().hashCode();
+      hash = (37 * hash) + TRACEID_FIELD_NUMBER;
+      hash = (53 * hash) + getTraceId().hashCode();
+      hash = (37 * hash) + DATETIME_FIELD_NUMBER;
+      hash = (53 * hash) + getDateTime().hashCode();
+      hash = (37 * hash) + THREAD_FIELD_NUMBER;
+      hash = (53 * hash) + getThread().hashCode();
+      hash = (37 * hash) + LEVEL_FIELD_NUMBER;
+      hash = (53 * hash) + getLevel().hashCode();
+      hash = (37 * hash) + CLAZZ_FIELD_NUMBER;
+      hash = (53 * hash) + getClazz().hashCode();
+      hash = (37 * hash) + MSG_FIELD_NUMBER;
+      hash = (53 * hash) + getMsg().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cl.log.config.model.LogFactory.BizLog parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.BizLog parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.BizLog parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.BizLog parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.BizLog parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.BizLog parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.BizLog parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.BizLog parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.BizLog parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.BizLog parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.BizLog parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.BizLog parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cl.log.config.model.LogFactory.BizLog prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code BizLog}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:BizLog)
+        com.cl.log.config.model.LogFactory.BizLogOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cl.log.config.model.LogFactory.internal_static_BizLog_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cl.log.config.model.LogFactory.internal_static_BizLog_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cl.log.config.model.LogFactory.BizLog.class, com.cl.log.config.model.LogFactory.BizLog.Builder.class);
+      }
+
+      // Construct using com.cl.log.config.model.LogFactory.BizLog.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        host_ = "";
+
+        biz_ = "";
+
+        traceId_ = "";
+
+        dateTime_ = "";
+
+        thread_ = "";
+
+        level_ = "";
+
+        clazz_ = "";
+
+        msg_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cl.log.config.model.LogFactory.internal_static_BizLog_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.BizLog getDefaultInstanceForType() {
+        return com.cl.log.config.model.LogFactory.BizLog.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.BizLog build() {
+        com.cl.log.config.model.LogFactory.BizLog result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.BizLog buildPartial() {
+        com.cl.log.config.model.LogFactory.BizLog result = new com.cl.log.config.model.LogFactory.BizLog(this);
+        result.host_ = host_;
+        result.biz_ = biz_;
+        result.traceId_ = traceId_;
+        result.dateTime_ = dateTime_;
+        result.thread_ = thread_;
+        result.level_ = level_;
+        result.clazz_ = clazz_;
+        result.msg_ = msg_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cl.log.config.model.LogFactory.BizLog) {
+          return mergeFrom((com.cl.log.config.model.LogFactory.BizLog)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cl.log.config.model.LogFactory.BizLog other) {
+        if (other == com.cl.log.config.model.LogFactory.BizLog.getDefaultInstance()) return this;
+        if (!other.getHost().isEmpty()) {
+          host_ = other.host_;
+          onChanged();
+        }
+        if (!other.getBiz().isEmpty()) {
+          biz_ = other.biz_;
+          onChanged();
+        }
+        if (!other.getTraceId().isEmpty()) {
+          traceId_ = other.traceId_;
+          onChanged();
+        }
+        if (!other.getDateTime().isEmpty()) {
+          dateTime_ = other.dateTime_;
+          onChanged();
+        }
+        if (!other.getThread().isEmpty()) {
+          thread_ = other.thread_;
+          onChanged();
+        }
+        if (!other.getLevel().isEmpty()) {
+          level_ = other.level_;
+          onChanged();
+        }
+        if (!other.getClazz().isEmpty()) {
+          clazz_ = other.clazz_;
+          onChanged();
+        }
+        if (!other.getMsg().isEmpty()) {
+          msg_ = other.msg_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cl.log.config.model.LogFactory.BizLog parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cl.log.config.model.LogFactory.BizLog) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object host_ = "";
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public java.lang.String getHost() {
+        java.lang.Object ref = host_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          host_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getHostBytes() {
+        java.lang.Object ref = host_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          host_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public Builder setHost(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        host_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public Builder clearHost() {
+        
+        host_ = getDefaultInstance().getHost();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public Builder setHostBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        host_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object biz_ = "";
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 2;</code>
+       */
+      public java.lang.String getBiz() {
+        java.lang.Object ref = biz_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          biz_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBizBytes() {
+        java.lang.Object ref = biz_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          biz_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 2;</code>
+       */
+      public Builder setBiz(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        biz_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 2;</code>
+       */
+      public Builder clearBiz() {
+        
+        biz_ = getDefaultInstance().getBiz();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 2;</code>
+       */
+      public Builder setBizBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        biz_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object traceId_ = "";
+      /**
+       * <pre>
+       * 调用链id
+       * </pre>
+       *
+       * <code>string traceId = 3;</code>
+       */
+      public java.lang.String getTraceId() {
+        java.lang.Object ref = traceId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          traceId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 调用链id
+       * </pre>
+       *
+       * <code>string traceId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTraceIdBytes() {
+        java.lang.Object ref = traceId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          traceId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 调用链id
+       * </pre>
+       *
+       * <code>string traceId = 3;</code>
+       */
+      public Builder setTraceId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        traceId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 调用链id
+       * </pre>
+       *
+       * <code>string traceId = 3;</code>
+       */
+      public Builder clearTraceId() {
+        
+        traceId_ = getDefaultInstance().getTraceId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 调用链id
+       * </pre>
+       *
+       * <code>string traceId = 3;</code>
+       */
+      public Builder setTraceIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        traceId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object dateTime_ = "";
+      /**
+       * <pre>
+       * 日期时间
+       * </pre>
+       *
+       * <code>string dateTime = 4;</code>
+       */
+      public java.lang.String getDateTime() {
+        java.lang.Object ref = dateTime_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          dateTime_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 日期时间
+       * </pre>
+       *
+       * <code>string dateTime = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDateTimeBytes() {
+        java.lang.Object ref = dateTime_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          dateTime_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 日期时间
+       * </pre>
+       *
+       * <code>string dateTime = 4;</code>
+       */
+      public Builder setDateTime(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        dateTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 日期时间
+       * </pre>
+       *
+       * <code>string dateTime = 4;</code>
+       */
+      public Builder clearDateTime() {
+        
+        dateTime_ = getDefaultInstance().getDateTime();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 日期时间
+       * </pre>
+       *
+       * <code>string dateTime = 4;</code>
+       */
+      public Builder setDateTimeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        dateTime_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object thread_ = "";
+      /**
+       * <pre>
+       * 线程
+       * </pre>
+       *
+       * <code>string thread = 5;</code>
+       */
+      public java.lang.String getThread() {
+        java.lang.Object ref = thread_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          thread_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 线程
+       * </pre>
+       *
+       * <code>string thread = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getThreadBytes() {
+        java.lang.Object ref = thread_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          thread_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 线程
+       * </pre>
+       *
+       * <code>string thread = 5;</code>
+       */
+      public Builder setThread(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        thread_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 线程
+       * </pre>
+       *
+       * <code>string thread = 5;</code>
+       */
+      public Builder clearThread() {
+        
+        thread_ = getDefaultInstance().getThread();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 线程
+       * </pre>
+       *
+       * <code>string thread = 5;</code>
+       */
+      public Builder setThreadBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        thread_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object level_ = "";
+      /**
+       * <pre>
+       * 日志级别
+       * </pre>
+       *
+       * <code>string level = 6;</code>
+       */
+      public java.lang.String getLevel() {
+        java.lang.Object ref = level_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          level_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 日志级别
+       * </pre>
+       *
+       * <code>string level = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLevelBytes() {
+        java.lang.Object ref = level_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          level_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 日志级别
+       * </pre>
+       *
+       * <code>string level = 6;</code>
+       */
+      public Builder setLevel(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        level_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 日志级别
+       * </pre>
+       *
+       * <code>string level = 6;</code>
+       */
+      public Builder clearLevel() {
+        
+        level_ = getDefaultInstance().getLevel();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 日志级别
+       * </pre>
+       *
+       * <code>string level = 6;</code>
+       */
+      public Builder setLevelBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        level_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object clazz_ = "";
+      /**
+       * <pre>
+       * 类名
+       * </pre>
+       *
+       * <code>string clazz = 7;</code>
+       */
+      public java.lang.String getClazz() {
+        java.lang.Object ref = clazz_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          clazz_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 类名
+       * </pre>
+       *
+       * <code>string clazz = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getClazzBytes() {
+        java.lang.Object ref = clazz_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          clazz_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 类名
+       * </pre>
+       *
+       * <code>string clazz = 7;</code>
+       */
+      public Builder setClazz(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        clazz_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 类名
+       * </pre>
+       *
+       * <code>string clazz = 7;</code>
+       */
+      public Builder clearClazz() {
+        
+        clazz_ = getDefaultInstance().getClazz();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 类名
+       * </pre>
+       *
+       * <code>string clazz = 7;</code>
+       */
+      public Builder setClazzBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        clazz_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object msg_ = "";
+      /**
+       * <pre>
+       * 消息
+       * </pre>
+       *
+       * <code>string msg = 8;</code>
+       */
+      public java.lang.String getMsg() {
+        java.lang.Object ref = msg_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          msg_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 消息
+       * </pre>
+       *
+       * <code>string msg = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMsgBytes() {
+        java.lang.Object ref = msg_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          msg_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 消息
+       * </pre>
+       *
+       * <code>string msg = 8;</code>
+       */
+      public Builder setMsg(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        msg_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 消息
+       * </pre>
+       *
+       * <code>string msg = 8;</code>
+       */
+      public Builder clearMsg() {
+        
+        msg_ = getDefaultInstance().getMsg();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 消息
+       * </pre>
+       *
+       * <code>string msg = 8;</code>
+       */
+      public Builder setMsgBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        msg_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:BizLog)
+    }
+
+    // @@protoc_insertion_point(class_scope:BizLog)
+    private static final com.cl.log.config.model.LogFactory.BizLog DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cl.log.config.model.LogFactory.BizLog();
+    }
+
+    public static com.cl.log.config.model.LogFactory.BizLog getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BizLog>
+        PARSER = new com.google.protobuf.AbstractParser<BizLog>() {
+      @java.lang.Override
+      public BizLog parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BizLog(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<BizLog> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BizLog> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cl.log.config.model.LogFactory.BizLog getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface PerfLogOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:PerfLog)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    java.lang.String getHost();
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getHostBytes();
+
+    /**
+     * <pre>
+     * 业务组件
+     * </pre>
+     *
+     * <code>string biz = 2;</code>
+     */
+    java.lang.String getBiz();
+    /**
+     * <pre>
+     * 业务组件
+     * </pre>
+     *
+     * <code>string biz = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getBizBytes();
+
+    /**
+     * <pre>
+     * 接口全类名
+     * </pre>
+     *
+     * <code>string clazz = 3;</code>
+     */
+    java.lang.String getClazz();
+    /**
+     * <pre>
+     * 接口全类名
+     * </pre>
+     *
+     * <code>string clazz = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getClazzBytes();
+
+    /**
+     * <pre>
+     * 方法
+     * </pre>
+     *
+     * <code>string method = 4;</code>
+     */
+    java.lang.String getMethod();
+    /**
+     * <pre>
+     * 方法
+     * </pre>
+     *
+     * <code>string method = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getMethodBytes();
+
+    /**
+     * <pre>
+     * 耗时
+     * </pre>
+     *
+     * <code>string consume = 5;</code>
+     */
+    java.lang.String getConsume();
+    /**
+     * <pre>
+     * 耗时
+     * </pre>
+     *
+     * <code>string consume = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getConsumeBytes();
+
+    /**
+     * <pre>
+     * 日期时间
+     * </pre>
+     *
+     * <code>string dateTime = 6;</code>
+     */
+    java.lang.String getDateTime();
+    /**
+     * <pre>
+     * 日期时间
+     * </pre>
+     *
+     * <code>string dateTime = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getDateTimeBytes();
+  }
+  /**
+   * Protobuf type {@code PerfLog}
+   */
+  public  static final class PerfLog extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:PerfLog)
+      PerfLogOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use PerfLog.newBuilder() to construct.
+    private PerfLog(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private PerfLog() {
+      host_ = "";
+      biz_ = "";
+      clazz_ = "";
+      method_ = "";
+      consume_ = "";
+      dateTime_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private PerfLog(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              host_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              biz_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              clazz_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              method_ = s;
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              consume_ = s;
+              break;
+            }
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              dateTime_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cl.log.config.model.LogFactory.internal_static_PerfLog_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cl.log.config.model.LogFactory.internal_static_PerfLog_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cl.log.config.model.LogFactory.PerfLog.class, com.cl.log.config.model.LogFactory.PerfLog.Builder.class);
+    }
+
+    public static final int HOST_FIELD_NUMBER = 1;
+    private volatile java.lang.Object host_;
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    public java.lang.String getHost() {
+      java.lang.Object ref = host_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        host_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 主机
+     * </pre>
+     *
+     * <code>string host = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getHostBytes() {
+      java.lang.Object ref = host_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        host_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int BIZ_FIELD_NUMBER = 2;
+    private volatile java.lang.Object biz_;
+    /**
+     * <pre>
+     * 业务组件
+     * </pre>
+     *
+     * <code>string biz = 2;</code>
+     */
+    public java.lang.String getBiz() {
+      java.lang.Object ref = biz_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        biz_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 业务组件
+     * </pre>
+     *
+     * <code>string biz = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBizBytes() {
+      java.lang.Object ref = biz_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        biz_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CLAZZ_FIELD_NUMBER = 3;
+    private volatile java.lang.Object clazz_;
+    /**
+     * <pre>
+     * 接口全类名
+     * </pre>
+     *
+     * <code>string clazz = 3;</code>
+     */
+    public java.lang.String getClazz() {
+      java.lang.Object ref = clazz_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        clazz_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 接口全类名
+     * </pre>
+     *
+     * <code>string clazz = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getClazzBytes() {
+      java.lang.Object ref = clazz_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        clazz_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int METHOD_FIELD_NUMBER = 4;
+    private volatile java.lang.Object method_;
+    /**
+     * <pre>
+     * 方法
+     * </pre>
+     *
+     * <code>string method = 4;</code>
+     */
+    public java.lang.String getMethod() {
+      java.lang.Object ref = method_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        method_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 方法
+     * </pre>
+     *
+     * <code>string method = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMethodBytes() {
+      java.lang.Object ref = method_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        method_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CONSUME_FIELD_NUMBER = 5;
+    private volatile java.lang.Object consume_;
+    /**
+     * <pre>
+     * 耗时
+     * </pre>
+     *
+     * <code>string consume = 5;</code>
+     */
+    public java.lang.String getConsume() {
+      java.lang.Object ref = consume_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        consume_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 耗时
+     * </pre>
+     *
+     * <code>string consume = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getConsumeBytes() {
+      java.lang.Object ref = consume_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        consume_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DATETIME_FIELD_NUMBER = 6;
+    private volatile java.lang.Object dateTime_;
+    /**
+     * <pre>
+     * 日期时间
+     * </pre>
+     *
+     * <code>string dateTime = 6;</code>
+     */
+    public java.lang.String getDateTime() {
+      java.lang.Object ref = dateTime_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        dateTime_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 日期时间
+     * </pre>
+     *
+     * <code>string dateTime = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDateTimeBytes() {
+      java.lang.Object ref = dateTime_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        dateTime_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getHostBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, host_);
+      }
+      if (!getBizBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, biz_);
+      }
+      if (!getClazzBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, clazz_);
+      }
+      if (!getMethodBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, method_);
+      }
+      if (!getConsumeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, consume_);
+      }
+      if (!getDateTimeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, dateTime_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getHostBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, host_);
+      }
+      if (!getBizBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, biz_);
+      }
+      if (!getClazzBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, clazz_);
+      }
+      if (!getMethodBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, method_);
+      }
+      if (!getConsumeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, consume_);
+      }
+      if (!getDateTimeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, dateTime_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cl.log.config.model.LogFactory.PerfLog)) {
+        return super.equals(obj);
+      }
+      com.cl.log.config.model.LogFactory.PerfLog other = (com.cl.log.config.model.LogFactory.PerfLog) obj;
+
+      boolean result = true;
+      result = result && getHost()
+          .equals(other.getHost());
+      result = result && getBiz()
+          .equals(other.getBiz());
+      result = result && getClazz()
+          .equals(other.getClazz());
+      result = result && getMethod()
+          .equals(other.getMethod());
+      result = result && getConsume()
+          .equals(other.getConsume());
+      result = result && getDateTime()
+          .equals(other.getDateTime());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + HOST_FIELD_NUMBER;
+      hash = (53 * hash) + getHost().hashCode();
+      hash = (37 * hash) + BIZ_FIELD_NUMBER;
+      hash = (53 * hash) + getBiz().hashCode();
+      hash = (37 * hash) + CLAZZ_FIELD_NUMBER;
+      hash = (53 * hash) + getClazz().hashCode();
+      hash = (37 * hash) + METHOD_FIELD_NUMBER;
+      hash = (53 * hash) + getMethod().hashCode();
+      hash = (37 * hash) + CONSUME_FIELD_NUMBER;
+      hash = (53 * hash) + getConsume().hashCode();
+      hash = (37 * hash) + DATETIME_FIELD_NUMBER;
+      hash = (53 * hash) + getDateTime().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cl.log.config.model.LogFactory.PerfLog parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.PerfLog parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.PerfLog parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.PerfLog parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.PerfLog parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cl.log.config.model.LogFactory.PerfLog parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.PerfLog parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.PerfLog parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.PerfLog parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.PerfLog parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cl.log.config.model.LogFactory.PerfLog parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cl.log.config.model.LogFactory.PerfLog parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cl.log.config.model.LogFactory.PerfLog prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code PerfLog}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:PerfLog)
+        com.cl.log.config.model.LogFactory.PerfLogOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cl.log.config.model.LogFactory.internal_static_PerfLog_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cl.log.config.model.LogFactory.internal_static_PerfLog_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cl.log.config.model.LogFactory.PerfLog.class, com.cl.log.config.model.LogFactory.PerfLog.Builder.class);
+      }
+
+      // Construct using com.cl.log.config.model.LogFactory.PerfLog.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        host_ = "";
+
+        biz_ = "";
+
+        clazz_ = "";
+
+        method_ = "";
+
+        consume_ = "";
+
+        dateTime_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cl.log.config.model.LogFactory.internal_static_PerfLog_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.PerfLog getDefaultInstanceForType() {
+        return com.cl.log.config.model.LogFactory.PerfLog.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.PerfLog build() {
+        com.cl.log.config.model.LogFactory.PerfLog result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cl.log.config.model.LogFactory.PerfLog buildPartial() {
+        com.cl.log.config.model.LogFactory.PerfLog result = new com.cl.log.config.model.LogFactory.PerfLog(this);
+        result.host_ = host_;
+        result.biz_ = biz_;
+        result.clazz_ = clazz_;
+        result.method_ = method_;
+        result.consume_ = consume_;
+        result.dateTime_ = dateTime_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cl.log.config.model.LogFactory.PerfLog) {
+          return mergeFrom((com.cl.log.config.model.LogFactory.PerfLog)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cl.log.config.model.LogFactory.PerfLog other) {
+        if (other == com.cl.log.config.model.LogFactory.PerfLog.getDefaultInstance()) return this;
+        if (!other.getHost().isEmpty()) {
+          host_ = other.host_;
+          onChanged();
+        }
+        if (!other.getBiz().isEmpty()) {
+          biz_ = other.biz_;
+          onChanged();
+        }
+        if (!other.getClazz().isEmpty()) {
+          clazz_ = other.clazz_;
+          onChanged();
+        }
+        if (!other.getMethod().isEmpty()) {
+          method_ = other.method_;
+          onChanged();
+        }
+        if (!other.getConsume().isEmpty()) {
+          consume_ = other.consume_;
+          onChanged();
+        }
+        if (!other.getDateTime().isEmpty()) {
+          dateTime_ = other.dateTime_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cl.log.config.model.LogFactory.PerfLog parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cl.log.config.model.LogFactory.PerfLog) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object host_ = "";
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public java.lang.String getHost() {
+        java.lang.Object ref = host_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          host_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getHostBytes() {
+        java.lang.Object ref = host_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          host_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public Builder setHost(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        host_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public Builder clearHost() {
+        
+        host_ = getDefaultInstance().getHost();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 主机
+       * </pre>
+       *
+       * <code>string host = 1;</code>
+       */
+      public Builder setHostBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        host_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object biz_ = "";
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 2;</code>
+       */
+      public java.lang.String getBiz() {
+        java.lang.Object ref = biz_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          biz_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBizBytes() {
+        java.lang.Object ref = biz_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          biz_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 2;</code>
+       */
+      public Builder setBiz(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        biz_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 2;</code>
+       */
+      public Builder clearBiz() {
+        
+        biz_ = getDefaultInstance().getBiz();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 业务组件
+       * </pre>
+       *
+       * <code>string biz = 2;</code>
+       */
+      public Builder setBizBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        biz_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object clazz_ = "";
+      /**
+       * <pre>
+       * 接口全类名
+       * </pre>
+       *
+       * <code>string clazz = 3;</code>
+       */
+      public java.lang.String getClazz() {
+        java.lang.Object ref = clazz_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          clazz_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 接口全类名
+       * </pre>
+       *
+       * <code>string clazz = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getClazzBytes() {
+        java.lang.Object ref = clazz_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          clazz_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 接口全类名
+       * </pre>
+       *
+       * <code>string clazz = 3;</code>
+       */
+      public Builder setClazz(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        clazz_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 接口全类名
+       * </pre>
+       *
+       * <code>string clazz = 3;</code>
+       */
+      public Builder clearClazz() {
+        
+        clazz_ = getDefaultInstance().getClazz();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 接口全类名
+       * </pre>
+       *
+       * <code>string clazz = 3;</code>
+       */
+      public Builder setClazzBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        clazz_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object method_ = "";
+      /**
+       * <pre>
+       * 方法
+       * </pre>
+       *
+       * <code>string method = 4;</code>
+       */
+      public java.lang.String getMethod() {
+        java.lang.Object ref = method_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          method_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 方法
+       * </pre>
+       *
+       * <code>string method = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMethodBytes() {
+        java.lang.Object ref = method_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          method_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 方法
+       * </pre>
+       *
+       * <code>string method = 4;</code>
+       */
+      public Builder setMethod(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        method_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 方法
+       * </pre>
+       *
+       * <code>string method = 4;</code>
+       */
+      public Builder clearMethod() {
+        
+        method_ = getDefaultInstance().getMethod();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 方法
+       * </pre>
+       *
+       * <code>string method = 4;</code>
+       */
+      public Builder setMethodBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        method_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object consume_ = "";
+      /**
+       * <pre>
+       * 耗时
+       * </pre>
+       *
+       * <code>string consume = 5;</code>
+       */
+      public java.lang.String getConsume() {
+        java.lang.Object ref = consume_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          consume_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 耗时
+       * </pre>
+       *
+       * <code>string consume = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getConsumeBytes() {
+        java.lang.Object ref = consume_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          consume_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 耗时
+       * </pre>
+       *
+       * <code>string consume = 5;</code>
+       */
+      public Builder setConsume(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        consume_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 耗时
+       * </pre>
+       *
+       * <code>string consume = 5;</code>
+       */
+      public Builder clearConsume() {
+        
+        consume_ = getDefaultInstance().getConsume();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 耗时
+       * </pre>
+       *
+       * <code>string consume = 5;</code>
+       */
+      public Builder setConsumeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        consume_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object dateTime_ = "";
+      /**
+       * <pre>
+       * 日期时间
+       * </pre>
+       *
+       * <code>string dateTime = 6;</code>
+       */
+      public java.lang.String getDateTime() {
+        java.lang.Object ref = dateTime_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          dateTime_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 日期时间
+       * </pre>
+       *
+       * <code>string dateTime = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDateTimeBytes() {
+        java.lang.Object ref = dateTime_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          dateTime_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 日期时间
+       * </pre>
+       *
+       * <code>string dateTime = 6;</code>
+       */
+      public Builder setDateTime(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        dateTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 日期时间
+       * </pre>
+       *
+       * <code>string dateTime = 6;</code>
+       */
+      public Builder clearDateTime() {
+        
+        dateTime_ = getDefaultInstance().getDateTime();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 日期时间
+       * </pre>
+       *
+       * <code>string dateTime = 6;</code>
+       */
+      public Builder setDateTimeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        dateTime_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:PerfLog)
+    }
+
+    // @@protoc_insertion_point(class_scope:PerfLog)
+    private static final com.cl.log.config.model.LogFactory.PerfLog DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cl.log.config.model.LogFactory.PerfLog();
+    }
+
+    public static com.cl.log.config.model.LogFactory.PerfLog getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<PerfLog>
+        PARSER = new com.google.protobuf.AbstractParser<PerfLog>() {
+      @java.lang.Override
+      public PerfLog parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new PerfLog(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<PerfLog> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PerfLog> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cl.log.config.model.LogFactory.PerfLog getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Log_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Log_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_NginxLog_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_NginxLog_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TomcatAccessLog_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TomcatAccessLog_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_BizLog_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_BizLog_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_PerfLog_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_PerfLog_fieldAccessorTable;
+
+  public static com.google.protobuf.Descriptors.FileDescriptor
+      getDescriptor() {
+    return descriptor;
+  }
+  private static  com.google.protobuf.Descriptors.FileDescriptor
+      descriptor;
+  static {
+    java.lang.String[] descriptorData = {
+      "\n\tLog.proto\"\377\001\n\003Log\022\037\n\010category\030\001 \001(\0162\r." +
+      "Log.Category\022\035\n\010nginxLog\030\002 \001(\0132\t.NginxLo" +
+      "gH\000\022+\n\017tomcatAccessLog\030\003 \001(\0132\020.TomcatAcc" +
+      "essLogH\000\022\031\n\006bizLog\030\004 \001(\0132\007.BizLogH\000\022\033\n\007p" +
+      "erfLog\030\005 \001(\0132\010.PerfLogH\000\"K\n\010Category\022\r\n\t" +
+      "nginx_log\020\000\022\025\n\021tomcat_access_log\020\001\022\013\n\007bi" +
+      "z_log\020\002\022\014\n\010perf_log\020\003B\006\n\004body\"\273\001\n\010NginxL" +
+      "og\022\014\n\004host\030\001 \001(\t\022\020\n\010dateTime\030\002 \001(\t\022\025\n\rre" +
+      "questMethod\030\003 \001(\t\022\022\n\nrequestURL\030\004 \001(\t\022\016\n" +
+      "\006params\030\005 \001(\t\022\022\n\nstatesCode\030\006 \001(\t\022\017\n\007con" +
+      "sume\030\007 \001(\005\022\021\n\tuserAgent\030\010 \001(\t\022\n\n\002ip\030\t \001(" +
+      "\t\022\020\n\010upstream\030\n \001(\t\"\331\001\n\017TomcatAccessLog\022" +
+      "\014\n\004host\030\001 \001(\t\022\017\n\007traceId\030\002 \001(\t\022\013\n\003biz\030\003 " +
+      "\001(\t\022\014\n\004port\030\004 \001(\005\022\016\n\006userId\030\005 \001(\t\022\020\n\010dat" +
+      "eTime\030\006 \001(\t\022\022\n\nstatesCode\030\007 \001(\t\022\017\n\007consu" +
+      "me\030\010 \001(\005\022\n\n\002ip\030\t \001(\t\022\025\n\rrequestMethod\030\n " +
+      "\001(\t\022\022\n\nrequestURL\030\013 \001(\t\022\016\n\006params\030\014 \001(\t\"" +
+      "\201\001\n\006BizLog\022\014\n\004host\030\001 \001(\t\022\013\n\003biz\030\002 \001(\t\022\017\n" +
+      "\007traceId\030\003 \001(\t\022\020\n\010dateTime\030\004 \001(\t\022\016\n\006thre" +
+      "ad\030\005 \001(\t\022\r\n\005level\030\006 \001(\t\022\r\n\005clazz\030\007 \001(\t\022\013" +
+      "\n\003msg\030\010 \001(\t\"f\n\007PerfLog\022\014\n\004host\030\001 \001(\t\022\013\n\003" +
+      "biz\030\002 \001(\t\022\r\n\005clazz\030\003 \001(\t\022\016\n\006method\030\004 \001(\t" +
+      "\022\017\n\007consume\030\005 \001(\t\022\020\n\010dateTime\030\006 \001(\tB\'\n\027c" +
+      "om.cl.log.config.modelB\nLogFactoryH\001b\006pr" +
+      "oto3"
+    };
+    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
+          public com.google.protobuf.ExtensionRegistry assignDescriptors(
+              com.google.protobuf.Descriptors.FileDescriptor root) {
+            descriptor = root;
+            return null;
+          }
+        };
+    com.google.protobuf.Descriptors.FileDescriptor
+      .internalBuildGeneratedFileFrom(descriptorData,
+        new com.google.protobuf.Descriptors.FileDescriptor[] {
+        }, assigner);
+    internal_static_Log_descriptor =
+      getDescriptor().getMessageTypes().get(0);
+    internal_static_Log_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Log_descriptor,
+        new java.lang.String[] { "Category", "NginxLog", "TomcatAccessLog", "BizLog", "PerfLog", "Body", });
+    internal_static_NginxLog_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_NginxLog_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_NginxLog_descriptor,
+        new java.lang.String[] { "Host", "DateTime", "RequestMethod", "RequestURL", "Params", "StatesCode", "Consume", "UserAgent", "Ip", "Upstream", });
+    internal_static_TomcatAccessLog_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_TomcatAccessLog_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TomcatAccessLog_descriptor,
+        new java.lang.String[] { "Host", "TraceId", "Biz", "Port", "UserId", "DateTime", "StatesCode", "Consume", "Ip", "RequestMethod", "RequestURL", "Params", });
+    internal_static_BizLog_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_BizLog_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_BizLog_descriptor,
+        new java.lang.String[] { "Host", "Biz", "TraceId", "DateTime", "Thread", "Level", "Clazz", "Msg", });
+    internal_static_PerfLog_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_PerfLog_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_PerfLog_descriptor,
+        new java.lang.String[] { "Host", "Biz", "Clazz", "Method", "Consume", "DateTime", });
+  }
+
+  // @@protoc_insertion_point(outer_class_scope)
 }

@@ -1,6 +1,5 @@
 package com.cl.log.agent.client;
 
-import com.cl.log.config.model.LogFactory;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -11,9 +10,6 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Async;
-
-import java.util.concurrent.BlockingQueue;
 
 /**
  * netty 客户端.

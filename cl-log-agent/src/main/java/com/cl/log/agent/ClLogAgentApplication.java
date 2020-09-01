@@ -2,6 +2,7 @@ package com.cl.log.agent;
 
 import com.cl.log.agent.config.LogFileConfig;
 import com.cl.log.agent.file.LineNoCacheRefreshJob;
+import com.cl.log.agent.task.LogTask;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
@@ -24,7 +25,7 @@ public class ClLogAgentApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ClLogAgentApplication.class, args);
-
+		// 初始化行号 刷新任务
 		initLineNoRefreshJob();
 		// 采用多线程的方式，启动 收集任务，有多少个需要收集的日志，就起多少个线程
 		int count = LogFileConfig.getLogFileCount();

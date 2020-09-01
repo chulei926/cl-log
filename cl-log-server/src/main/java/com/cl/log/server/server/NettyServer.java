@@ -20,7 +20,7 @@ public class NettyServer {
 
 	private String host;
 	private int port;
-	private String key;
+	private final String key;
 
 	public NettyServer(String host, int port) {
 		this.host = host;
@@ -46,11 +46,11 @@ public class NettyServer {
 
 					}
 				}); // 创建一个通道初始化对象
-		logger.info(">>>>> server " + host + ":" + port + " is ready <<<<<");
+		logger.info(">>>>> server " + key + " is ready <<<<<");
 		try {
 			// 启动
 			ChannelFuture channelFuture = bootstrap.bind(port).sync();
-			logger.info(">>>>> server " + host + ":" + port + " is ok <<<<<");
+			logger.info(">>>>> server " + key + " is ok <<<<<");
 			// 注册服务
 			ZkRegister.getInstance().register(this.key, this.key);
 			channelFuture.channel().closeFuture().sync();

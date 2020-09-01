@@ -102,22 +102,7 @@ public class BizLog extends BasicAttr implements ILog, Serializable {
 
 	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
-		if (StringUtils.isBlank(this.dateTime)) {
-			return;
-		}
-		final LocalDateTime dt = LocalDateTime.parse(this.dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-		this.setYear(String.valueOf(dt.getYear()));
-		this.setMonth(String.valueOf(dt.getMonth()));
-		this.setDay(String.valueOf(dt.getDayOfMonth()));
-		this.setHour(String.valueOf(dt.getHour()));
-		this.setMinute(String.valueOf(dt.getMinute()));
-		this.setSecond(String.valueOf(dt.getSecond()));
-
-		this.setDate4Month(dt.format(DateTimeFormatter.ofPattern("yyyy-MM")));
-		this.setDate4Day(dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-		this.setDate4Hour(dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH")));
-		this.setDate4Minute(dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-		this.setDate4Second(dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+		super.setDateTime(this.dateTime);
 	}
 
 	public String getThread() {

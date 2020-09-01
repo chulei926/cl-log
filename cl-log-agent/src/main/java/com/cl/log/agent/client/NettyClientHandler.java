@@ -1,13 +1,10 @@
 package com.cl.log.agent.client;
 
-import com.cl.log.config.model.LogFactory;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Random;
-import java.util.concurrent.BlockingQueue;
 
 /**
  * 客户端消息处理.

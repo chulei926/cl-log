@@ -24,6 +24,8 @@ import java.util.List;
  */
 public class EsIndex implements Serializable {
 
+	private static final long serialVersionUID = 2366449256299348711L;
+
 	private String name;
 	private Mapping mapping;
 
@@ -45,6 +47,7 @@ public class EsIndex implements Serializable {
 
 	public static class Mapping implements Serializable {
 
+		private static final long serialVersionUID = -7517642952922568595L;
 		private final List<Prop> props = Lists.newArrayList();
 
 		@Override
@@ -55,6 +58,7 @@ public class EsIndex implements Serializable {
 
 	public static class Prop implements Serializable {
 
+		private static final long serialVersionUID = -2303488773655320621L;
 		private String name;
 		private String type;
 		private String format;
