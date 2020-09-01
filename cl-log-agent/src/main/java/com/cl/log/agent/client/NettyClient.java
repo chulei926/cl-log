@@ -11,6 +11,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 
 import java.util.concurrent.BlockingQueue;
 
@@ -26,15 +27,16 @@ public class NettyClient {
 	private String host;
 	private int port;
 	private String key;
+	private String id;
 
-	public NettyClient(String host, int port) {
+	public NettyClient(String id, String host, int port) {
+		this.id = id;
 		this.host = host;
 		this.port = port;
 		this.key = String.format("%s:%s", this.host, this.port);
 	}
 
-
-	public void start(LogFactory.Log log) {
+	public void start() {
 		final NioEventLoopGroup group = new NioEventLoopGroup();
 		try {
 			final Bootstrap bootstrap = new Bootstrap();
@@ -44,14 +46,15 @@ public class NettyClient {
 						protected void initChannel(SocketChannel ch) throws Exception {
 							final ChannelPipeline pipeline = ch.pipeline();
 							pipeline.addLast("encoder", new ProtobufEncoder());
-							pipeline.addLast(new NettyClientHandler(log));
+							pipeline.addLast(new NettyClientHandler(id));
+							pipeline.fireChannelInactive();
 						}
 					});
 			final ChannelFuture channelFuture = bootstrap.connect(this.host, this.port).sync();
 			logger.info("客户端 启动 成功");
 			channelFuture.channel().closeFuture().sync();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("客户端 启动 失败", e);
 		} finally {
 			group.shutdownGracefully();
 		}

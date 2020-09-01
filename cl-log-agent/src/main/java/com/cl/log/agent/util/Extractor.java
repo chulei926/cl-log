@@ -16,11 +16,10 @@ public interface Extractor {
 
 		@Override
 		public LogFactory.Log extract(String content) {
-			LogFactory.Log log = LogFactory.Log.newBuilder().setCategory(LogFactory.Log.Category.biz_log)
+			return LogFactory.Log.newBuilder().setCategory(LogFactory.Log.Category.biz_log)
 					.setBizLog(
 							LogFactory.BizLog.newBuilder().setHost("1").setBiz("业务日志").setMsg("出现异常了").build()
 					).build();
-			return null;
 		}
 	}
 

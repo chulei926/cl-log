@@ -21,6 +21,7 @@ public class TaskDistributor implements Runnable {
 
 	public TaskDistributor(LogFactory.Log log) {
 		this.log = log;
+		logger.warn("收到消息：{}", this.log);
 	}
 
 	@Override

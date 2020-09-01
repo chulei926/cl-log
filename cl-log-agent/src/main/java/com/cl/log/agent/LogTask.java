@@ -1,5 +1,6 @@
 package com.cl.log.agent;
 
+import com.cl.log.agent.client.ChannelHandlerContextHolder;
 import com.cl.log.agent.client.NettyClient;
 import com.cl.log.agent.config.LogFileConfig;
 import com.cl.log.agent.file.FileListener;
@@ -7,15 +8,21 @@ import com.cl.log.agent.util.Extractor;
 import com.cl.log.agent.util.LogFactoryUtils;
 import com.cl.log.config.model.LogFactory;
 import com.cl.log.config.register.ZkRegister;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandlerContext;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.monitor.FileAlterationMonitor;
 import org.apache.commons.io.monitor.FileAlterationObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.util.DigestUtils;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -35,17 +42,34 @@ public class LogTask implements Runnable {
 	private final String cacheKey;
 	private long lineNo;
 
+	private NettyClient client;
+	private String nettyClientId;
+
 	public LogTask(LogFileConfig.LogFileCfg config) {
+		nettyClientId = UUID.randomUUID().toString();
 		this.config = config;
 		extractor = LogFactoryUtils.parseExtractor(this.config.getType());
-		cacheKey = this.config.getPath();
+//		cacheKey = this.config.getPath();
+		cacheKey = DigestUtils.md5DigestAsHex(this.config.getPath().getBytes());
 		initLineNo();
+		initNettyClient();
+		System.out.println("》》》》》》》》》》 客户端");
+	}
+
+	public void initNettyClient() {
+		String availableUrl = ZkRegister.getInstance().getAvailableUrl();
+		client = new NettyClient(nettyClientId, availableUrl.split(":")[0], Integer.parseInt(availableUrl.split(":")[1]));
+		ExecutorService executorService = Executors.newSingleThreadExecutor();
+		executorService.execute(() -> {
+			client.start();
+		});
 	}
 
 	private void initLineNo() {
 		Object o = ZkRegister.getInstance().get(cacheKey);
 		if (o == null) {
 			lineNo = 0L;
+			ZkRegister.getInstance().set(cacheKey, lineNo);
 			return;
 		}
 		lineNo = (long) o;
@@ -91,14 +115,17 @@ public class LogTask implements Runnable {
 	 * @param file file.
 	 */
 	private void parseFile(File file) {
-
-
-
-		LogFactory.Log log = extractor.extract(null);
-		String availableUrl = ZkRegister.getInstance().getAvailableUrl();
-		NettyClient client = new NettyClient(availableUrl.split(":")[0], Integer.parseInt(availableUrl.split(":")[1]));
-		client.start(log);
-
+		LogFactory.Log log = extractor.extract("你好");
+		ChannelHandlerContext channelHandlerContext = ChannelHandlerContextHolder.getChannelHandlerContext(nettyClientId);
+		if (null != channelHandlerContext){
+			Channel channel = channelHandlerContext.channel();
+			channel.writeAndFlush(log);
+			return;
+		}
+		initNettyClient();
+		channelHandlerContext = ChannelHandlerContextHolder.getChannelHandlerContext(Thread.currentThread().getName());
+		Channel channel = channelHandlerContext.channel();
+		channel.writeAndFlush(log);
 	}
 
 }

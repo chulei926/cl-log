@@ -10,6 +10,7 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.KeeperException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -78,6 +79,9 @@ public class ZkRegister extends AbstractRegister {
 		final PathChildrenCache pathChildrenCache = new PathChildrenCache(client, "/server", true);
 		final PathChildrenCacheListener childrenCacheListener = (client, event) -> {
 			ChildData data = event.getData();
+			if (data == null){
+				return;
+			}
 			String key = data.getPath().replace(SERVER_PREFIX, "");
 			Object value = byte2Obj(data.getData());
 			switch (event.getType()) {
@@ -180,7 +184,7 @@ public class ZkRegister extends AbstractRegister {
 		}
 		if (urlsMap.size() > 0) {
 			// 放入缓存
-			urlsMap.forEach(this::register);
+			urlsMap.forEach(super::register);
 		}
 		return Lists.newArrayList(urlsMap.keySet());
 	}
@@ -209,6 +213,8 @@ public class ZkRegister extends AbstractRegister {
 		try {
 			final byte[] bytes = client.getData().forPath(CONFIG_PREFIX + key);
 			return byte2Obj(bytes);
+		} catch (KeeperException.NoNodeException e) {
+			return null; // 不存在当前节点
 		} catch (Exception e) {
 			throw new RuntimeException("获取值异常！", e);
 		}

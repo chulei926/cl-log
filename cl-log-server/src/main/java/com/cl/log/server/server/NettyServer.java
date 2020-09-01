@@ -52,7 +52,7 @@ public class NettyServer {
 			ChannelFuture channelFuture = bootstrap.bind(port).sync();
 			logger.info(">>>>> server " + host + ":" + port + " is ok <<<<<");
 			// 注册服务
-			ZkRegister.getInstance().register(this.key, this);
+			ZkRegister.getInstance().register(this.key, this.key);
 			channelFuture.channel().closeFuture().sync();
 		} catch (Exception e) {
 			logger.error("Netty服务器异常!", e);

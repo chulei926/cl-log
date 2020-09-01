@@ -16,15 +16,20 @@ import java.util.concurrent.BlockingQueue;
  */
 public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
-	private final LogFactory.Log log;
+	private String id;
 
-	public NettyClientHandler(LogFactory.Log log) {
-		this.log = log;
+	public NettyClientHandler(String id) {
+		this.id = id;
+	}
+
+	@Override
+	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+		ChannelHandlerContextHolder.register(id, ctx);
 	}
 
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
-		ctx.channel().writeAndFlush(this.log);
+//		ctx.channel().writeAndFlush(log);
 	}
 
 	@Override
