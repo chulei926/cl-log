@@ -22,10 +22,10 @@ import static org.quartz.TriggerBuilder.newTrigger;
  *
  * @author leichu 2020-06-23.
  */
-//@Component
+@Component
 public class TaskCenter {
 
-	protected static final BlockingQueue<ILog> LOG_QUEUE = new LinkedBlockingQueue();
+	protected static final LinkedBlockingQueue<ILog> LOG_QUEUE = new LinkedBlockingQueue<>();
 
 	static {
 		try {
@@ -43,9 +43,12 @@ public class TaskCenter {
 	}
 
 	public void put(ILog log) {
+		if (null == log){
+			return;
+		}
 		try {
 			LOG_QUEUE.put(log);
-		} catch (InterruptedException ex) {
+		} catch (Exception ex) {
 			throw new RuntimeException("向队列中添加元素出现异常！", ex);
 		}
 	}

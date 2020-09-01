@@ -19,6 +19,8 @@ public class BizLog extends BasicAttr implements ILog, Serializable {
 
 	public static final String INDEX_PREFIX = "biz_log-";
 
+	private static final long serialVersionUID = -452660575530931163L;
+
 	private String host;
 	private String biz;
 	private String traceId;
@@ -43,9 +45,6 @@ public class BizLog extends BasicAttr implements ILog, Serializable {
 
 	public Map<String, ?> convert() {
 		Map<String, Object> result = Maps.newHashMap();
-		if (null == this) {
-			return result;
-		}
 		result.put("host", StringUtils.isBlank(this.host) ? "" : this.host);
 		result.put("biz", StringUtils.isBlank(this.biz) ? "" : this.biz);
 		result.put("traceId", StringUtils.isBlank(this.traceId) ? "" : this.traceId);

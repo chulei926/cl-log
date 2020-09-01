@@ -11,6 +11,7 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
+import org.apache.zookeeper.data.Stat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,7 +80,7 @@ public class ZkRegister extends AbstractRegister {
 		final PathChildrenCache pathChildrenCache = new PathChildrenCache(client, "/server", true);
 		final PathChildrenCacheListener childrenCacheListener = (client, event) -> {
 			ChildData data = event.getData();
-			if (data == null){
+			if (data == null) {
 				return;
 			}
 			String key = data.getPath().replace(SERVER_PREFIX, "");
@@ -196,8 +197,15 @@ public class ZkRegister extends AbstractRegister {
 	 * @param value value.
 	 */
 	public void set(String key, Object value) {
+		String path = CONFIG_PREFIX + key;
 		try {
-			client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(CONFIG_PREFIX + key, obj2Byte(value));
+			//检测是否存在该路径。
+			Stat stat = client.checkExists().forPath(path);
+			if (null == stat) {
+				client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(path, obj2Byte(value));
+				return;
+			}
+			client.setData().forPath(path, obj2Byte(value));
 		} catch (Exception e) {
 			throw new RuntimeException("设置值异常！", e);
 		}

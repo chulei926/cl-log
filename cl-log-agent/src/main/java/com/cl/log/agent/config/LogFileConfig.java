@@ -9,6 +9,11 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * 日志文件配置类.
+ *
+ * @author leichu 2020-08-26.
+ */
 public class LogFileConfig {
 
 	private static final List<LogFileCfg> configs = Lists.newArrayList();
@@ -51,7 +56,7 @@ public class LogFileConfig {
 		return configs;
 	}
 
-	public static int getLogFileCount(){
+	public static int getLogFileCount() {
 		return configs.size();
 	}
 

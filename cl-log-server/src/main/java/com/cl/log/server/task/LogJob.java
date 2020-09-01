@@ -21,9 +21,9 @@ public class LogJob implements Job {
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		System.out.println(Thread.currentThread().getName() + " >>>>> " + LocalDateTime.now());
+//		System.out.println(Thread.currentThread().getName() + " >>>>> " + LocalDateTime.now());
 		// TODO 处理缓冲队列中的剩余数据
-		System.out.println(TaskCenter.LOG_QUEUE.size());
+//		System.out.println(TaskCenter.LOG_QUEUE.size());
 		if (TaskCenter.LOG_QUEUE.size() < 1) {
 			return;
 		}

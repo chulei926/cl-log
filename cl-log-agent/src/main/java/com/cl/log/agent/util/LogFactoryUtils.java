@@ -1,5 +1,9 @@
 package com.cl.log.agent.util;
 
+import com.cl.log.agent.extractor.AccessExtractor;
+import com.cl.log.agent.extractor.BizExtractor;
+import com.cl.log.agent.extractor.Extractor;
+import com.cl.log.agent.extractor.PerfExtractor;
 import com.google.common.collect.Maps;
 
 import java.util.Map;
@@ -14,18 +18,18 @@ public class LogFactoryUtils {
 	static Map<String, Class<?>> logExtractorMap = Maps.newConcurrentMap();
 
 	static {
-		logExtractorMap.put("biz", Extractor.BizExtractor.class);
-		logExtractorMap.put("perf", Extractor.PerfExtractor.class);
-		logExtractorMap.put("access", Extractor.AccessExtractor.class);
+		logExtractorMap.put("biz", BizExtractor.class);
+		logExtractorMap.put("perf", PerfExtractor.class);
+		logExtractorMap.put("access", AccessExtractor.class);
 	}
 
-	public static Extractor parseExtractor(String type){
-		if (!logExtractorMap.containsKey(type)){
+	public static Extractor parseExtractor(String type) {
+		if (!logExtractorMap.containsKey(type)) {
 			return null;
 		}
 		Class<?> clazz = logExtractorMap.get(type);
 		try {
-			return  (Extractor) clazz.newInstance();
+			return (Extractor) clazz.newInstance();
 		} catch (Exception e) {
 			throw new RuntimeException("创建日志提取器实例异常！", e);
 		}

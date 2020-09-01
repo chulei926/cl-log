@@ -3,8 +3,9 @@ package com.cl.log.agent;
 import com.cl.log.agent.client.ChannelHandlerContextHolder;
 import com.cl.log.agent.client.NettyClient;
 import com.cl.log.agent.config.LogFileConfig;
+import com.cl.log.agent.extractor.Extractor;
 import com.cl.log.agent.file.FileListener;
-import com.cl.log.agent.util.Extractor;
+import com.cl.log.agent.file.LineNoCacheRefreshJob;
 import com.cl.log.agent.util.LogFactoryUtils;
 import com.cl.log.config.model.LogFactory;
 import com.cl.log.config.register.ZkRegister;
@@ -15,17 +16,20 @@ import org.apache.commons.io.monitor.FileAlterationMonitor;
 import org.apache.commons.io.monitor.FileAlterationObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Async;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.DigestUtils;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 日志收集任务.
@@ -40,46 +44,28 @@ public class LogTask implements Runnable {
 	private final Extractor extractor;
 
 	private final String cacheKey;
-	private long lineNo;
 
 	private NettyClient client;
-	private String nettyClientId;
+	private final String nettyClientId;
 
 	public LogTask(LogFileConfig.LogFileCfg config) {
 		nettyClientId = UUID.randomUUID().toString();
 		this.config = config;
 		extractor = LogFactoryUtils.parseExtractor(this.config.getType());
-//		cacheKey = this.config.getPath();
 		cacheKey = DigestUtils.md5DigestAsHex(this.config.getPath().getBytes());
-		initLineNo();
 		initNettyClient();
-		System.out.println("》》》》》》》》》》 客户端");
 	}
 
 	public void initNettyClient() {
 		String availableUrl = ZkRegister.getInstance().getAvailableUrl();
 		client = new NettyClient(nettyClientId, availableUrl.split(":")[0], Integer.parseInt(availableUrl.split(":")[1]));
 		ExecutorService executorService = Executors.newSingleThreadExecutor();
-		executorService.execute(() -> {
-			client.start();
-		});
+		executorService.execute(() -> client.start());
 	}
 
-	private void initLineNo() {
-		Object o = ZkRegister.getInstance().get(cacheKey);
-		if (o == null) {
-			lineNo = 0L;
-			ZkRegister.getInstance().set(cacheKey, lineNo);
-			return;
-		}
-		lineNo = (long) o;
-	}
-
-	private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
 
 	@Override
 	public void run() {
-		refreshLineCache();
 		Path curPath = Paths.get(config.getPath());
 		FileAlterationObserver observer = new FileAlterationObserver(
 				curPath.getParent().toString(),
@@ -98,11 +84,6 @@ public class LogTask implements Runnable {
 		}
 	}
 
-	private void refreshLineCache() {
-		scheduledExecutorService.scheduleAtFixedRate(() -> ZkRegister.getInstance().set(cacheKey, lineNo), 0, 1, TimeUnit.SECONDS);
-	}
-
-
 	/**
 	 * 解析文件.
 	 *
@@ -115,17 +96,24 @@ public class LogTask implements Runnable {
 	 * @param file file.
 	 */
 	private void parseFile(File file) {
-		LogFactory.Log log = extractor.extract("你好");
-		ChannelHandlerContext channelHandlerContext = ChannelHandlerContextHolder.getChannelHandlerContext(nettyClientId);
-		if (null != channelHandlerContext){
-			Channel channel = channelHandlerContext.channel();
-			channel.writeAndFlush(log);
-			return;
+		Long lineNo = LineNoCacheRefreshJob.getLineNo(cacheKey);
+		List<LogFactory.Log> logs = null;
+		Path path = file.toPath();
+		try (Stream<String> lines = Files.lines(path)) {
+			List<String> line = lines.skip(lineNo).collect(Collectors.toList());
+			System.out.println(line);
+			logs = extractor.extract(line);
+			if (!CollectionUtils.isEmpty(line)) {
+				lineNo += line.size();
+				LineNoCacheRefreshJob.refresh(cacheKey, lineNo);
+			}
+		} catch (Exception e) {
+			logger.error("文件解析异常！", e);
 		}
-		initNettyClient();
-		channelHandlerContext = ChannelHandlerContextHolder.getChannelHandlerContext(Thread.currentThread().getName());
+		ChannelHandlerContext channelHandlerContext = ChannelHandlerContextHolder.getChannelHandlerContext(nettyClientId);
 		Channel channel = channelHandlerContext.channel();
+		LogFactory.Log log = extractor.testLog();
 		channel.writeAndFlush(log);
+		System.out.println("日志已发送");
 	}
-
 }

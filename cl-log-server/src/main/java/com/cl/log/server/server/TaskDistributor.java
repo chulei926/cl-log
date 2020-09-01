@@ -17,7 +17,7 @@ public class TaskDistributor implements Runnable {
 
 	private static final Logger logger = LoggerFactory.getLogger(TaskDistributor.class);
 
-	private LogFactory.Log log;
+	private final LogFactory.Log log;
 
 	public TaskDistributor(LogFactory.Log log) {
 		this.log = log;
