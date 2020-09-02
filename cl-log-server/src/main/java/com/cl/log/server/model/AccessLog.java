@@ -1,7 +1,5 @@
 package com.cl.log.server.model;
 
-import com.cl.log.config.model.LogFactory;
-
 import java.io.Serializable;
 import java.util.Map;
 
@@ -10,7 +8,7 @@ import java.util.Map;
  *
  * @author leichu 2020-09-01.
  */
-public class AccessLog extends BasicAttr implements ILog, Serializable {
+public class AccessLog extends BasicAttr implements Serializable {
 
 	private static final long serialVersionUID = 3270966166591778160L;
 
@@ -25,10 +23,6 @@ public class AccessLog extends BasicAttr implements ILog, Serializable {
 	private String ip;
 	private String requestMethod;
 	private String requestURL;
-
-	public static AccessLog convert(LogFactory.TomcatAccessLog accessLog) {
-		return null;
-	}
 
 	public Map<String, ?> convert() {
 		return null;

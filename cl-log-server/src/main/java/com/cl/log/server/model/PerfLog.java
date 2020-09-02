@@ -9,7 +9,7 @@ import java.io.Serializable;
  *
  * @author leichu 2020-06-23.
  */
-public class PerfLog extends BasicAttr implements ILog, Serializable {
+public class PerfLog extends BasicAttr implements Serializable {
 
 	private static final long serialVersionUID = 8215972064986858821L;
 

@@ -1,13 +1,11 @@
 package com.cl.log.server.model;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cl.log.config.model.LogFactory;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 /**
@@ -15,7 +13,7 @@ import java.util.Map;
  *
  * @author leichu 2020-06-23.
  */
-public class BizLog extends BasicAttr implements ILog, Serializable {
+public class BizLog extends BasicAttr implements Serializable {
 
 	public static final String INDEX_PREFIX = "biz_log-";
 
@@ -37,10 +35,6 @@ public class BizLog extends BasicAttr implements ILog, Serializable {
 		System.out.println(time.getMonth());
 		System.out.println(time.getMonthValue());
 		System.out.println(time.getDayOfMonth());
-	}
-
-	public static BizLog convert(LogFactory.BizLog bzLog) {
-		return null;
 	}
 
 	public Map<String, ?> convert() {

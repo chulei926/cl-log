@@ -1,4 +1,4 @@
-package com.cl.log.server.task;
+package com.cl.log.server.service;
 
 import com.cl.log.server.model.BizLog;
 import com.cl.log.server.persistence.BizLogRepository;
@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Component
-public class BizLogTask {
+public class BizLogService {
 
 	@Resource
 	private BizLogRepository bizLogRepository;

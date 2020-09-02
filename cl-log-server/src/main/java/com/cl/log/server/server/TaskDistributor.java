@@ -31,17 +31,17 @@ public class TaskDistributor implements Runnable {
 	@Override
 	public void run() {
 		final LogFactory.Log.Category category = this.log.getCategory();
+		TaskCenter taskCenter = SpringContextUtil.getBean(TaskCenter.class);
 		switch (category) {
 			case biz_log:
-				SpringContextUtil.getBean(TaskCenter.class).put(BizLog.convert(this.log.getBizLog()));
+				taskCenter.put2BizLogQueue(this.log.getBizLog());
 				break;
 			case perf_log:
-				final LogFactory.PerfLog perfLog = this.log.getPerfLog();
-				SpringContextUtil.getBean(TaskCenter.class).put(PerfLog.convert(perfLog));
+				taskCenter.put2PerfLogQueue(this.log.getPerfLog());
 				break;
 			case tomcat_access_log:
-				final LogFactory.TomcatAccessLog accessLog = this.log.getTomcatAccessLog();
-				SpringContextUtil.getBean(TaskCenter.class).put(AccessLog.convert(accessLog));
+				taskCenter.put2AccessLogQueue(this.log.getTomcatAccessLog());
+				break;
 			default:
 				logger.error("日志类型异常！{}", category);
 				break;
