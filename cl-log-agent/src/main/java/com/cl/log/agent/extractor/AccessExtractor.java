@@ -4,12 +4,9 @@ import com.cl.log.config.model.LogFactory;
 import com.cl.log.config.utils.NetUtils;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 
-import java.io.File;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -37,12 +34,6 @@ import java.util.List;
  */
 public class AccessExtractor implements Extractor {
 
-	public static void main(String[] args) throws Exception {
-		List<String> list = FileUtils.readLines(new File("E:\\logs\\tomcat-access.log"), StandardCharsets.UTF_8);
-		Extractor extractor = new AccessExtractor();
-		extractor.extract(list);
-	}
-
 	@Override
 	public List<LogFactory.Log> extract(List<String> content) {
 		List<LogFactory.Log> logs = Lists.newArrayList();
@@ -53,6 +44,9 @@ public class AccessExtractor implements Extractor {
 		LogFactory.Log log;
 		String ip = NetUtils.getIp();
 		for (String line : content) {
+			if (StringUtils.isBlank(line)) {
+				continue;
+			}
 			List<String> split = splitter.splitToList(line);
 			log = LogFactory.Log.newBuilder()
 					.setCategory(LogFactory.Log.Category.tomcat_access_log)

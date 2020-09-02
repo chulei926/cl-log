@@ -8,6 +8,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
+import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,16 +21,16 @@ public class NettyClient {
 
 	private static final Logger logger = LoggerFactory.getLogger(NettyClient.class);
 
-	private String host;
-	private int port;
-	private String key;
-	private String id;
+	private final String host;
+	private final String ip;
+	private final int port;
+	private final String id;
 
-	public NettyClient(String id, String host, int port) {
+	public NettyClient(String id, String ip, int port) {
 		this.id = id;
-		this.host = host;
+		this.ip = ip;
 		this.port = port;
-		this.key = String.format("%s:%s", this.host, this.port);
+		this.host = String.format("%s:%s", ip, port);
 	}
 
 	public void start() {
@@ -41,44 +42,19 @@ public class NettyClient {
 						@Override
 						protected void initChannel(SocketChannel ch) throws Exception {
 							final ChannelPipeline pipeline = ch.pipeline();
+							pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
 							pipeline.addLast("encoder", new ProtobufEncoder());
 							pipeline.addLast(new NettyClientHandler(id));
 							pipeline.fireChannelInactive();
 						}
 					});
-			final ChannelFuture channelFuture = bootstrap.connect(this.host, this.port).sync();
-			logger.info("客户端 启动 成功");
+			final ChannelFuture channelFuture = bootstrap.connect(this.ip, this.port).sync();
+			logger.info("Netty客户端连接服务器[{}] 启动 成功", this.host);
 			channelFuture.channel().closeFuture().sync();
 		} catch (Exception e) {
-			logger.error("客户端 启动 失败", e);
+			logger.error("Netty客户端连接服务器[{}] 启动 失败", this.host, e);
 		} finally {
 			group.shutdownGracefully();
 		}
-
-
-	}
-
-	public String getHost() {
-		return host;
-	}
-
-	public void setHost(String host) {
-		this.host = host;
-	}
-
-	public int getPort() {
-		return port;
-	}
-
-	public void setPort(int port) {
-		this.port = port;
-	}
-
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
 	}
 }

@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
-	private String id;
+	private final String id;
 
 	public NettyClientHandler(String id) {
 		this.id = id;

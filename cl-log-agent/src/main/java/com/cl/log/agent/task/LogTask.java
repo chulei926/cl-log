@@ -24,6 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -96,7 +97,7 @@ public class LogTask implements Runnable {
 	 */
 	private void parseFile(File file) {
 		Long lineNo = LineNoCacheRefreshJob.getLineNo(cacheKey);
-		List<LogFactory.Log> logs = null;
+		List<LogFactory.Log> logs;
 		Path path = file.toPath();
 		try (Stream<String> linesStream = Files.lines(path)) {
 			List<String> lines = linesStream.skip(lineNo).collect(Collectors.toList());
@@ -114,7 +115,7 @@ public class LogTask implements Runnable {
 		}
 		ChannelHandlerContext channelHandlerContext = ChannelHandlerContextHolder.getChannelHandlerContext(nettyClientId);
 		Channel channel = channelHandlerContext.channel();
-		logs.forEach(channel::writeAndFlush);
+		logs.stream().filter(Objects::nonNull).forEach(channel::writeAndFlush);
 		logger.info("日志已发送，总量：{}", logs.size());
 	}
 }
