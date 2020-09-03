@@ -1,6 +1,7 @@
 package com.cl.log.server.model;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cl.log.server.persistence.AbstractRepository;
 import com.google.common.collect.Lists;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -28,6 +29,13 @@ public class EsIndex implements Serializable {
 
 	private String name;
 	private Mapping mapping;
+
+	public EsIndex() {
+	}
+
+	public EsIndex(String name) {
+		this.name = name;
+	}
 
 	public String getName() {
 		return name;
@@ -120,18 +128,26 @@ public class EsIndex implements Serializable {
 		}
 	}
 
+	public static void main(String[] args) {
+		String path = AbstractRepository.class.getResource("/").getPath();
+		path = path.startsWith("/") ? path.substring(1) : path;
+		xml2Index(path + "mapping_access.xml");
+	}
+
 	public static EsIndex xml2Index(String xmlPath) {
 		EsIndex index = new EsIndex();
-		Mapping mapping = new Mapping();
 		Document doc;
 		try {
 			doc = DocumentHelper.parseText(FileUtils.readFileToString(new File(xmlPath), StandardCharsets.UTF_8));
 			Element root = doc.getRootElement();
 			index.setName(root.attributeValue("name"));
 			List<Element> elements = root.elements();
+			List<Prop> props = Lists.newArrayList();
 			if (!CollectionUtils.isEmpty(elements)) {
-				recursiveSubElement(mapping.props, elements);
+				recursiveSubElement(props, elements);
 			}
+			Mapping mapping = new Mapping();
+			mapping.props.addAll(props);
 			index.setMapping(mapping);
 		} catch (Exception e) {
 			throw new RuntimeException(String.format("解析xml[%s]异常！", xmlPath), e);
@@ -187,9 +203,9 @@ public class EsIndex implements Serializable {
 	 * 参考：https://www.elastic.co/guide/en/elasticsearch/client/java-rest/7.x/java-rest-high-put-mapping.html
 	 * </p>
 	 *
-	 * @param builder
-	 * @param children
-	 * @throws IOException
+	 * @param builder  builder.
+	 * @param children children.
+	 * @throws IOException IOException.
 	 */
 	private static void build(XContentBuilder builder, List<Prop> children) throws IOException {
 		builder.startObject("properties");

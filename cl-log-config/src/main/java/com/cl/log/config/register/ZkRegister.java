@@ -202,7 +202,7 @@ public class ZkRegister extends AbstractRegister {
 			//检测是否存在该路径。
 			Stat stat = client.checkExists().forPath(path);
 			if (null == stat) {
-				client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(path, obj2Byte(value));
+				client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path, obj2Byte(value));
 				return;
 			}
 			client.setData().forPath(path, obj2Byte(value));

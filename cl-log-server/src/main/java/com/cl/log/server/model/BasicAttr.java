@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 /**
  * 基础指标.
@@ -33,6 +34,12 @@ public class BasicAttr implements Serializable {
 	public BasicAttr() {
 	}
 
+	public static void main(String[] args) {
+		String dt = "2020-09-0106:42:49.361";
+		BasicAttr attr = new BasicAttr();
+		attr.setDateTime(dt);
+	}
+
 	public String getDateTime() {
 		return dateTime;
 	}
@@ -42,9 +49,11 @@ public class BasicAttr implements Serializable {
 		if (StringUtils.isBlank(this.dateTime)) {
 			return;
 		}
+		this.dateTime = this.dateTime.replaceAll("[.]\\d+$", "");
+		this.dateTime = this.dateTime.substring(0, 10) + " " + this.dateTime.substring(10);
 		final LocalDateTime dt = LocalDateTime.parse(this.dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		this.setYear(String.valueOf(dt.getYear()));
-		this.setMonth(String.valueOf(dt.getMonth()));
+		this.setMonth(String.valueOf(dt.getMonth().getValue()));
 		this.setDay(String.valueOf(dt.getDayOfMonth()));
 		this.setHour(String.valueOf(dt.getHour()));
 		this.setMinute(String.valueOf(dt.getMinute()));
@@ -55,6 +64,22 @@ public class BasicAttr implements Serializable {
 		this.setDate4Hour(dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH")));
 		this.setDate4Minute(dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
 		this.setDate4Second(dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+	}
+
+	public void add2Map(Map<String, Object> result) {
+		result.put("year", StringUtils.isBlank(this.year) ? "" : this.year);
+		result.put("month", StringUtils.isBlank(this.month) ? "" : this.month);
+		result.put("day", StringUtils.isBlank(this.day) ? "" : this.day);
+
+		result.put("hour", StringUtils.isBlank(this.hour) ? "" : this.hour);
+		result.put("minute", StringUtils.isBlank(this.minute) ? "" : this.minute);
+		result.put("second", StringUtils.isBlank(this.second) ? "" : this.second);
+
+		result.put("date4Month", StringUtils.isBlank(this.date4Month) ? "" : this.date4Month);
+		result.put("date4Day", StringUtils.isBlank(this.date4Day) ? "" : this.date4Day);
+		result.put("date4Hour", StringUtils.isBlank(this.date4Hour) ? "" : this.date4Hour);
+		result.put("date4Minute", StringUtils.isBlank(this.date4Minute) ? "" : this.date4Minute);
+		result.put("date4Second", StringUtils.isBlank(this.date4Second) ? "" : this.date4Second);
 	}
 
 	public String getYear() {

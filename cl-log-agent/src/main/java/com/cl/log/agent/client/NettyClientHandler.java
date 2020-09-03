@@ -3,6 +3,8 @@ package com.cl.log.agent.client;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 
@@ -13,6 +15,8 @@ import java.nio.charset.StandardCharsets;
  */
 public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
+	private static final Logger logger = LoggerFactory.getLogger(NettyClientHandler.class);
+
 	private final String id;
 
 	public NettyClientHandler(String id) {
@@ -21,18 +25,19 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
 	@Override
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+		// 接收到客户端消息
 		ChannelHandlerContextHolder.register(id, ctx);
 	}
 
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
-//		ctx.channel().writeAndFlush(log);
+
 	}
 
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 		ByteBuf byteBuf = (ByteBuf) msg;
-		System.out.println("服务器回复的消息：" + byteBuf.toString(StandardCharsets.UTF_8));
+		logger.info("收到服务端响应{}", byteBuf.toString(StandardCharsets.UTF_8));
 	}
 
 	@Override

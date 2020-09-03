@@ -11,6 +11,8 @@ import java.io.Serializable;
  */
 public class PerfLog extends BasicAttr implements Serializable {
 
+	public static final String INDEX_PREFIX = "perf_log-";
+
 	private static final long serialVersionUID = 8215972064986858821L;
 
 	public static PerfLog convert(LogFactory.PerfLog perfLog) {

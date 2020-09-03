@@ -25,7 +25,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<LogFactory.L
 
 	@Override
 	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-		ctx.writeAndFlush(Unpooled.copiedBuffer("你好 客户端, 消息已收到", StandardCharsets.UTF_8));
+		ctx.writeAndFlush(Unpooled.copiedBuffer("success", StandardCharsets.UTF_8));
 	}
 
 	@Override

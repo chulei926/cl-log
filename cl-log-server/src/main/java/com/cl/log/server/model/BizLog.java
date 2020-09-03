@@ -5,7 +5,6 @@ import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
@@ -28,15 +27,6 @@ public class BizLog extends BasicAttr implements Serializable {
 	private String clazz;
 	private String msg;
 
-	public static void main(String[] args) {
-		LocalDateTime time = LocalDateTime.now();
-		System.out.println(time);
-		System.out.println(time.toString());
-		System.out.println(time.getMonth());
-		System.out.println(time.getMonthValue());
-		System.out.println(time.getDayOfMonth());
-	}
-
 	public Map<String, ?> convert() {
 		Map<String, Object> result = Maps.newHashMap();
 		result.put("host", StringUtils.isBlank(this.host) ? "" : this.host);
@@ -49,19 +39,7 @@ public class BizLog extends BasicAttr implements Serializable {
 		result.put("msg", StringUtils.isBlank(this.msg) ? "" : this.msg);
 
 		// 公共属性
-		result.put("year", StringUtils.isBlank(this.year) ? "" : this.year);
-		result.put("month", StringUtils.isBlank(this.month) ? "" : this.month);
-		result.put("day", StringUtils.isBlank(this.day) ? "" : this.day);
-
-		result.put("hour", StringUtils.isBlank(this.hour) ? "" : this.hour);
-		result.put("minute", StringUtils.isBlank(this.minute) ? "" : this.minute);
-		result.put("second", StringUtils.isBlank(this.second) ? "" : this.second);
-
-		result.put("date4Month", StringUtils.isBlank(this.date4Month) ? "" : this.date4Month);
-		result.put("date4Day", StringUtils.isBlank(this.date4Day) ? "" : this.date4Day);
-		result.put("date4Hour", StringUtils.isBlank(this.date4Hour) ? "" : this.date4Hour);
-		result.put("date4Minute", StringUtils.isBlank(this.date4Minute) ? "" : this.date4Minute);
-		result.put("date4Second", StringUtils.isBlank(this.date4Second) ? "" : this.date4Second);
+		add2Map(result);
 
 		return result;
 	}
@@ -95,8 +73,8 @@ public class BizLog extends BasicAttr implements Serializable {
 	}
 
 	public void setDateTime(String dateTime) {
-		this.dateTime = dateTime;
-		super.setDateTime(this.dateTime);
+		super.setDateTime(dateTime);
+		this.dateTime = super.getDateTime();
 	}
 
 	public String getThread() {

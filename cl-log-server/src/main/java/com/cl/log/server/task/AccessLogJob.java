@@ -1,11 +1,21 @@
 package com.cl.log.server.task;
 
+import com.cl.log.config.model.LogFactory;
+import com.cl.log.server.config.SpringContextUtil;
 import com.cl.log.server.model.AccessLog;
+import com.cl.log.server.model.EsIndex;
+import com.cl.log.server.persistence.AccessLogRepository;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Tomcat访问日志job.
@@ -21,24 +31,24 @@ public class AccessLogJob implements Job {
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-
 		logger.debug("Tomcat访问日志job执行");
-
-//		if (TaskCenter.BIZ_LOG_QUEUE.size() < 1) {
-//			return;
-//		}
-//		List<LogFactory.Log> list = Lists.newArrayList();
-//		TaskCenter.BIZ_LOG_QUEUE.drainTo(list);
-//		if (CollectionUtils.isEmpty(list)) {
-//			return;
-//		}
-//		System.out.println(Thread.currentThread().getName() + " >>>>> " + LocalDateTime.now() + " >>>>> " + list.size());
-//		Map<Class, List<ILog>> map = Maps.newHashMap();
-//		list.forEach(log -> {
-//			String key = log.getClass().getName();
-//			map.putIfAbsent(log.getClass(), Lists.newArrayList());
-//			map.get(key).add(log);
-//		});
-
+		TaskCenter taskCenter = SpringContextUtil.getBean(TaskCenter.class);
+		List<LogFactory.TomcatAccessLog> accessLogs = taskCenter.getAccessLogs();
+		if (CollectionUtils.isEmpty(accessLogs)) {
+			return;
+		}
+		List<AccessLog> accessLogList = accessLogs.stream().map(AccessLog::convert).collect(Collectors.toList());
+		if (CollectionUtils.isEmpty(accessLogList)) {
+			return;
+		}
+		Map<String, List<AccessLog>> map = accessLogList.stream().filter(Objects::nonNull).collect(Collectors.groupingBy(AccessLog::getDate4Day));
+		if (CollectionUtils.isEmpty(map)) {
+			return;
+		}
+		AccessLogRepository accessLogRepository = SpringContextUtil.getBean(AccessLogRepository.class);
+		map.forEach((k, v) -> {
+			String index = String.format("%s%s@%s", AccessLog.INDEX_PREFIX, v.get(0).getBiz(), k);
+			accessLogRepository.batchInsert(new EsIndex(index), v);
+		});
 	}
 }

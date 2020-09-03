@@ -1,6 +1,7 @@
 package com.cl.log.server.task;
 
 import com.cl.log.config.model.LogFactory;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import org.quartz.JobDetail;
@@ -9,7 +10,9 @@ import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -106,6 +109,33 @@ public class TaskCenter {
 		} catch (Exception ex) {
 			throw new RuntimeException("向 访问日志 队列中添加元素出现异常！", ex);
 		}
+	}
+
+	public List<LogFactory.BizLog> getBizLogs() {
+		List<LogFactory.BizLog> list = Lists.newArrayList();
+		if (BIZ_LOG_QUEUE.size() < 1) {
+			return list;
+		}
+		BIZ_LOG_QUEUE.drainTo(list);
+		return list;
+	}
+
+	public List<LogFactory.PerfLog> getPerfLogs() {
+		List<LogFactory.PerfLog> list = Lists.newArrayList();
+		if (PERF_LOG_QUEUE.size() < 1) {
+			return list;
+		}
+		PERF_LOG_QUEUE.drainTo(list);
+		return list;
+	}
+
+	public List<LogFactory.TomcatAccessLog> getAccessLogs() {
+		List<LogFactory.TomcatAccessLog> list = Lists.newArrayList();
+		if (ACCESS_LOG_QUEUE.size() < 1) {
+			return list;
+		}
+		ACCESS_LOG_QUEUE.drainTo(list);
+		return list;
 	}
 
 
