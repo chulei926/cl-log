@@ -41,6 +41,8 @@ public class LogTask implements Runnable {
 
 	private static final Logger logger = LoggerFactory.getLogger(LogTask.class);
 
+	private static final String LOG_RECORD_FILE = "_logRecord.txt";
+
 	private final LogFileConfig.LogFileCfg config;
 	private final Extractor extractor;
 
@@ -66,6 +68,7 @@ public class LogTask implements Runnable {
 
 	@Override
 	public void run() {
+		historyLogProcess();
 		Path curPath = Paths.get(config.getPath());
 		FileAlterationObserver observer = new FileAlterationObserver(
 				curPath.getParent().toString(),
@@ -85,6 +88,54 @@ public class LogTask implements Runnable {
 	}
 
 	/**
+	 * 历史日志处理。
+	 */
+	private void historyLogProcess() {
+		Path curPath = Paths.get(config.getPath());
+		File historyFolder = curPath.getParent().toFile();
+		String[] historyFileNames = historyFolder.list();
+		if (null == historyFileNames || historyFileNames.length < 1) {
+			// 无历史日志文件
+			return;
+		}
+		// 获取上传记录
+		File logRecordFile = Paths.get(historyFolder.getAbsolutePath(), LOG_RECORD_FILE).toFile();
+		if (!logRecordFile.exists()) {
+			LogFactoryUtils.touchLogRecordFile(logRecordFile);
+		}
+		List<String> extractedLogFileNames = LogFactoryUtils.readLogRecordFile2Lines(logRecordFile);
+		for (String historyFileName : historyFileNames) {
+			// 已处理
+			if (extractedLogFileNames.contains(historyFileName)) {
+				continue;
+			}
+			// 处理未处理的文件
+			// 一次性读完整个文件
+			Path path = Paths.get(logRecordFile.getAbsolutePath(), historyFileName);
+			Long lineNo = LineNoCacheRefreshJob.getLineNo(DigestUtils.md5DigestAsHex(path.toFile().getAbsolutePath().getBytes())); // 这里的 cacheKey 应该使用当前文件的 cacheKey
+			List<LogFactory.Log> logs;
+			try (Stream<String> linesStream = Files.lines(path)) {
+				List<String> lines = linesStream.collect(Collectors.toList());
+				if (CollectionUtils.isEmpty(lines)) {
+					continue;
+				}
+				logs = extractor.extract(lines);
+				lineNo += lines.size();
+				LineNoCacheRefreshJob.refresh(cacheKey, lineNo);
+			} catch (Exception e) {
+				throw new RuntimeException("文件解析异常！", e);
+			}
+			ChannelHandlerContext channelHandlerContext = ChannelHandlerContextHolder.getChannelHandlerContext(nettyClientId);
+			Channel channel = channelHandlerContext.channel();
+			logs.stream().filter(Objects::nonNull).forEach(channel::writeAndFlush);
+			logger.info("日志已发送，总量：{}", logs.size());
+			LogFactoryUtils.appendExtracted2LogRecordFile(logRecordFile, historyFileName);
+		}
+
+	}
+
+
+	/**
 	 * 解析文件.
 	 *
 	 * <pre>
@@ -101,7 +152,7 @@ public class LogTask implements Runnable {
 		Path path = file.toPath();
 		try (Stream<String> linesStream = Files.lines(path)) {
 			List<String> lines = linesStream.skip(lineNo).collect(Collectors.toList());
-			if (CollectionUtils.isEmpty(lines)){
+			if (CollectionUtils.isEmpty(lines)) {
 				return;
 			}
 			logs = extractor.extract(lines);
