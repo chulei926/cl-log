@@ -51,10 +51,12 @@ public class NettyClient {
 			final ChannelFuture channelFuture = bootstrap.connect(this.ip, this.port).sync();
 			logger.info("Netty客户端连接服务器[{}] 启动 成功", this.host);
 			channelFuture.channel().closeFuture().sync();
+			logger.info("Netty客户端[{}] 关闭", this.host);
 		} catch (Exception e) {
 			logger.error("Netty客户端连接服务器[{}] 启动 失败", this.host, e);
 		} finally {
 			group.shutdownGracefully();
+			logger.info("Netty客户端 NioEventLoopGroup[{}] 已关闭", this.host);
 		}
 	}
 }

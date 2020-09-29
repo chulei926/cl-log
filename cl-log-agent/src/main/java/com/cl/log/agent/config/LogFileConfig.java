@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Enumeration;
 import java.util.List;
@@ -18,7 +19,7 @@ public class LogFileConfig {
 
 	private static final List<LogFileCfg> configs = Lists.newArrayList();
 
-	private static final String rootPath;
+//	private static final String rootPath;
 
 	static {
 		Properties properties = new Properties();
@@ -27,7 +28,7 @@ public class LogFileConfig {
 		} catch (IOException e) {
 			throw new RuntimeException("log_cfg.properties load failed.");
 		}
-		rootPath = properties.getProperty("root_path");
+//		rootPath = properties.getProperty("root_path");
 		final Enumeration<Object> keys = properties.keys();
 		while (keys.hasMoreElements()) {
 			String key = keys.nextElement().toString();
@@ -35,16 +36,16 @@ public class LogFileConfig {
 			LogFileCfg cfg = new LogFileCfg();
 			if (key.startsWith("biz")) {
 				name = key.replaceFirst("biz\\.", "");
-				cfg.setName(name).setType("biz").setPath(Paths.get(rootPath, properties.getProperty(key)).toString());
+				cfg.setName(name).setType("biz").setPath(Paths.get(properties.getProperty(key)));
 			} else if (key.startsWith("perf")) {
 				name = key.replaceFirst("perf\\.", "");
-				cfg.setName(name).setType("perf").setPath(Paths.get(rootPath, properties.getProperty(key)).toString());
+				cfg.setName(name).setType("perf").setPath(Paths.get(properties.getProperty(key)));
 			} else if (key.startsWith("access")) {
 				name = key.replaceFirst("access\\.", "");
-				cfg.setName(name).setType("access").setPath(Paths.get(rootPath, properties.getProperty(key)).toString());
+				cfg.setName(name).setType("access").setPath(Paths.get(properties.getProperty(key)));
 			} else if (key.startsWith("nginx")) {
 				name = key.replaceFirst("nginx\\.", "");
-				cfg.setName(name).setType("nginx").setPath(Paths.get(rootPath, properties.getProperty(key)).toString());
+				cfg.setName(name).setType("nginx").setPath(Paths.get(properties.getProperty(key)));
 			} else {
 				continue;
 			}
@@ -65,7 +66,7 @@ public class LogFileConfig {
 		private static final long serialVersionUID = -633436491426743643L;
 
 		private String name;
-		private String path;
+		private Path path;
 		private String type;
 
 		public String getName() {
@@ -77,11 +78,11 @@ public class LogFileConfig {
 			return this;
 		}
 
-		public String getPath() {
+		public Path getPath() {
 			return path;
 		}
 
-		public LogFileCfg setPath(String path) {
+		public LogFileCfg setPath(Path path) {
 			this.path = path;
 			return this;
 		}

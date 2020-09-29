@@ -36,9 +36,9 @@ class ClLogServerApplicationTests {
 
 	@Test
 	void esIndexTest() {
-		String path = EsIndex.class.getResource("/").getPath();
-		EsIndex index = EsIndex.xml2Index((path.startsWith("/") ? path.substring(1) : path) + "mapping_biz.xml");
-		indexRepository.create(index);
+//		String path = EsIndex.class.getResource("/").getPath();
+//		EsIndex index = EsIndex.xml2Index((path.startsWith("/") ? path.substring(1) : path) + "mapping_biz.xml");
+//		indexRepository.create(index);
 	}
 
 	@Test

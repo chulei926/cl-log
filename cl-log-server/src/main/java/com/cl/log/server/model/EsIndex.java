@@ -128,17 +128,11 @@ public class EsIndex implements Serializable {
 		}
 	}
 
-	public static void main(String[] args) {
-		String path = AbstractRepository.class.getResource("/").getPath();
-		path = path.startsWith("/") ? path.substring(1) : path;
-		xml2Index(path + "mapping_access.xml");
-	}
-
-	public static EsIndex xml2Index(String xmlPath) {
+	public static EsIndex xml2Index(File xmlFile) {
 		EsIndex index = new EsIndex();
 		Document doc;
 		try {
-			doc = DocumentHelper.parseText(FileUtils.readFileToString(new File(xmlPath), StandardCharsets.UTF_8));
+			doc = DocumentHelper.parseText(FileUtils.readFileToString(xmlFile, StandardCharsets.UTF_8));
 			Element root = doc.getRootElement();
 			index.setName(root.attributeValue("name"));
 			List<Element> elements = root.elements();
@@ -150,7 +144,7 @@ public class EsIndex implements Serializable {
 			mapping.props.addAll(props);
 			index.setMapping(mapping);
 		} catch (Exception e) {
-			throw new RuntimeException(String.format("解析xml[%s]异常！", xmlPath), e);
+			throw new RuntimeException(String.format("解析xml[%s]异常！", xmlFile.getAbsolutePath()), e);
 		}
 		return index;
 	}

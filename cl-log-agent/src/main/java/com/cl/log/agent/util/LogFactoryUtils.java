@@ -4,6 +4,7 @@ import com.cl.log.agent.extractor.AccessExtractor;
 import com.cl.log.agent.extractor.BizExtractor;
 import com.cl.log.agent.extractor.Extractor;
 import com.cl.log.agent.extractor.PerfExtractor;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -93,7 +94,8 @@ public class LogFactoryUtils {
 			return;
 		}
 		try {
-			FileUtils.writeStringToFile(file, fileName, StandardCharsets.UTF_8, true);
+//			FileUtils.writeStringToFile(file, fileName, StandardCharsets.UTF_8, true);
+			FileUtils.writeLines(file, "UTF-8", Lists.newArrayList(fileName), true);
 		} catch (Exception e) {
 			throw new RuntimeException("日志记录文件追加异常！" + file.getAbsolutePath() + " " + fileName, e);
 		}

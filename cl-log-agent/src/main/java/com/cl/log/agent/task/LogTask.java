@@ -9,6 +9,7 @@ import com.cl.log.agent.file.LineNoCacheRefreshJob;
 import com.cl.log.agent.util.LogFactoryUtils;
 import com.cl.log.config.model.LogFactory;
 import com.cl.log.config.register.ZkRegister;
+import com.cl.log.config.utils.DateUtils;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import org.apache.commons.io.filefilter.FileFilterUtils;
@@ -55,7 +56,7 @@ public class LogTask implements Runnable {
 		nettyClientId = UUID.randomUUID().toString();
 		this.config = config;
 		extractor = LogFactoryUtils.parseExtractor(this.config.getType());
-		cacheKey = DigestUtils.md5DigestAsHex(this.config.getPath().getBytes());
+		cacheKey = DigestUtils.md5DigestAsHex(this.config.getPath().toFile().getAbsolutePath().getBytes());
 		initNettyClient();
 	}
 
@@ -68,8 +69,12 @@ public class LogTask implements Runnable {
 
 	@Override
 	public void run() {
+		do {
+			DateUtils.sleep(3);
+		} while (!ChannelHandlerContextHolder.registerSuccess(this.nettyClientId));
+
 		historyLogProcess();
-		Path curPath = Paths.get(config.getPath());
+		Path curPath = config.getPath();
 		FileAlterationObserver observer = new FileAlterationObserver(
 				curPath.getParent().toString(),
 				FileFilterUtils.and(FileFilterUtils.fileFileFilter(), FileFilterUtils.suffixFileFilter(".log")),
@@ -91,15 +96,15 @@ public class LogTask implements Runnable {
 	 * 历史日志处理。
 	 */
 	private void historyLogProcess() {
-		Path curPath = Paths.get(config.getPath());
-		File historyFolder = curPath.getParent().toFile();
-		String[] historyFileNames = historyFolder.list();
+		Path curPath = config.getPath();
+		File curFolder = curPath.getParent().toFile();
+		String[] historyFileNames = Paths.get(curFolder.getAbsolutePath(), "history").toFile().list();
 		if (null == historyFileNames || historyFileNames.length < 1) {
 			// 无历史日志文件
 			return;
 		}
 		// 获取上传记录
-		File logRecordFile = Paths.get(historyFolder.getAbsolutePath(), LOG_RECORD_FILE).toFile();
+		File logRecordFile = Paths.get(curFolder.getAbsolutePath(), LOG_RECORD_FILE).toFile();
 		if (!logRecordFile.exists()) {
 			LogFactoryUtils.touchLogRecordFile(logRecordFile);
 		}
@@ -111,7 +116,7 @@ public class LogTask implements Runnable {
 			}
 			// 处理未处理的文件
 			// 一次性读完整个文件
-			Path path = Paths.get(logRecordFile.getAbsolutePath(), historyFileName);
+			Path path = Paths.get(curFolder.getAbsolutePath(), "history", historyFileName);
 			Long lineNo = LineNoCacheRefreshJob.getLineNo(DigestUtils.md5DigestAsHex(path.toFile().getAbsolutePath().getBytes())); // 这里的 cacheKey 应该使用当前文件的 cacheKey
 			List<LogFactory.Log> logs;
 			try (Stream<String> linesStream = Files.lines(path)) {

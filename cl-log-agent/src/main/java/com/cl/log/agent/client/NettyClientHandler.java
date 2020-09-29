@@ -25,7 +25,6 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
 	@Override
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-		// 接收到客户端消息
 		ChannelHandlerContextHolder.register(id, ctx);
 	}
 

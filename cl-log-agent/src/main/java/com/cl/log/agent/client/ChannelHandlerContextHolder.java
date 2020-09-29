@@ -21,4 +21,8 @@ public class ChannelHandlerContextHolder {
 		return map.get(key);
 	}
 
+	public static boolean registerSuccess(String key){
+		return map.containsKey(key);
+	}
+
 }
