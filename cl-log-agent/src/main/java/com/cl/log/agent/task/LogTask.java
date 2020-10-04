@@ -75,18 +75,21 @@ public class LogTask implements Runnable {
 
 		historyLogProcess();
 		Path curPath = config.getPath();
+		logger.warn("历史日志处理完成{}", curPath.toAbsolutePath().toString());
 		FileAlterationObserver observer = new FileAlterationObserver(
-				curPath.getParent().toString(),
+				curPath.getParent().toFile(),
 				FileFilterUtils.and(FileFilterUtils.fileFileFilter(), FileFilterUtils.suffixFileFilter(".log")),
 				null
 		);
+		File curFile = curPath.toFile();
 		observer.addListener(new FileListener((file) -> {
-			if (file.getName().equals(curPath.getFileName().toString())) {
+			if (file.getName().equals(curFile.getName())) {
 				parseFile(file);
 			}
 		}));
 		try {
 			new FileAlterationMonitor(TimeUnit.MILLISECONDS.toMillis(500), observer).start();
+			logger.warn("文件监听器启动成功！{}", curFile.getAbsolutePath());
 		} catch (Exception e) {
 			throw new RuntimeException("文件监控程序启动异常！", e);
 		}

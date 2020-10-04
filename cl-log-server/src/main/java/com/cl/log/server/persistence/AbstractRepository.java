@@ -6,18 +6,21 @@ import com.cl.log.server.model.BizLog;
 import com.cl.log.server.model.EsIndex;
 import com.cl.log.server.model.PerfLog;
 import com.google.common.collect.Sets;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.Assert;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Paths;
 import java.util.Set;
+import java.util.UUID;
 
 public abstract class AbstractRepository<T> implements IRepository<T> {
 
 	protected static Set<String> indexNameRepositoryCache = Sets.newConcurrentHashSet();
 
-	public void checkIndex(EsIndex index) {
+	public synchronized void checkIndex(EsIndex index) {
 		Assert.notNull(index, "入参index不能为空！");
 		Assert.notNull(index.getName(), "入参index.name不能为空！");
 		String indexName = index.getName();
@@ -45,18 +48,19 @@ public abstract class AbstractRepository<T> implements IRepository<T> {
 			throw new IllegalArgumentException("不支持的索引类型！" + index.getName());
 		}
 		ClassPathResource resource = new ClassPathResource(mappingPath);
-		File mappingFile;
-		try {
-			mappingFile = resource.getFile();
+		File tmp = Paths.get(FileUtils.getUserDirectoryPath(), UUID.randomUUID().toString() + ".xml").toFile();
+		try (InputStream is = resource.getInputStream();
+		     OutputStream os = new FileOutputStream(tmp)) {
+			IOUtils.copyLarge(is, os);
 		} catch (IOException e) {
-			throw new RuntimeException("ES mapping 文件加载失败！" + mappingPath);
+			throw new RuntimeException("ES mapping 文件加载失败！" + mappingPath, e);
 		}
-
-		EsIndex fullIndex = EsIndex.xml2Index(mappingFile);
+		EsIndex fullIndex = EsIndex.xml2Index(tmp);
 		fullIndex.setName(indexName);
 		indexRepository.create(fullIndex);
 		// 4. 创建完成，重新放入缓存
 		indexNameRepositoryCache.add(indexName);
+		FileUtils.deleteQuietly(tmp);
 	}
 
 }
