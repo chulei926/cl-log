@@ -89,7 +89,7 @@ public class LogTask implements Runnable {
 		}));
 		try {
 			new FileAlterationMonitor(TimeUnit.MILLISECONDS.toMillis(500), observer).start();
-			logger.warn("文件监听器启动成功！{}", curFile.getAbsolutePath());
+			logger.warn("文件监听器启动成功！{} {}", curFile.getAbsolutePath(), curFile.getName());
 		} catch (Exception e) {
 			throw new RuntimeException("文件监控程序启动异常！", e);
 		}
@@ -120,7 +120,8 @@ public class LogTask implements Runnable {
 			// 处理未处理的文件
 			// 一次性读完整个文件
 			Path path = Paths.get(curFolder.getAbsolutePath(), "history", historyFileName);
-			Long lineNo = LineNoCacheRefreshJob.getLineNo(DigestUtils.md5DigestAsHex(path.toFile().getAbsolutePath().getBytes())); // 这里的 cacheKey 应该使用当前文件的 cacheKey
+			String curCacheKey = DigestUtils.md5DigestAsHex(path.toFile().getAbsolutePath().getBytes());
+			Long lineNo = LineNoCacheRefreshJob.getLineNo(curCacheKey); // 这里的 cacheKey 应该使用当前文件的 cacheKey
 			List<LogFactory.Log> logs;
 			try (Stream<String> linesStream = Files.lines(path)) {
 				List<String> lines = linesStream.collect(Collectors.toList());
@@ -129,7 +130,7 @@ public class LogTask implements Runnable {
 				}
 				logs = extractor.extract(lines);
 				lineNo += lines.size();
-				LineNoCacheRefreshJob.refresh(cacheKey, lineNo);
+				LineNoCacheRefreshJob.refresh(curCacheKey, lineNo);
 			} catch (Exception e) {
 				throw new RuntimeException("文件解析异常！", e);
 			}
@@ -155,7 +156,9 @@ public class LogTask implements Runnable {
 	 * @param file file.
 	 */
 	private void parseFile(File file) {
+		logger.info("监听到文件变化，开始解析。{}", file.getAbsolutePath());
 		Long lineNo = LineNoCacheRefreshJob.getLineNo(cacheKey);
+		logger.info("当前已读取到");
 		List<LogFactory.Log> logs;
 		Path path = file.toPath();
 		try (Stream<String> linesStream = Files.lines(path)) {
@@ -170,6 +173,7 @@ public class LogTask implements Runnable {
 			throw new RuntimeException("文件解析异常！", e);
 		}
 		if (CollectionUtils.isEmpty(logs)) {
+			logger.warn("未读取到文件内容。{}", file.getAbsolutePath());
 			return;
 		}
 		ChannelHandlerContext channelHandlerContext = ChannelHandlerContextHolder.getChannelHandlerContext(nettyClientId);
