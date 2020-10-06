@@ -8,6 +8,8 @@ import com.cl.log.server.model.PerfLog;
 import com.google.common.collect.Sets;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.Assert;
 
@@ -17,6 +19,8 @@ import java.util.Set;
 import java.util.UUID;
 
 public abstract class AbstractRepository<T> implements IRepository<T> {
+
+	protected static final Logger logger = LoggerFactory.getLogger(AbstractRepository.class);
 
 	protected static Set<String> indexNameRepositoryCache = Sets.newConcurrentHashSet();
 

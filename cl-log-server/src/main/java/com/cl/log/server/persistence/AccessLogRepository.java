@@ -10,7 +10,6 @@ import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.support.WriteRequest;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.common.recycler.Recycler;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 
@@ -29,21 +28,19 @@ public class AccessLogRepository extends AbstractRepository<AccessLog> {
 
 	@Override
 	public void batchInsert(EsIndex index, List<AccessLog> list) {
-		if (CollectionUtils.isEmpty(list)){
+		if (CollectionUtils.isEmpty(list)) {
 			return;
 		}
 		checkIndex(index);
-		if (list.size() <= COUNT){
+		if (list.size() <= COUNT) {
 			insert(index, list);
 			return;
 		}
 		List<List<AccessLog>> partition = Lists.partition(list, COUNT);
-		for (List<AccessLog> logs : partition) {
-			insert(index, logs);
-		}
+		partition.parallelStream().forEach(logs -> insert(index, logs));
 	}
 
-	private void insert(EsIndex index, List<AccessLog> list){
+	private void insert(EsIndex index, List<AccessLog> list) {
 		BulkRequest request = new BulkRequest(index.getName());
 		for (AccessLog log : list) {
 			request.add(new IndexRequest(index.getName()).id(UUID.randomUUID().toString()).source(log.convert()));
@@ -58,8 +55,8 @@ public class AccessLogRepository extends AbstractRepository<AccessLog> {
 		if (responses.hasFailures()) {
 			throw new PersistenceException("AccessLog插入到Elasticsearch异常!" + responses.buildFailureMessage());
 		}
+		logger.info("批量入库成功。索引：{}, 数量：{}", index.getName(), list.size());
 	}
-
 
 
 }
