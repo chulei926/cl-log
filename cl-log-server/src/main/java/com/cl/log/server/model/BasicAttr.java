@@ -52,6 +52,8 @@ public class BasicAttr implements Serializable {
 		this.dateTime = this.dateTime.replaceAll("[.]\\d+$", "");
 		this.dateTime = this.dateTime.substring(0, 10) + " " + this.dateTime.substring(10);
 		final LocalDateTime dt = LocalDateTime.parse(this.dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+		// 在 真实时间的基础上 减去8小时，写入ES后为真实时间。
+		this.dateTime = dt.minusHours(8L).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		this.setYear(String.valueOf(dt.getYear()));
 		this.setMonth(String.valueOf(dt.getMonth().getValue()));
 		this.setDay(String.valueOf(dt.getDayOfMonth()));
