@@ -5,7 +5,7 @@
 
 	<groupId>com.cl.log</groupId>
 	<artifactId>cl-log-config</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>cl-log-config</name>
 	<description>cl-log 公共配置</description>
 	<packaging>jar</packaging>
