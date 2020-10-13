@@ -34,12 +34,6 @@ public class BasicAttr implements Serializable {
 	public BasicAttr() {
 	}
 
-	public static void main(String[] args) {
-		String dt = "2020-09-0106:42:49.361";
-		BasicAttr attr = new BasicAttr();
-		attr.setDateTime(dt);
-	}
-
 	public String getDateTime() {
 		return dateTime;
 	}

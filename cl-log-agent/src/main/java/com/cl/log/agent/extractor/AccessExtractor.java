@@ -23,11 +23,11 @@ import java.util.regex.Pattern;
  *     %reqAttribute{appPort}
  *     %reqAttribute{userId}
  *     %t{yyyy-MM-ddHH:mm:ss.SSS}
- *     %s
- *     %b
- *     %D
+ *     %s 状态码
+ *     %b 响应内容长度 response's content length
+ *     %D 耗时
  *     [%i{X-Forwarded-For}]
- *     "%r"
+ *     "%r" 请求地址
  * </pre>
  * <pre>
  *     b77af958-6795-4174-800f-541ad793d785 000 000 exam-webapp 8080 484 2020-09-0110:00:20.633 200 513 6 [183.160.212.93, 58.218.208.59] "GET /exam-webapp/api/newExam/getExamInfo?_=1598925620320&examId=8369 HTTP/1.0"
@@ -84,7 +84,7 @@ public class AccessExtractor implements Extractor {
 									.setUserId(split.get(5))
 									.setDateTime(split.get(6))
 									.setStatesCode(split.get(7))
-									.setConsume(StringUtils.isNotBlank(split.get(8)) && StringUtils.isNumeric(split.get(8)) ? Integer.parseInt(split.get(8)) : 0)
+									.setConsume(StringUtils.isNotBlank(split.get(9)) && StringUtils.isNumeric(split.get(9)) ? Integer.parseInt(split.get(9)) : 0)
 //									.setIp(split.get(10) + split.get(11)) // 此处有bug,因为IP地址可能是一个 形如 [36.5.144.132]，也可能是多个，形如 [183.160.212.93, 58.218.208.59]
 									.setIp(clientIp)
 									.setRequestMethod(subSplit[0])
