@@ -9,8 +9,9 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.impl.StdSchedulerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,8 @@ import static org.quartz.TriggerBuilder.newTrigger;
  */
 @Component
 public class TaskCenter {
+
+	private static final Logger logger = LoggerFactory.getLogger(TaskCenter.class);
 
 	/**
 	 * 业务日志缓冲队列.
@@ -73,6 +76,7 @@ public class TaskCenter {
 			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 			scheduler.scheduleJobs(triggersAndJobs, false);
 			scheduler.start();
+			logger.info("性能日志（{}s）、业务日志（{}s）、访问日志（{}s） 定时任务均已启动！", PERF_LOG_JOB_INTERVAL, BIZ_LOG_JOB_INTERVAL, ACCESS_LOG_JOB_INTERVAL);
 		} catch (SchedulerException se) {
 			throw new RuntimeException("服务端定时任务启动失败！", se);
 		}

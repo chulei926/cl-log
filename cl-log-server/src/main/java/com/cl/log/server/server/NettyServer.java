@@ -23,14 +23,22 @@ public class NettyServer {
 	private final String host;
 	private final int port;
 
+	private NioEventLoopGroup boss;
+	private NioEventLoopGroup worker;
+
 	public NettyServer(int port) {
 		this.port = port;
-		this.host = String.format("%s:%s", NetUtils.getIp(), port);
+		String ip = NetUtils.getIp();
+		if (ip.contains(",")) {
+			ip = ip.substring(0, ip.indexOf(","));
+		}
+		this.host = String.format("%s:%s", ip, port);
 	}
 
 	public void start() {
-		NioEventLoopGroup boss = new NioEventLoopGroup(1);
-		NioEventLoopGroup worker = new NioEventLoopGroup();
+		registerHook();
+		boss = new NioEventLoopGroup(1);
+		worker = new NioEventLoopGroup();
 		// 创建 启动引导
 		ServerBootstrap bootstrap = new ServerBootstrap();
 		bootstrap.group(boss, worker) // 设置线程组
@@ -54,14 +62,23 @@ public class NettyServer {
 			// 注册服务
 			ZkRegister.getInstance().register(this.host, this.host);
 			channelFuture.channel().closeFuture().sync();
+			// 从注册中心 下线
+			ZkRegister.getInstance().unRegister(this.host);
+			logger.info("Netty服务器[{}] 正在关闭", this.host);
 		} catch (Exception e) {
 			logger.error("Netty服务器[{}] 异常!", this.host, e);
 			// 从注册中心 下线
 			ZkRegister.getInstance().unRegister(this.host);
-		} finally {
+		}
+	}
+
+	private void registerHook() {
+		Runtime runtime = Runtime.getRuntime();
+		runtime.addShutdownHook(new Thread(() -> {
 			boss.shutdownGracefully();
 			worker.shutdownGracefully();
-		}
+			logger.warn("Netty服务端[{}]  boss worker 均已关闭", host);
+		}));
 	}
 
 }

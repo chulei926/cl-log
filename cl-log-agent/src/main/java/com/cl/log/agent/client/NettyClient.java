@@ -21,20 +21,23 @@ public class NettyClient {
 
 	private static final Logger logger = LoggerFactory.getLogger(NettyClient.class);
 
-	private final String host;
+	private static String host;
 	private final String ip;
 	private final int port;
 	private final String id;
+
+	private static NioEventLoopGroup group;
 
 	public NettyClient(String id, String ip, int port) {
 		this.id = id;
 		this.ip = ip;
 		this.port = port;
-		this.host = String.format("%s:%s", ip, port);
+		host = String.format("%s:%s", ip, port);
 	}
 
 	public void start() {
-		final NioEventLoopGroup group = new NioEventLoopGroup();
+		registerHook();
+		group = new NioEventLoopGroup();
 		try {
 			final Bootstrap bootstrap = new Bootstrap();
 			bootstrap.group(group).channel(NioSocketChannel.class)
@@ -49,14 +52,19 @@ public class NettyClient {
 						}
 					});
 			final ChannelFuture channelFuture = bootstrap.connect(this.ip, this.port).sync();
-			logger.info("Netty客户端连接服务器[{}] 启动 成功", this.host);
+			logger.info("Netty客户端连接服务器[{}] 启动 成功", host);
 			channelFuture.channel().closeFuture().sync();
-			logger.info("Netty客户端[{}] 关闭", this.host);
+			logger.info("Netty客户端[{}] 正在关闭", host);
 		} catch (Exception e) {
-			logger.error("Netty客户端连接服务器[{}] 启动 失败", this.host, e);
-		} finally {
-			group.shutdownGracefully();
-			logger.info("Netty客户端 NioEventLoopGroup[{}] 已关闭", this.host);
+			logger.error("Netty客户端连接服务器[{}] 启动 失败", host, e);
 		}
+	}
+
+	private void registerHook() {
+		Runtime runtime = Runtime.getRuntime();
+		runtime.addShutdownHook(new Thread(() -> {
+			group.shutdownGracefully();
+			logger.warn("Netty客户端[{}] 已关闭", host);
+		}));
 	}
 }

@@ -34,6 +34,10 @@ public class AccessLogJob implements Job {
 		logger.debug("Tomcat访问日志job执行");
 		TaskCenter taskCenter = SpringContextUtil.getBean(TaskCenter.class);
 		List<LogFactory.TomcatAccessLog> accessLogs = taskCenter.getAccessLogs();
+		handle(accessLogs);
+	}
+
+	public static void handle(List<LogFactory.TomcatAccessLog> accessLogs) {
 		if (CollectionUtils.isEmpty(accessLogs)) {
 			return;
 		}
