@@ -60,6 +60,7 @@ public class LogTask implements Runnable {
 		initNettyClient();
 	}
 
+
 	public void initNettyClient() {
 		String availableUrl = ZkRegister.getInstance().getAvailableUrl();
 		client = new NettyClient(nettyClientId, availableUrl.split(":")[0], Integer.parseInt(availableUrl.split(":")[1]));
@@ -97,19 +98,31 @@ public class LogTask implements Runnable {
 
 	/**
 	 * 历史日志处理。
+	 *
+	 * <pre>
+	 *     此处有一个问题：
+	 *         程序启动时会先处理历史文件夹中的历史日志，每处理一个文件，会将文件名记录到 _logRecord.txt 文件中。
+	 *         当历史文件夹中的历史文件处理完成后，到第二天历史文件夹中会多一个当天的文件，如果这个时候日志收集进程重启，
+	 *         程序会重新处理历史文件夹中的历史文件，此时如何判断这个文件已被处理？
+	 *
+	 *     比如：历史文件夹中有3个历史文件 history_1、history_2、history_3，程序启动后会处理这三个文件，处理完成后会将这3个文件名写到 _logRecord.txt 文件中。
+	 *     程序运行到第二天，历史文件夹中 多了一个 history_4，此时程序挂了，进行重启操作，程序会再次处理历史文件夹中的历史日志，
+	 *     前3个已经被记录下来，最后一个因为没记录，所以会被处理。但是 最后一个文件在前一天已经被实时处理过的，再处理一次会造成数据重复，如何解决？
+	 * </pre>
 	 */
 	private void historyLogProcess() {
 		Path curPath = config.getPath();
 		File curFolder = curPath.getParent().toFile();
-		String[] historyFileNames = Paths.get(curFolder.getAbsolutePath(), "history").toFile().list();
-		if (null == historyFileNames || historyFileNames.length < 1) {
-			// 无历史日志文件
-			return;
-		}
 		// 获取上传记录
 		File logRecordFile = Paths.get(curFolder.getAbsolutePath(), LOG_RECORD_FILE).toFile();
 		if (!logRecordFile.exists()) {
 			LogFactoryUtils.touchLogRecordFile(logRecordFile);
+		}
+
+		String[] historyFileNames = Paths.get(curFolder.getAbsolutePath(), "history").toFile().list();
+		if (null == historyFileNames || historyFileNames.length < 1) {
+			// 无历史日志文件
+			return;
 		}
 		List<String> extractedLogFileNames = LogFactoryUtils.readLogRecordFile2Lines(logRecordFile);
 		for (String historyFileName : historyFileNames) {
@@ -124,13 +137,12 @@ public class LogTask implements Runnable {
 			Long lineNo = LineNoCacheRefreshJob.getLineNo(curCacheKey); // 这里的 cacheKey 应该使用当前文件的 cacheKey
 			List<LogFactory.Log> logs;
 			try (Stream<String> linesStream = Files.lines(path)) {
-				List<String> lines = linesStream.collect(Collectors.toList());
+				List<String> lines = linesStream.skip(lineNo).collect(Collectors.toList());
 				if (CollectionUtils.isEmpty(lines)) {
 					continue;
 				}
 				logs = extractor.extract(lines);
 				lineNo += lines.size();
-				LineNoCacheRefreshJob.refresh(curCacheKey, lineNo);
 			} catch (Exception e) {
 				throw new RuntimeException("文件解析异常！", e);
 			}
@@ -138,11 +150,11 @@ public class LogTask implements Runnable {
 			Channel channel = channelHandlerContext.channel();
 			logs.stream().filter(Objects::nonNull).forEach(channel::writeAndFlush);
 			logger.info("日志已发送，总量：{}", logs.size());
+			LineNoCacheRefreshJob.refresh(curCacheKey, lineNo);
 			LogFactoryUtils.appendExtracted2LogRecordFile(logRecordFile, historyFileName);
 		}
 
 	}
-
 
 	/**
 	 * 解析文件.
@@ -158,10 +170,17 @@ public class LogTask implements Runnable {
 	private void parseFile(File file) {
 		logger.info("监听到文件变化，开始解析。{}", file.getAbsolutePath());
 		Long lineNo = LineNoCacheRefreshJob.getLineNo(cacheKey);
-		logger.info("当前已读取到");
+		logger.info("当前已读取到{}行。", lineNo);
 		List<LogFactory.Log> logs;
 		Path path = file.toPath();
 		try (Stream<String> linesStream = Files.lines(path)) {
+			long count = linesStream.count();
+			if (count < lineNo) {
+				// 本次的文件内容行数 少于 已读取到的行号，说明文件内容被重置，要从头开始读取。
+				// TODO 同时 更新历史文件记录，防止下次重启时读取重复的内容。
+				lineNo = 0L;
+				LineNoCacheRefreshJob.resetLineNo(cacheKey);
+			}
 			List<String> lines = linesStream.skip(lineNo).collect(Collectors.toList());
 			if (CollectionUtils.isEmpty(lines)) {
 				return;

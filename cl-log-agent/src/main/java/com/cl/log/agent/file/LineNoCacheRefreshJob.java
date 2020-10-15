@@ -55,4 +55,10 @@ public class LineNoCacheRefreshJob implements Job {
 		return lineNo;
 	}
 
+	public static void resetLineNo(String key){
+		Long lineNo = 0L;
+		ZkRegister.getInstance().set(key, lineNo);
+		map.put(key, lineNo);
+	}
+
 }
