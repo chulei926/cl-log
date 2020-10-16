@@ -169,7 +169,7 @@ public class LogTask implements Runnable {
 	 */
 	private void parseFile(File file) {
 		logger.info("监听到文件变化，开始解析。{}", file.getAbsolutePath());
-		Long lineNo = LineNoCacheRefreshJob.getLineNo(cacheKey);
+		long lineNo = LineNoCacheRefreshJob.getLineNo(cacheKey);
 		logger.info("当前已读取到{}行。", lineNo);
 		List<LogFactory.Log> logs;
 		Path path = file.toPath();
@@ -181,7 +181,7 @@ public class LogTask implements Runnable {
 				lineNo = 0L;
 				LineNoCacheRefreshJob.resetLineNo(cacheKey);
 			}
-			List<String> lines = linesStream.skip(lineNo).collect(Collectors.toList());
+			List<String> lines = Files.lines(path).skip(lineNo).collect(Collectors.toList());
 			if (CollectionUtils.isEmpty(lines)) {
 				return;
 			}
