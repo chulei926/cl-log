@@ -5,18 +5,25 @@ import com.cl.log.server.model.AccessLog;
 import com.cl.log.server.model.BizLog;
 import com.cl.log.server.model.EsIndex;
 import com.cl.log.server.model.PerfLog;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import javax.annotation.Resource;
 import java.io.*;
 import java.nio.file.Paths;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractRepository<T> implements IRepository<T> {
 
@@ -24,7 +31,16 @@ public abstract class AbstractRepository<T> implements IRepository<T> {
 
 	protected static Set<String> indexNameRepositoryCache = Sets.newConcurrentHashSet();
 
-	public synchronized void checkIndex(EsIndex index) {
+	protected static Map<String, ClassPathResource> mappingPathResourceMap = Maps.newConcurrentMap();
+
+	static {
+		mappingPathResourceMap.clear();
+		mappingPathResourceMap.put(BizLog.INDEX_PREFIX, new ClassPathResource("mapping/mapping_biz.xml"));
+		mappingPathResourceMap.put(PerfLog.INDEX_PREFIX, new ClassPathResource("mapping/mapping_perf.xml"));
+		mappingPathResourceMap.put(AccessLog.INDEX_PREFIX, new ClassPathResource("mapping/mapping_access.xml"));
+	}
+
+	public void checkIndex(EsIndex index) {
 		Assert.notNull(index, "入参index不能为空！");
 		Assert.notNull(index.getName(), "入参index.name不能为空！");
 		String indexName = index.getName();
@@ -32,39 +48,48 @@ public abstract class AbstractRepository<T> implements IRepository<T> {
 		if (indexNameRepositoryCache.contains(indexName)) {
 			return;
 		}
-		// 2. 缓存中没有，调用ES服务判断
-		IndexRepository indexRepository = SpringContextUtil.getBean(IndexRepository.class);
-		if (indexRepository.exist(indexName)) {
-			// ES 中存在，放入缓存
+		InterProcessMutex interProcessMutex = null;
+		try {
+			// 创建锁对象
+			interProcessMutex = new InterProcessMutex(SpringContextUtil.getBean(CuratorFramework.class), "/" + indexName);
+			// 获取锁
+			interProcessMutex.acquire(10, TimeUnit.SECONDS);
+			// 如果获取锁成功，则执行对应逻辑
+
+			// 2. 缓存中没有，调用ES服务判断
+			IndexRepository indexRepository = SpringContextUtil.getBean(IndexRepository.class);
+			if (indexRepository.exist(indexName)) {
+				// ES 中存在，放入缓存
+				indexNameRepositoryCache.add(indexName);
+				return;
+			}
+			// 3. 缓存 和 ES 中都没有，主动创建
+			ClassPathResource resource = mappingPathResourceMap.get(indexName.substring(0, indexName.indexOf("-") + 1));
+			File tmp = Paths.get(FileUtils.getUserDirectoryPath(), UUID.randomUUID().toString() + ".xml").toFile();
+			try (InputStream is = resource.getInputStream();
+			     OutputStream os = new FileOutputStream(tmp)) {
+				IOUtils.copyLarge(is, os);
+			} catch (IOException e) {
+				throw new RuntimeException("ES mapping 文件加载失败！" + indexName, e);
+			}
+			EsIndex fullIndex = EsIndex.xml2Index(tmp);
+			fullIndex.setName(indexName);
+			indexRepository.create(fullIndex);
+			// 4. 创建完成，重新放入缓存
 			indexNameRepositoryCache.add(indexName);
-			return;
+			FileUtils.deleteQuietly(tmp);
+		} catch (Exception e) {
+			logger.error("checkIndex异常！", e);
+		} finally {
+			// 释放锁
+			if (null != interProcessMutex) {
+				try {
+					interProcessMutex.release();
+				} catch (Exception e) {
+					logger.error("ZK分布式锁释放异常！", e);
+				}
+			}
 		}
-		// 3. 缓存 和 ES 中都没有，主动创建
-		String mappingPath = null;
-		if (indexName.startsWith(BizLog.INDEX_PREFIX)) {
-			mappingPath = "mapping/mapping_biz.xml";
-		} else if (indexName.startsWith(PerfLog.INDEX_PREFIX)) {
-			mappingPath = "mapping/mapping_perf.xml";
-		} else if (indexName.startsWith(AccessLog.INDEX_PREFIX)) {
-			mappingPath = "mapping/mapping_access.xml";
-		} else {
-			// DO NOTHING
-			throw new IllegalArgumentException("不支持的索引类型！" + index.getName());
-		}
-		ClassPathResource resource = new ClassPathResource(mappingPath);
-		File tmp = Paths.get(FileUtils.getUserDirectoryPath(), UUID.randomUUID().toString() + ".xml").toFile();
-		try (InputStream is = resource.getInputStream();
-		     OutputStream os = new FileOutputStream(tmp)) {
-			IOUtils.copyLarge(is, os);
-		} catch (IOException e) {
-			throw new RuntimeException("ES mapping 文件加载失败！" + mappingPath, e);
-		}
-		EsIndex fullIndex = EsIndex.xml2Index(tmp);
-		fullIndex.setName(indexName);
-		indexRepository.create(fullIndex);
-		// 4. 创建完成，重新放入缓存
-		indexNameRepositoryCache.add(indexName);
-		FileUtils.deleteQuietly(tmp);
 	}
 
 }

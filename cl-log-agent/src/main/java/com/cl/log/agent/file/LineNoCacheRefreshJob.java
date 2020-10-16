@@ -23,7 +23,7 @@ public class LineNoCacheRefreshJob implements Job {
 
 	private static final Logger logger = LoggerFactory.getLogger(LineNoCacheRefreshJob.class);
 
-	private static final Map<String, Long> map = Maps.newConcurrentMap();
+	private static final Map<String, String> map = Maps.newConcurrentMap();
 
 
 	@Override
@@ -37,28 +37,25 @@ public class LineNoCacheRefreshJob implements Job {
 		logger.info("行号已刷新！总量:{}", map.size());
 	}
 
-	public static void refresh(String key, Long no) {
-		map.put(key, no);
+	public static void refresh(String key, long no) {
+		map.put(key, String.valueOf(no));
 	}
 
-	public static Long getLineNo(String key) {
+	public static long getLineNo(String key) {
 		if (map.containsKey(key)) {
-			return map.get(key);
+			return Long.parseLong(map.get(key));
 		}
-		Long lineNo = 0L;
 		Object o = ZkRegister.getInstance().get(key);
 		if (o == null) {
-			ZkRegister.getInstance().set(key, lineNo);
-			return lineNo;
+			ZkRegister.getInstance().set(key, "0");
+			return 0L;
 		}
-		lineNo = (Long) o;
-		return lineNo;
+		return Long.parseLong(o.toString());
 	}
 
-	public static void resetLineNo(String key){
-		Long lineNo = 0L;
-		ZkRegister.getInstance().set(key, lineNo);
-		map.put(key, lineNo);
+	public static void resetLineNo(String key) {
+		ZkRegister.getInstance().set(key, "0");
+		map.put(key, "0");
 	}
 
 }

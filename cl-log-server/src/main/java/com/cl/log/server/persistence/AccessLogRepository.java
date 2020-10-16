@@ -10,6 +10,7 @@ import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.support.WriteRequest;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.unit.TimeValue;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 
@@ -31,7 +32,9 @@ public class AccessLogRepository extends AbstractRepository<AccessLog> {
 		if (CollectionUtils.isEmpty(list)) {
 			return;
 		}
+		// 校验es索引时应该使用分布式锁。
 		checkIndex(index);
+
 		if (list.size() <= COUNT) {
 			insert(index, list);
 			return;
@@ -41,10 +44,12 @@ public class AccessLogRepository extends AbstractRepository<AccessLog> {
 	}
 
 	private void insert(EsIndex index, List<AccessLog> list) {
+		// request 需要增加超时时间
 		BulkRequest request = new BulkRequest(index.getName());
 		for (AccessLog log : list) {
 			request.add(new IndexRequest(index.getName()).id(UUID.randomUUID().toString()).source(log.convert()));
 		}
+		request.timeout(TimeValue.timeValueSeconds(30));
 		request.setRefreshPolicy(WriteRequest.RefreshPolicy.IMMEDIATE);
 		BulkResponse responses;
 		try {
