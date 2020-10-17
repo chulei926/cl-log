@@ -14,10 +14,8 @@ import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import javax.annotation.Resource;
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.Map;
@@ -51,11 +49,11 @@ public abstract class AbstractRepository<T> implements IRepository<T> {
 		InterProcessMutex interProcessMutex = null;
 		try {
 			// 创建锁对象
-			interProcessMutex = new InterProcessMutex(SpringContextUtil.getBean(CuratorFramework.class), "/" + indexName);
+			interProcessMutex = new InterProcessMutex(SpringContextUtil.getBean(CuratorFramework.class), "/cl-log-lock/" + indexName);
 			// 获取锁
 			interProcessMutex.acquire(10, TimeUnit.SECONDS);
 			// 如果获取锁成功，则执行对应逻辑
-
+			logger.warn("获取到锁！{}", indexName);
 			// 2. 缓存中没有，调用ES服务判断
 			IndexRepository indexRepository = SpringContextUtil.getBean(IndexRepository.class);
 			if (indexRepository.exist(indexName)) {
@@ -78,6 +76,7 @@ public abstract class AbstractRepository<T> implements IRepository<T> {
 			// 4. 创建完成，重新放入缓存
 			indexNameRepositoryCache.add(indexName);
 			FileUtils.deleteQuietly(tmp);
+			logger.warn("索引创建成功！{}", indexName);
 		} catch (Exception e) {
 			logger.error("checkIndex异常！", e);
 		} finally {
@@ -89,6 +88,7 @@ public abstract class AbstractRepository<T> implements IRepository<T> {
 					logger.error("ZK分布式锁释放异常！", e);
 				}
 			}
+			logger.warn("释放锁！{}", indexName);
 		}
 	}
 

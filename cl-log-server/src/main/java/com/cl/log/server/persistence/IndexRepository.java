@@ -12,6 +12,7 @@ import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.client.indices.PutMappingRequest;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.index.query.ExistsQueryBuilder;
 import org.slf4j.Logger;
@@ -38,13 +39,14 @@ public class IndexRepository extends AbstractRepository<EsIndex> {
 	public boolean exist(String indexName){
 		try {
 			GetIndexRequest request = new GetIndexRequest(indexName);
+			request.setTimeout(TimeValue.timeValueSeconds(60));
 			return client.indices().exists(request, RequestOptions.DEFAULT);
 		} catch (Exception e){
 			throw new PersistenceException(String.format("判断索引[%s]是否存在出现异常！",indexName), e);
 		}
 	}
 
-	public void create(EsIndex index) {
+	public synchronized void create(EsIndex index) {
 		XContentBuilder builder;
 		try {
 			builder = EsIndex.buildMapping(index);
