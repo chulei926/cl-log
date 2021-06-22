@@ -1,5 +1,6 @@
 package com.cl.log.agent.extractor;
 
+import com.cl.log.agent.config.Alias;
 import com.cl.log.config.model.LogFactory;
 import com.cl.log.config.utils.NetUtils;
 import com.google.common.base.Splitter;
@@ -48,6 +49,7 @@ import java.util.regex.Pattern;
  *
  * @author leichu 2020-09-01.
  */
+@Alias("access")
 public class AccessExtractor implements Extractor {
 
 	@Override

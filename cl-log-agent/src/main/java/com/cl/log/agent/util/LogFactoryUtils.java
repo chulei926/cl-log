@@ -1,9 +1,7 @@
 package com.cl.log.agent.util;
 
-import com.cl.log.agent.extractor.AccessExtractor;
-import com.cl.log.agent.extractor.BizExtractor;
+import com.cl.log.agent.config.Alias;
 import com.cl.log.agent.extractor.Extractor;
-import com.cl.log.agent.extractor.PerfExtractor;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.io.FileUtils;
@@ -13,8 +11,10 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.ServiceLoader;
 
 /**
  * 日志工厂工具类.
@@ -28,9 +28,17 @@ public class LogFactoryUtils {
 	static Map<String, Class<?>> logExtractorMap = Maps.newConcurrentMap();
 
 	static {
-		logExtractorMap.put("biz", BizExtractor.class);
-		logExtractorMap.put("perf", PerfExtractor.class);
-		logExtractorMap.put("access", AccessExtractor.class);
+		// 采用 SPI 机制加载所有的解析器  modify@2021-06-22
+		ServiceLoader<Extractor> parsers = ServiceLoader.load(Extractor.class);
+		Iterator<Extractor> iterator = parsers.iterator();
+		while (iterator.hasNext()) {
+			Extractor parser = iterator.next();
+			Class<? extends Extractor> clazz = parser.getClass();
+			Alias alias = clazz.getAnnotation(Alias.class);
+			String type = alias.value();
+			logExtractorMap.put(type, clazz);
+		}
+
 	}
 
 	public static Extractor parseExtractor(String type) {
