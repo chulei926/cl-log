@@ -1,7 +1,9 @@
 package com.cl.log.config.register;
 
+import com.cl.log.config.common.SpringContextWrapper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -12,8 +14,6 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.data.Stat;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -27,34 +27,22 @@ import java.util.Map;
  *
  * @author leichu 2020-06-23.
  */
+@Slf4j
 public class ZkRegister extends AbstractRegister {
 
-	private static final Logger logger = LoggerFactory.getLogger(ZkRegister.class);
-
 	private static final String path = "cl-log";
+	private static final String SERVER_PREFIX = "/server/";
+	private static final String CONFIG_PREFIX = "/config/";
 	private static volatile CuratorFramework client = null;
 	private static ZkRegister INSTANCE = null;
 
-	private static final String SERVER_PREFIX = "/server/";
-	private static final String CONFIG_PREFIX = "/config/";
-
-	public static ZkRegister getInstance() {
-		if (null == client) {
-			synchronized (ZkRegister.class) {
-				if (null == client) {
-					INSTANCE = new ZkRegister();
-				}
-			}
-		}
-		return INSTANCE;
-	}
-
 	private ZkRegister() {
+		final ZkProperties zkConfig = SpringContextWrapper.getBean(ZkProperties.class);
 		RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
 		client = CuratorFrameworkFactory.builder()
-				.connectString(ZkConfig.HOST)
-				.sessionTimeoutMs(ZkConfig.SESSION_TIMEOUT)
-				.connectionTimeoutMs(ZkConfig.CONNECTION_TIMEOUT)
+				.connectString(zkConfig.getAddress())
+				.sessionTimeoutMs(zkConfig.getSessionTimeout())
+				.connectionTimeoutMs(zkConfig.getConnectionTimeout())
 				.retryPolicy(retryPolicy)
 				.namespace(path)
 				.build();
@@ -62,13 +50,13 @@ public class ZkRegister extends AbstractRegister {
 		client.getConnectionStateListenable().addListener((client1, state) -> {
 			switch (state) {
 				case LOST:
-					logger.info("zookeeper[{}] 连接断开。", ZkConfig.HOST);
+					log.info("zookeeper[{}] 连接断开。", zkConfig.getAddress());
 					break;
 				case CONNECTED:
-					logger.info("zookeeper[{}] 连接成功。", ZkConfig.HOST);
+					log.info("zookeeper[{}] 连接成功。", zkConfig.getAddress());
 					break;
 				case RECONNECTED:
-					logger.info("zookeeper[{}] 已连接。", ZkConfig.HOST);
+					log.info("zookeeper[{}] 已连接。", zkConfig.getAddress());
 					break;
 				default:
 					break;
@@ -87,12 +75,12 @@ public class ZkRegister extends AbstractRegister {
 			Object value = byte2Obj(data.getData());
 			switch (event.getType()) {
 				case CHILD_ADDED:
-					logger.info("子节点增加, path={}, data={}", data.getPath(), byte2Obj(data.getData()));
+					log.info("子节点增加, path={}, data={}", data.getPath(), byte2Obj(data.getData()));
 					resetReqCount();  // 重置
 					super.register(key, value); // 缓存
 					break;
 				case CHILD_UPDATED:
-					logger.info("子节点更新, path={}, data={}", data.getPath(), byte2Obj(data.getData()));
+					log.info("子节点更新, path={}, data={}", data.getPath(), byte2Obj(data.getData()));
 					resetReqCount();  // 重置
 					super.register(key, value); // 缓存
 					// 先删除
@@ -105,7 +93,7 @@ public class ZkRegister extends AbstractRegister {
 					this.register(key, value);
 					break;
 				case CHILD_REMOVED:
-					logger.info("子节点删除, path={}, data={}", data.getPath(), byte2Obj(data.getData()));
+					log.info("子节点删除, path={}, data={}", data.getPath(), byte2Obj(data.getData()));
 					resetReqCount();  // 重置
 					super.unRegister(key);  // 清除缓存
 					break;
@@ -118,8 +106,19 @@ public class ZkRegister extends AbstractRegister {
 		try {
 			pathChildrenCache.start(PathChildrenCache.StartMode.BUILD_INITIAL_CACHE);
 		} catch (Exception e) {
-			logger.error(" zookeeper 节点发现监听器启动异常！", e);
+			log.error(" zookeeper 节点发现监听器启动异常！", e);
 		}
+	}
+
+	public static ZkRegister getInstance() {
+		if (null == client) {
+			synchronized (ZkRegister.class) {
+				if (null == client) {
+					INSTANCE = new ZkRegister();
+				}
+			}
+		}
+		return INSTANCE;
 	}
 
 	@Override
@@ -127,7 +126,7 @@ public class ZkRegister extends AbstractRegister {
 		try {
 			// 增加 zk 配置.
 			client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(SERVER_PREFIX + key, obj2Byte(value));
-			logger.warn("服务注册成功 {} - {}", key, value);
+			log.warn("服务注册成功 {} - {}", key, value);
 		} catch (Exception e) {
 			throw new RuntimeException("服务注册异常！", e);
 		}

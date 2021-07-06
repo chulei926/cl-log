@@ -1,4 +1,4 @@
-package com.cl.log.server.config;
+package com.cl.log.config.common;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -9,18 +9,17 @@ import org.springframework.context.ApplicationContextAware;
  *
  * @author leichu 2019-03-12.
  */
-public class SpringContextUtil implements ApplicationContextAware {
+public class SpringContextWrapper implements ApplicationContextAware {
 
 	private static ApplicationContext applicationContext;
-
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		SpringContextUtil.applicationContext = applicationContext;
-	}
 
 	public static ApplicationContext getApplicationContext() {
 		return applicationContext;
 	}
 
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		SpringContextWrapper.applicationContext = applicationContext;
+	}
 
 	public static <T> T getBean(String name) throws BeansException {
 		return (T) applicationContext.getBean(name);

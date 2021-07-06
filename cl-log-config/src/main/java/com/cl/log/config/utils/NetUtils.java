@@ -2,8 +2,7 @@ package com.cl.log.config.utils;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -11,9 +10,8 @@ import java.net.NetworkInterface;
 import java.util.Enumeration;
 import java.util.List;
 
+@Slf4j
 public class NetUtils {
-
-	private static final Logger logger = LoggerFactory.getLogger(NetUtils.class);
 
 	public static String getIp() {
 		List<String> ips = Lists.newArrayList();
@@ -42,7 +40,7 @@ public class NetUtils {
 				}
 			}
 		} catch (Exception e) {
-			logger.error("IP地址获取失败", e);
+			log.error("IP地址获取失败", e);
 		}
 		return ips.size() < 1 ? "" : Joiner.on(",").join(ips);
 	}
