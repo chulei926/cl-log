@@ -2,6 +2,7 @@ package com.cl.log.server.persistence;
 
 import com.cl.log.config.common.ConvertException;
 import com.cl.log.config.common.PersistenceException;
+import com.cl.log.server.config.ElasticsearchConfig;
 import com.cl.log.server.model.EsIndex;
 import org.elasticsearch.ElasticsearchStatusException;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
@@ -14,7 +15,6 @@ import org.elasticsearch.client.indices.PutMappingRequest;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentBuilder;
-import org.elasticsearch.index.query.ExistsQueryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -28,21 +28,17 @@ public class IndexRepository extends AbstractRepository<EsIndex> {
 	private static final Logger logger = LoggerFactory.getLogger(IndexRepository.class);
 
 	@Resource
-	private Integer numberOfShards;
-	@Resource
-	private Integer numberOfReplicas;
-	@Resource
-	private Integer maxResultWindow;
+	ElasticsearchConfig.ElasticsearchProp elasticsearchProp;
 	@Resource
 	private RestHighLevelClient client;
 
-	public boolean exist(String indexName){
+	public boolean exist(String indexName) {
 		try {
 			GetIndexRequest request = new GetIndexRequest(indexName);
 			request.setTimeout(TimeValue.timeValueSeconds(60));
 			return client.indices().exists(request, RequestOptions.DEFAULT);
-		} catch (Exception e){
-			throw new PersistenceException(String.format("判断索引[%s]是否存在出现异常！",indexName), e);
+		} catch (Exception e) {
+			throw new PersistenceException(String.format("判断索引[%s]是否存在出现异常！", indexName), e);
 		}
 	}
 
@@ -55,9 +51,9 @@ public class IndexRepository extends AbstractRepository<EsIndex> {
 		}
 		CreateIndexRequest createIndexRequest = new CreateIndexRequest(index.getName());
 		createIndexRequest.settings(Settings.builder()
-				.put("index.number_of_shards", numberOfShards)
-				.put("index.number_of_replicas", numberOfReplicas)
-				.put("index.max_result_window", maxResultWindow)
+				.put("index.number_of_shards", elasticsearchProp.getNumberOfShards())
+				.put("index.number_of_replicas", elasticsearchProp.getNumberOfReplicas())
+				.put("index.max_result_window", elasticsearchProp.getMaxResultWindow())
 		);
 		try {
 			client.indices().create(createIndexRequest, RequestOptions.DEFAULT);

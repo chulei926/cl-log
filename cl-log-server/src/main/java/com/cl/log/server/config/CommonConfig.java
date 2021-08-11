@@ -1,5 +1,6 @@
 package com.cl.log.server.config;
 
+import com.cl.log.config.common.SpringContextWrapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -7,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class CommonConfig {
 
 	@Bean
-	public SpringContextUtil springApplicationContextUtil() {
-		return new SpringContextUtil();
+	public SpringContextWrapper springApplicationContextUtil() {
+		return new SpringContextWrapper();
 	}
 }

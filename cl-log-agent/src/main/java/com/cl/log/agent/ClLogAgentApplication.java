@@ -23,13 +23,26 @@ import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.cl.log")
 @EnableAsync
 public class ClLogAgentApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(ClLogAgentApplication.class);
 
 	private static ConfigurableApplicationContext applicationContext;
+
+	static {
+		Runtime runtime = Runtime.getRuntime();
+		runtime.addShutdownHook(new Thread(() -> {
+			if (applicationContext != null) {
+				logger.warn("正在关闭程序释放资源，请稍等....");
+				RemainLogHandlerBeforeApplicationDestroy handler = applicationContext.getBean(RemainLogHandlerBeforeApplicationDestroy.class);
+				handler.handle();
+				applicationContext.close();
+				logger.warn("cl-log客户端程序已关闭！");
+			}
+		}));
+	}
 
 	public static void main(String[] args) {
 		applicationContext = SpringApplication.run(ClLogAgentApplication.class, args);
@@ -55,19 +68,6 @@ public class ClLogAgentApplication {
 		} catch (SchedulerException se) {
 			throw new RuntimeException("行号刷新定时任务启动失败！", se);
 		}
-	}
-
-	static {
-		Runtime runtime = Runtime.getRuntime();
-		runtime.addShutdownHook(new Thread(() -> {
-			if (applicationContext != null) {
-				logger.warn("正在关闭程序释放资源，请稍等....");
-				RemainLogHandlerBeforeApplicationDestroy handler = applicationContext.getBean(RemainLogHandlerBeforeApplicationDestroy.class);
-				handler.handle();
-				applicationContext.close();
-				logger.warn("cl-log客户端程序已关闭！");
-			}
-		}));
 	}
 
 }

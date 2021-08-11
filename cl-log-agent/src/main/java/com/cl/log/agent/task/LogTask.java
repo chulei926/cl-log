@@ -12,11 +12,11 @@ import com.cl.log.config.register.ZkRegister;
 import com.cl.log.config.utils.DateUtils;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.monitor.FileAlterationMonitor;
 import org.apache.commons.io.monitor.FileAlterationObserver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.DigestUtils;
 
@@ -38,9 +38,8 @@ import java.util.stream.Stream;
  *
  * @author leichu 2020-08-26.
  */
+@Slf4j
 public class LogTask implements Runnable {
-
-	private static final Logger logger = LoggerFactory.getLogger(LogTask.class);
 
 	private static final String LOG_RECORD_FILE = "_logRecord.txt";
 
@@ -48,9 +47,8 @@ public class LogTask implements Runnable {
 	private final Extractor extractor;
 
 	private final String cacheKey;
-
-	private NettyClient client;
 	private final String nettyClientId;
+	private NettyClient client;
 
 	public LogTask(LogFileConfig.LogFileCfg config) {
 		nettyClientId = UUID.randomUUID().toString();
@@ -63,6 +61,10 @@ public class LogTask implements Runnable {
 
 	public void initNettyClient() {
 		String availableUrl = ZkRegister.getInstance().getAvailableUrl();
+		if (StringUtils.isBlank(availableUrl)) {
+			log.error("cl-log-service未启动，请先启动服务端！");
+			System.exit(0);
+		}
 		client = new NettyClient(nettyClientId, availableUrl.split(":")[0], Integer.parseInt(availableUrl.split(":")[1]));
 		ExecutorService executorService = Executors.newSingleThreadExecutor();
 		executorService.execute(() -> client.start());
@@ -76,7 +78,7 @@ public class LogTask implements Runnable {
 
 		historyLogProcess();
 		Path curPath = config.getPath();
-		logger.warn("历史日志处理完成{}", curPath.toAbsolutePath().toString());
+		log.warn("历史日志处理完成{}", curPath.toAbsolutePath().toString());
 		FileAlterationObserver observer = new FileAlterationObserver(
 				curPath.getParent().toFile(),
 				FileFilterUtils.and(FileFilterUtils.fileFileFilter(), FileFilterUtils.suffixFileFilter(".log")),
@@ -90,7 +92,7 @@ public class LogTask implements Runnable {
 		}));
 		try {
 			new FileAlterationMonitor(TimeUnit.MILLISECONDS.toMillis(500), observer).start();
-			logger.warn("文件监听器启动成功！{} {}", curFile.getAbsolutePath(), curFile.getName());
+			log.warn("文件监听器启动成功！{} {}", curFile.getAbsolutePath(), curFile.getName());
 		} catch (Exception e) {
 			throw new RuntimeException("文件监控程序启动异常！", e);
 		}
@@ -149,7 +151,7 @@ public class LogTask implements Runnable {
 			ChannelHandlerContext channelHandlerContext = ChannelHandlerContextHolder.getChannelHandlerContext(nettyClientId);
 			Channel channel = channelHandlerContext.channel();
 			logs.stream().filter(Objects::nonNull).forEach(channel::writeAndFlush);
-			logger.info("日志已发送，总量：{}", logs.size());
+			log.info("日志已发送，总量：{}", logs.size());
 			LineNoCacheRefreshJob.refresh(curCacheKey, lineNo);
 			LogFactoryUtils.appendExtracted2LogRecordFile(logRecordFile, historyFileName);
 		}
@@ -168,9 +170,9 @@ public class LogTask implements Runnable {
 	 * @param file file.
 	 */
 	private void parseFile(File file) {
-		logger.info("监听到文件变化，开始解析。{}", file.getAbsolutePath());
+		log.info("监听到文件变化，开始解析。{}", file.getAbsolutePath());
 		long lineNo = LineNoCacheRefreshJob.getLineNo(cacheKey);
-		logger.info("当前已读取到{}行。", lineNo);
+		log.info("当前已读取到{}行。", lineNo);
 		List<LogFactory.Log> logs;
 		Path path = file.toPath();
 		try (Stream<String> linesStream = Files.lines(path)) {
@@ -192,12 +194,12 @@ public class LogTask implements Runnable {
 			throw new RuntimeException("文件解析异常！", e);
 		}
 		if (CollectionUtils.isEmpty(logs)) {
-			logger.warn("未读取到文件内容。{}", file.getAbsolutePath());
+			log.warn("未读取到文件内容。{}", file.getAbsolutePath());
 			return;
 		}
 		ChannelHandlerContext channelHandlerContext = ChannelHandlerContextHolder.getChannelHandlerContext(nettyClientId);
 		Channel channel = channelHandlerContext.channel();
 		logs.stream().filter(Objects::nonNull).forEach(channel::writeAndFlush);
-		logger.info("日志已发送，总量：{}", logs.size());
+		log.info("日志已发送，总量：{}", logs.size());
 	}
 }

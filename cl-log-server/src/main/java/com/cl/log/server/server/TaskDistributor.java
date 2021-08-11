@@ -1,10 +1,7 @@
 package com.cl.log.server.server;
 
+import com.cl.log.config.common.SpringContextWrapper;
 import com.cl.log.config.model.LogFactory;
-import com.cl.log.server.config.SpringContextUtil;
-import com.cl.log.server.model.AccessLog;
-import com.cl.log.server.model.BizLog;
-import com.cl.log.server.model.PerfLog;
 import com.cl.log.server.task.TaskCenter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +28,7 @@ public class TaskDistributor implements Runnable {
 	@Override
 	public void run() {
 		final LogFactory.Log.Category category = this.log.getCategory();
-		TaskCenter taskCenter = SpringContextUtil.getBean(TaskCenter.class);
+		TaskCenter taskCenter = SpringContextWrapper.getBean(TaskCenter.class);
 		switch (category) {
 			case biz_log:
 				taskCenter.put2BizLogQueue(this.log.getBizLog());

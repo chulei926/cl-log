@@ -1,14 +1,15 @@
 package com.cl.log.agent.config;
 
+import com.cl.log.config.common.SpringContextWrapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ComConfig {
+public class CommonConfig {
 
 	@Bean
-	public SpringContextUtils springContextUtils() {
-		return new SpringContextUtils();
+	public SpringContextWrapper springContextUtils() {
+		return new SpringContextWrapper();
 	}
 
 }

@@ -1,71 +1,115 @@
 package com.cl.log.server.config;
 
+import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpHost;
+import org.elasticsearch.action.admin.cluster.settings.ClusterGetSettingsRequest;
+import org.elasticsearch.action.admin.cluster.settings.ClusterGetSettingsResponse;
+import org.elasticsearch.action.admin.cluster.settings.ClusterUpdateSettingsRequest;
+import org.elasticsearch.action.admin.cluster.settings.ClusterUpdateSettingsResponse;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.settings.Settings;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
-import org.springframework.data.elasticsearch.client.ClientConfiguration;
-import org.springframework.data.elasticsearch.client.RestClients;
-import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
 
 import javax.annotation.Resource;
+import java.util.List;
 
+@Slf4j
 @Configuration
-public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
+public class ElasticsearchConfig {
 
-	private static final int NUMBER_OF_SHARDS = 3;
-	private static final int NUMBER_OF_REPLICAS = 0;
-	private static final int MAX_RESULT_WINDOW = 100000000;
+	private volatile RestHighLevelClient client;
 
 	@Resource
-	private Environment environment;
+	private ElasticsearchProp elasticsearchProp;
 
 	@Bean
-	public String[] esHost() {
-		String esAddress = environment.getProperty("es.addresses");
-		if (StringUtils.isBlank(esAddress)) {
-			throw new RuntimeException("请先配置 elasticsearch 集群地址！");
+	public RestHighLevelClient restHighLevelClient() {
+		if (null == client) {
+			synchronized (ElasticsearchConfig.class) {
+				if (null == client) {
+					client = build();
+				}
+			}
 		}
-		return esAddress.split(",");
+		return client;
 	}
 
-	@Bean
-	public Integer numberOfShards() {
-		String shards = environment.getProperty("es.index.number_of_shards");
-		if (StringUtils.isBlank(shards)) {
-			return NUMBER_OF_SHARDS;
+	private RestHighLevelClient build() {
+		System.setProperty("es.set.netty.runtime.available.processors", "false");
+		try {
+			List<String> hostAddressList = Splitter.on(",").splitToList(elasticsearchProp.addresses);
+			List<HttpHost> hosts = Lists.newArrayList();
+			for (String address : hostAddressList) {
+				hosts.add(HttpHost.create(address));
+			}
+			RestClientBuilder restClientBuilder = RestClient.builder(hosts.stream().toArray(HttpHost[]::new));
+			client = new RestHighLevelClient(restClientBuilder);
+			log.warn("ES客户端初始化完成，ES地址：{}", elasticsearchProp.addresses);
+			updateClusterSetting();
+			registerHook();
+		} catch (Exception e) {
+			throw new RuntimeException("ES客户端初始化失败！", e);
 		}
-		return Integer.parseInt(shards);
+		return client;
 	}
 
-	@Bean
-	public Integer numberOfReplicas() {
-		String replicas = environment.getProperty("es.index.number_of_replicas");
-		if (StringUtils.isBlank(replicas)) {
-			return NUMBER_OF_REPLICAS;
+	private void updateClusterSetting() {
+		try {
+			ClusterGetSettingsResponse getSettingsResponse = client.cluster().getSettings(new ClusterGetSettingsRequest(), RequestOptions.DEFAULT);
+			String maxBuckets = getSettingsResponse.getPersistentSettings().get("search.max_buckets");
+			if (StringUtils.isBlank(maxBuckets) || Integer.parseInt(maxBuckets) < 100000) {
+				ClusterUpdateSettingsRequest updateSettingsRequest = new ClusterUpdateSettingsRequest();
+				Settings persistentSettings = Settings.builder().put("search.max_buckets", 100000).build();
+				updateSettingsRequest.persistentSettings(persistentSettings);
+				ClusterUpdateSettingsResponse response = client.cluster().putSettings(updateSettingsRequest, RequestOptions.DEFAULT);
+				if (response.isAcknowledged()) {
+					log.warn("ES集群配置[search.max_buckets=100000]更新成功");
+				}
+			}
+		} catch (Exception e) {
+			log.error("获取ES集群配置异常！", e);
 		}
-		return Integer.parseInt(replicas);
+		log.warn("ES集群配置更新完成......");
 	}
 
-	@Bean
-	public Integer maxResultWindow() {
-		String max = environment.getProperty("es.index.max_result_window");
-		if (StringUtils.isBlank(max)) {
-			return MAX_RESULT_WINDOW;
+	public void close() {
+		if (null != client) {
+			synchronized (ElasticsearchConfig.class) {
+				if (null != client) {
+					try {
+						client.close();
+						client = null;
+						log.warn("Elasticsearch客户端连接已关闭！");
+					} catch (Exception e) {
+						throw new RuntimeException("ES客户端关闭失败！", e);
+					}
+				}
+			}
 		}
-		return Integer.parseInt(max);
 	}
 
-
-	@Override
-	@Bean
-	public RestHighLevelClient elasticsearchClient() {
-		final ClientConfiguration clientConfiguration = ClientConfiguration.builder()
-				.connectedTo(esHost())
-				.build();
-		return RestClients.create(clientConfiguration).rest();
+	private void registerHook() {
+		Runtime runtime = Runtime.getRuntime();
+		runtime.addShutdownHook(new Thread(this::close));
 	}
 
-
+	@Data
+	@Configuration
+	@ConfigurationProperties(prefix = "elasticsearch")
+	public static class ElasticsearchProp {
+		private String addresses;
+		private String numberOfShards;
+		private String numberOfReplicas;
+		private String maxResultWindow;
+	}
 }
+

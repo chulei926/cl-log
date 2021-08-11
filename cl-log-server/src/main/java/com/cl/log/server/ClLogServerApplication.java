@@ -8,18 +8,20 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-@SpringBootApplication
+/**
+ * 服务端启动入口.
+ * <p>
+ * 添加 scanBasePackages 是因为该工程依赖的 cl-log-config 中使用了 @Configuration 注解。
+ * </p>
+ *
+ * @author leichu 2021-07-06.
+ */
+@SpringBootApplication(scanBasePackages = "com.cl.log")
 public class ClLogServerApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(ClLogServerApplication.class);
 
 	private static ConfigurableApplicationContext applicationContext;
-
-	public static void main(String[] args) {
-		applicationContext = SpringApplication.run(ClLogServerApplication.class, args);
-		NettyServer server = new NettyServer(12345);
-		server.start();
-	}
 
 	static {
 		Runtime runtime = Runtime.getRuntime();
@@ -32,6 +34,12 @@ public class ClLogServerApplication {
 				logger.warn("cl-log服务端程序已关闭！");
 			}
 		}));
+	}
+
+	public static void main(String[] args) {
+		applicationContext = SpringApplication.run(ClLogServerApplication.class, args);
+		NettyServer server = new NettyServer(12345);
+		server.start();
 	}
 
 }

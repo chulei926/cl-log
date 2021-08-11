@@ -1,7 +1,7 @@
 package com.cl.log.server.task;
 
+import com.cl.log.config.common.SpringContextWrapper;
 import com.cl.log.config.model.LogFactory;
-import com.cl.log.server.config.SpringContextUtil;
 import com.cl.log.server.model.AccessLog;
 import com.cl.log.server.model.EsIndex;
 import com.cl.log.server.persistence.AccessLogRepository;
@@ -29,14 +29,6 @@ public class AccessLogJob implements Job {
 
 	private static final Logger logger = LoggerFactory.getLogger(AccessLog.class);
 
-	@Override
-	public void execute(JobExecutionContext context) throws JobExecutionException {
-		logger.debug("Tomcat访问日志job执行");
-		TaskCenter taskCenter = SpringContextUtil.getBean(TaskCenter.class);
-		List<LogFactory.TomcatAccessLog> accessLogs = taskCenter.getAccessLogs();
-		handle(accessLogs);
-	}
-
 	public static void handle(List<LogFactory.TomcatAccessLog> accessLogs) {
 		if (CollectionUtils.isEmpty(accessLogs)) {
 			return;
@@ -49,10 +41,18 @@ public class AccessLogJob implements Job {
 		if (CollectionUtils.isEmpty(map)) {
 			return;
 		}
-		AccessLogRepository accessLogRepository = SpringContextUtil.getBean(AccessLogRepository.class);
+		AccessLogRepository accessLogRepository = SpringContextWrapper.getBean(AccessLogRepository.class);
 		map.forEach((k, v) -> {
 			String index = String.format("%s%s@%s", AccessLog.INDEX_PREFIX, v.get(0).getBiz(), k);
 			accessLogRepository.batchInsert(new EsIndex(index), v);
 		});
+	}
+
+	@Override
+	public void execute(JobExecutionContext context) throws JobExecutionException {
+		logger.debug("Tomcat访问日志job执行");
+		TaskCenter taskCenter = SpringContextWrapper.getBean(TaskCenter.class);
+		List<LogFactory.TomcatAccessLog> accessLogs = taskCenter.getAccessLogs();
+		handle(accessLogs);
 	}
 }

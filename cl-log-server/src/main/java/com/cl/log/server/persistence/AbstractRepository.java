@@ -1,6 +1,6 @@
 package com.cl.log.server.persistence;
 
-import com.cl.log.server.config.SpringContextUtil;
+import com.cl.log.config.common.SpringContextWrapper;
 import com.cl.log.server.model.AccessLog;
 import com.cl.log.server.model.BizLog;
 import com.cl.log.server.model.EsIndex;
@@ -49,13 +49,13 @@ public abstract class AbstractRepository<T> implements IRepository<T> {
 		InterProcessMutex interProcessMutex = null;
 		try {
 			// 创建锁对象
-			interProcessMutex = new InterProcessMutex(SpringContextUtil.getBean(CuratorFramework.class), "/cl-log-lock/" + indexName);
+			interProcessMutex = new InterProcessMutex(SpringContextWrapper.getBean(CuratorFramework.class), "/cl-log-lock/" + indexName);
 			// 获取锁
 			interProcessMutex.acquire(10, TimeUnit.SECONDS);
 			// 如果获取锁成功，则执行对应逻辑
 			logger.warn("获取到锁！{}", indexName);
 			// 2. 缓存中没有，调用ES服务判断
-			IndexRepository indexRepository = SpringContextUtil.getBean(IndexRepository.class);
+			IndexRepository indexRepository = SpringContextWrapper.getBean(IndexRepository.class);
 			if (indexRepository.exist(indexName)) {
 				// ES 中存在，放入缓存
 				indexNameRepositoryCache.add(indexName);
